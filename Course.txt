@@ -1,4 +1,135 @@
-"use strict";
+
+// old not used style of coding
+const num = new Number(3);
+console.log(num);
+
+const func = new Function(3);
+console.log(func);
+
+//
+
+function User(name, id) {
+  this.name = name;
+  this.id = id;
+  this.human = true;
+  this.hello = function () {
+    console.log(`Hello ${this.name}`);
+  };
+}
+
+// creating prototype if cant access or change parent protottype
+User.prototype.exit = function () {
+  console.log(`${this.name} exited`);
+};
+
+const ivan = new User("Ivan", 28);
+const alex = new User("alex", 20);
+
+console.log(ivan);
+console.log(alex);
+ivan.hello();
+ivan.exit();
+
+
+
+
+const box = document.querySelector(".box");
+
+// const test = box.clientWidth;
+// const heigth = box.clientHeight;
+// const width = box.offsettWidth;
+// const heigth = box.offsettHeight;
+const width = box.scrollWidth;
+const heigth = box.scrollHeight;
+console.log(width, heigth);
+
+const button = document.querySelector("button");
+
+button.addEventListener("click", () => {
+  console.log(box.scrollTop);
+
+  box.style.height = box.scrollHeight + "px";
+});
+console.log(box.getBoundingClientRect());
+
+const style = window.getComputedStyle(box);
+console.log(style);
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const now = new Date();
+
+// let start = new Date();
+// for (let i = 0; i < 100000; i++) {
+//   let some = i ** 3;
+// }
+// let end = new Date();
+// alert(`Worked for ${end - start} milliseconds`);
+
+// console.log(now.getTimezoneOffset());
+// console.log(now.getTime());
+
+// console.log(now.getFullYear());
+// console.log(now.getMonth());
+// console.log(now.getDate());
+// console.log(now.getDay());
+
+// console.log(now.getUTCHours());
+
+
+// const btn = document.querySelector(".btn");
+// let timerId,
+//   i = 0;
+
+// btn.addEventListener("click", () => {
+//   myAnimation();
+// });
+
+// // 
+// function myAnimation() {
+//   const elem = document.querySelector(".box");
+//   let pos = 0;
+//   const id = setInterval(frame, 10);
+//   function frame() {
+//     if (pos === 300) {
+//       clearInterval(id);
+//     } else {
+//       pos++;
+//       elem.style.top = pos + "px";
+//       elem.style.left = pos + "px";
+//     }
+//   }
+// }
+
+// const timerId = setTimeout(logger, 2000, "Hello World");
+// btn.addEventListener("click", () => {
+//   // const timerId = setTimeout(logger, 2000, "Hello World");
+//   timerId = setInterval(logger, 500);
+// });
+
+// function logger() {
+//   if (i === 3) {
+//     clearInterval(timerId);
+//   }
+//   console.log("text");
+//   i++;
+// }
+
+// let id = setTimeout(function log() {
+//   console.log("Hello");
+//   id = setTimeout(log, 500);
+// }, 500);
+
 
 const btns = document.querySelectorAll("button"),
   wrapper = document.querySelector(".button_block");
