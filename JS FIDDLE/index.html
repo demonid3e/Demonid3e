@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Test Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style type="text/css" > </style>
+
+  <body>
+  <header class="header">
+    <h1 class="h1">
+    Movie DataBase
+    </h1>
+  </header>
+  <br>
+    <div class="wrapper">
+      <ul class="Films">
+      </ul>
+    </div>
+    <button class="button_click" onclick="createList()">
+      Click
+    </button>
+    <button class="button_delete" onclick="deleteList()">
+      Delete
+    </button>
+    <form action="/action_page.php">
+      <br>
+      <label for="add film">Add Film</label>
+      <input type="text" id="addFilm" name="addFilm" autofocus><br><br>
+      
+      <input  type="button" value="Add Film" onclick="searchFilm()" class="input_button">
+    </form>
+    <script src="script.js"></script>
+  </body>
+
+</html>
