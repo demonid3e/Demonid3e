@@ -1,0 +1,34 @@
+www.githowto.com/ru
+
+git init // initialise this repository/folder
+git config --local user.name "laptop" // will configure local username
+git config --local user.email example@gmailcom // email
+
+git status // will show status of tracked files
+git add -A // add ALL files to be tracked
+git commit -a -m"example"  // -a commits all file -m adds message
+
+git push -u origin master // into origin/master
+git push // after -u will just need to push the repository
+
+git pull // will pull the latest version
+
+cd.. to folder you need
+git clone  https://someurl/project.git  project_2 //will create folder project_2
+
+
+// when merging online repository with local 
+// when asked merging:
+insert commit message "dasdasdasd"
+ctrl+c twice
+:wq!
+
+.gitignore
+neew to create file to ignore certain files in project
+
+
+
+
+
+
+git reset --hard  // discards all 
