@@ -1,38 +1,61 @@
 <!DOCTYPE html>
 
 <html>
-
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Test Page</title>
-    <link rel="stylesheet" href="style.css">
-    <style type="text/css" > </style>
+    <style type="text/css"></style>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
   <body>
-  <header class="header">
-    <h1 class="h1">
-    Movie DataBase
-    </h1>
-  </header>
-  <br>
-    <div class="wrapper">
-      <ul class="Films">
-      </ul>
+    <div class="login" id="login_form">
+      <form action="" autocomplete="off" class="login_form">
+        <br />
+        <label for="Login">Login</label>
+        <input type="text" id="login" name="Login" autofocus class="input" />
+        <br />
+        <br />
+        <label for="Password">Password</label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          autofocus
+          class="input"
+        /><br />
+        <br />
+        <input
+          type="button"
+          value="Submit"
+          onclick="loginUser()"
+          class="login_button"
+        />
+      </form>
     </div>
-    <button class="button_click" onclick="createList()">
-      Click
-    </button>
-    <button class="button_delete" onclick="deleteList()">
-      Delete
-    </button>
-    <form action="/action_page.php" autocomplete="off">
-      <br>
-      <label for="add film">Add Film</label>
-      <input type="text" id="addFilm" name="addFilm" autofocus><br><br>
-      
-      <input  type="button" value="Add Film" onclick="searchFilm()" class="input_button">
-    </form>
+    <div class="page">
+      <header class="header">
+        <h1 class="h1">Movie DataBase</h1>
+      </header>
+      <br />
+      <div class="wrapper">
+        <ul class="Films"></ul>
+      </div>
+      <button class="button_click" onclick="createList()">Open</button>
+      <button class="button_delete" onclick="deleteList()">Close</button>
+      <form action="/action_page.php" autocomplete="off">
+        <br />
+        <label for="add film">Add Film</label>
+        <input type="text" id="addFilm" name="addFilm" autofocus /><br /><br />
+
+        <input
+          type="button"
+          value="Add Film"
+          onclick="searchFilm()"
+          class="input_button"
+        />
+      </form>
+    </div>
     <script src="script.js"></script>
   </body>
-
 </html>

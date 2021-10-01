@@ -1,3 +1,29 @@
+.input {
+  position: absolute;
+  left: 100px;
+}
+.login_button {
+  position: absolute;
+  left: 280px;
+}
+.login {
+  width: 400px;
+  height: 150px;
+  background-color: white;
+  position: absolute;
+  top: 80px;
+  left: 80px;
+}
+.login_form {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+}
+
+.page {
+  visibility: hidden;
+}
+
 body {
   background-image: url("https://i.ibb.co/yPSpCpG/webb.png");
 }

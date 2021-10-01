@@ -12,10 +12,19 @@ const filmBase = {
   ],
 };
 
+const user = {
+  name: "Demon",
+  password: "Demon",
+};
+
 // document Variables
 const wrapper = document.querySelector(".wrapper"),
   dataField = document.querySelector("#addFilm"),
-  addFilmButton = document.querySelector(".input_button");
+  addFilmButton = document.querySelector(".input_button"),
+  userLogin = document.querySelector("#login"),
+  userPassword = document.querySelector("#password"),
+  loginForm = document.querySelector("#login_form"),
+  page = document.querySelector(".page");
 
 // function that checks for empty string and pushes value to array
 function addFilms() {
@@ -58,6 +67,10 @@ function createList() {
       const films = document.createElement("LI");
       films.className = "table";
       films.innerHTML = `${element}`;
+      films.onclick = function (el) {
+        var element = el;
+        element.remove();
+      };
       unOrdered.appendChild(films);
     });
     filmBase.pressed = true;
@@ -82,4 +95,17 @@ function searchFilm() {
   }
 }
 
-// this is test
+function loginUser() {
+  if (userLogin.value === user.name && userPassword.value === user.password) {
+    userLogin.value = "";
+    userPassword.value = "";
+    loginForm.style.visibility = "hidden";
+    page.style.visibility = "visible";
+
+    console.log("It worked");
+  } else {
+    alert("Login or Password is not correct!");
+    userLogin.value = "";
+    userPassword.value = "";
+  }
+}
