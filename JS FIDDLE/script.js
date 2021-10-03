@@ -67,13 +67,16 @@ function createList() {
       const films = document.createElement("LI");
       films.className = "table";
       films.innerHTML = `${element}`;
-      films.onclick = function (el) {
-        var element = el;
-        element.remove();
-      };
       unOrdered.appendChild(films);
+      filmBase.pressed = true;
+      document.querySelectorAll(".table").forEach((e) => {
+        e.onclick = function removeFilm() {
+          e.remove();
+        };
+      });
+
+      // console.log(films);
     });
-    filmBase.pressed = true;
   }
 }
 
