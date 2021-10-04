@@ -69,13 +69,12 @@ function createList() {
       films.innerHTML = `${element}`;
       unOrdered.appendChild(films);
       filmBase.pressed = true;
-      document.querySelectorAll(".table").forEach((e) => {
+      document.querySelectorAll(".table").forEach((e, position) => {
         e.onclick = function removeFilm() {
+          filmBase.filmArray.splice(position, 1);
           e.remove();
         };
       });
-
-      // console.log(films);
     });
   }
 }
