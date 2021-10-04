@@ -28,10 +28,15 @@ const wrapper = document.querySelector(".wrapper"),
 
 // function that checks for empty string and pushes value to array
 function addFilms() {
+  console.log("Added film");
   if (dataField.value != "") {
     filmBase.filmArray.push(dataField.value);
+    console.log("Added Film to array");
     console.log(wrapper.style.visibility);
-    if (wrapper.style.visibility == "") {
+    if (
+      wrapper.style.visibility == "" &&
+      wrapper.style.visibility == "hidden"
+    ) {
       wrapper.style.visibility = "visible";
     }
   }
@@ -69,9 +74,14 @@ function createList() {
       films.innerHTML = `${element}`;
       unOrdered.appendChild(films);
       filmBase.pressed = true;
-      document.querySelectorAll(".table").forEach((e, position) => {
+      document.querySelectorAll(".table").forEach((e) => {
         e.onclick = function removeFilm() {
+          console.log(e.textContent);
+          let position = filmBase.filmArray.indexOf(e.textContent);
           filmBase.filmArray.splice(position, 1);
+          console.log(filmBase.filmArray);
+          //        console.log(position);
+          //         console.log(filmBase.filmArray.indexOf(e.textContent));
           e.remove();
         };
       });
@@ -81,19 +91,23 @@ function createList() {
 
 // function that searches the array for similarity
 function searchFilm() {
-  for (let i = 0; i < filmBase.filmArray.length; i++) {
-    if (
-      dataField.value.toLowerCase() ===
-      filmBase.filmArray[i].toLocaleLowerCase()
-    ) {
-      alert(`Film ${dataField.value} is already in our Data Base`);
+  if (filmBase.filmArray.length == 0) {
+    addFilms();
+  } else {
+    for (let i = 0; i < filmBase.filmArray.length; i++) {
+      if (
+        dataField.value.toLowerCase() ===
+        filmBase.filmArray[i].toLocaleLowerCase()
+      ) {
+        alert(`Film ${dataField.value} is already in our Data Base`);
+        dataField.value = "";
+      }
+      filmBase.match = true;
+    }
+    if (filmBase.match) {
+      addFilms();
       dataField.value = "";
     }
-    filmBase.match = true;
-  }
-  if (filmBase.match) {
-    addFilms();
-    dataField.value = "";
   }
 }
 
@@ -104,9 +118,10 @@ function loginUser() {
     loginForm.style.visibility = "hidden";
     page.style.visibility = "visible";
 
-    console.log("It worked");
+    console.log("Logged in");
   } else {
     alert("Login or Password is not correct!");
+    console.log("Login Failed");
     userLogin.value = "";
     userPassword.value = "";
   }
