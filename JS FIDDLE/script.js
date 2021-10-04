@@ -16,6 +16,8 @@ const user = {
   name: "Demon",
   password: "Demon",
 };
+// Event Listeners
+document.addEventListener("keypress", detectEnter);
 
 // document Variables
 const wrapper = document.querySelector(".wrapper"),
@@ -117,6 +119,7 @@ function loginUser() {
     userPassword.value = "";
     loginForm.style.visibility = "hidden";
     page.style.visibility = "visible";
+    document.removeEventListener("keypress", detectEnter);
 
     console.log("Logged in");
   } else {
@@ -124,5 +127,14 @@ function loginUser() {
     console.log("Login Failed");
     userLogin.value = "";
     userPassword.value = "";
+    document.addEventListener("keypress", detectEnter);
+  }
+}
+
+function detectEnter(e) {
+  if (e.key === "Enter") {
+    loginUser();
+  } else {
+    console.log("Error Enter");
   }
 }
