@@ -131,9 +131,18 @@ function loginUser() {
   }
 }
 
+function detectEnterFilms(e) {
+  if (e.key === "Enter") {
+    searchFilm();
+  } else {
+    console.log("Error Enter");
+  }
+}
+
 function detectEnter(e) {
   if (e.key === "Enter") {
     loginUser();
+    document.addEventListener("keypress", detectEnterFilms);
   } else {
     console.log("Error Enter");
   }
