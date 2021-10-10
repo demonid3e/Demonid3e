@@ -1,37 +1,82 @@
 "use strict";
 
-////////////////////////////////////////////
-//// Script Loading and Async Loading //////
-////////////////////////////////////////////
+///////////////////////////////////////
+////// CLass Lists ////////////////////
+///////////////////////////////////////
 
-// Defer tells browser than he need to continue render HTML
-// and  load script in the background
-// script will only run when DOMtree is fully loaded
-// if 2 script files present they will load in order
+//  <div id="first" class="btn-block">
+//  <button class="blue some"></button>
+//  <button></button>
+//  <button></button>
+//  </div>
+const btn = document.querySelectorAll("button");
 
-// <script defer src="script.js"></script>
-// <p>Hello World!</p>
-//  <p>Second Message</p>
+btn.forEach((e) => {
+  console.log(e.classList.length);
+});
 
-const p = document.querySelectorAll("p");
+// classList.item will show first class (blue)
+console.log(btn[0].classList.item(0));
 
-// if defer not used console log will show 0 as <p> not created yet
-console.log(p); // NodeList []
+// will add classlist red ot button 3
+console.log(btn[2].classList.add("red"));
+// remove class blue
+console.log(btn[2].classList.remove("blue"));
+// will switch on class if its not there or turn off if it is there
+// will not work as good in complex scripts??
+console.log(btn[2].classList.toggle("red"));
 
-// page dosnt wait async scripts
-// async scripts dont wait each other, will load Asap
-
-// <script async src="script.js"></script>
-
-// functions to load scripts
-function loadScript(src) {
-  // can also create scripts with JS
-  const script = document.createElement("script");
-  //Dynamicly created scripts load like asinc by default
-  script.async = false;
-  script.src = "js/test.js";
-  document.body.append(script);
+// returns Boolean value
+if (btn[1].classList.contains("red")) {
+  console.log("red");
 }
-// because async = false they will load in order
-loadScript("js/test.js");
-loadScript("js/another.js");
+
+// will check if it doesnt have class red
+btn[0].addEventListener("click", () => {
+  if (!btn[1].classList.contains("red")) {
+    btn[1].classList.add("red");
+  } else {
+    btn[1].classList.remove("red");
+  }
+});
+
+// Old style. Will return all classes of the item
+console.log(btn[0].className);
+
+////////////////////////////////
+////////Event delegation////////
+////////////////////////////////
+
+const btnBlock = document.querySelector(".btn-block");
+
+btnBlock.addEventListener("click", (event) => {
+  if (event.target && event.target.tagName == "BUTTON") {
+    console.log("Hello");
+  }
+});
+
+btnBlock.addEventListener("click", (event) => {
+  if (event.target && event.target.classList.contains("red")) {
+    console.log("bye");
+  }
+});
+
+const newButton = document.createElement("button");
+newButton.classList.add("green");
+btnBlock.append(newButton);
+
+// newButton wont say "test" with forEach
+btn.forEach((e) => {
+  e.addEventListener("click", () => {
+    console.log("test");
+  });
+});
+
+// event.target.matches(); more advances form.
+// in this case uses 2 selector button and red
+
+btnBlock.addEventListener("click", (event) => {
+  if (event.target && event.target.matches("button.red")) {
+    console.log("TOST");
+  }
+});

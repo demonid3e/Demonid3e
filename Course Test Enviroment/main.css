@@ -1,5 +1,16 @@
-.box {
-  width: 100px;
-  height: 100px;
+.blue {
+  background-color: blue;
+}
+button {
+  width: 50px;
+  height: 30px;
+  background-color: yellow;
+}
+
+.red {
   background-color: red;
+}
+
+.green {
+  background-color: green;
 }
