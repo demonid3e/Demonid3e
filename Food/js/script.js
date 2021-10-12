@@ -7,7 +7,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function hideTabContent() {
     tabsContent.forEach((item) => {
-      item.style.display = "none";
+      item.classList.add("hidden");
+      item.classList.remove("show");
     });
     tabs.forEach((item) => {
       item.classList.remove("tabheader__item_active");
@@ -16,7 +17,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // if function was called without arguments the default will be 0
   function showTabContent(i = 1) {
-    tabsContent[i].style.display = "block";
+    tabsContent[i].classList.add("show");
+    tabsContent[i].classList.remove("hidden");
 
     // dont add . because classList already knows its class
     tabs[i].classList.add("tabheader__item_active");
