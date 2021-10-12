@@ -1,24 +1,16 @@
-.box {
-  width: 400px;
-  height: 350px;
-  overflow: scroll;
-  margin: 0 auto;
-  margin-top: 50px;
-  padding: 10px;
+.blue {
+  background-color: blue;
 }
-.boxLarge {
-  width: 500px;
-  height: 350px;
-  overflow: scroll;
-  margin: 0 auto;
-  margin-top: 50px;
-  padding: 10px;
+button {
+  width: 50px;
+  height: 30px;
+  background-color: yellow;
 }
 
-.button {
-  width: 100px;
-  height: 40px;
-  display: block;
-  margin: 0 auto;
-  margin-top: 20px;
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
 }

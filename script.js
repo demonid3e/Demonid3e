@@ -1,82 +1,23 @@
 "use strict";
 
-function showThis() {
-  console.log(this);
-}
+//setTimeout takes 2 arguments, function and miliseconds when its will run
 
-showThis();
+const timerId = setTimeout(function () {
+  console.log("I`m 2 Arguments");
+}, 2000);
+// will show Hello after 2 seconds
 
-function showThat(a, b) {
-  console.log(this);
-  function sum() {
-    console.log(this);
-    return a + b;
-  }
-  console.log(sum());
-}
-
-showThat(4, 8);
-// 1) Common function: this = window, but if "use strict"  = undefined
-
-const obj = {
-  a: 20,
-  b: 15,
-  sum: function () {
-    console.log(this);
-    function shout() {
-      console.log(this);
-    }
+//setTimeout takes 3 arguments, function and miliseconds when its will run
+const timeId = setTimeout(
+  function (text) {
+    console.log(text);
   },
-};
-obj.sum();
+  2000,
+  "I`m 3 Arguments"
+);
+// will show Hello after 2 seconds but using functions argument!
 
-// 2) Object`s method`s context will be object itself.
-//(if inside this object will be function which will use "this"
-//it will be used in context of window or if "use strict is not used" undefined).
-
-//3) "this" in Constructors and Classes - new property of object
-function User(name, id) {
-  this.name = name;
-  this.id = id;
-  this.human = true;
+const anotherTimer = setTimeout(logger, 2000);
+function logger() {
+  console.log("I`m logger");
 }
-
-let ivan = new User("Ivan", 23);
-
-// 4) Manual change focus of "this" : call, apply, bind
-
-function sayName(age) {
-  console.log(this);
-  console.log(this.name + age);
-}
-const user = {
-  name: "John",
-  surname: "fearn",
-};
-sayName.call(user, 33);
-sayName.apply(user, [44]);
-
-function count(num) {
-  return this * num;
-}
-
-const double = count.bind(2);
-console.log(double(3));
-
-const btn = document.querySelector("button");
-
-btn.addEventListener("click", function () {
-  console.log(this);
-});
-
-const obj = {
-  num: 5,
-  sayNumber: function () {
-    const say = () => {
-      console.log(this);
-    };
-    say();
-  },
-};
-
-obj.sayNumber();
