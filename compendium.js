@@ -1,5 +1,46 @@
 "use strict";
 
+// browser will show Date in your format
+// vscode console can show in UTC
+const now = new Date();
+const neq = new Date("2021-10-17");
+// will be the same as above
+// new Date.parse("2021-10-17");
+// must pass year with 4 digits
+const qoq = new Date(2020, 5, 1, 20);
+
+// all data is stored in miliseconds and starts at 1970/1/1
+// all data is given with local timezone
+const mil = new Date(0);
+console.log(now); // 2021-10-17T22:52:48.235Z
+console.log(neq); // 2021-10-17T00:00:00.000Z
+console.log(qoq); // 2020-06-01T19:00:00.000Z
+console.log(mil); // 1970-01-01T00:00:00.000Z
+
+console.log(now.getFullYear());
+console.log(now.getMonth());
+console.log(now.getDate());
+console.log(now.getUTCHours());
+// gets day of the week staring sunday
+console.log(now.getDay());
+//  ...
+// will show difference of timezone in minutes
+console.log(now.getTimezoneOffset());
+// will show minutes since  1970/1/1
+console.log(now.getTime());
+
+// will set hours, if set more than 24 will move to next day
+console.log(now.setHours(49));
+
+// calculate how much time passed
+let start = new Date();
+for (let i = 0; i < 100000; i++) {
+  let some = i ** 444;
+}
+let end = new Date();
+
+alert(`Cycle took ${end - start} millisecond`);
+
 //setTimeout takes 2 arguments, function and miliseconds when its will run
 
 const timerId = setTimeout(function () {
@@ -81,40 +122,41 @@ btn.addEventListener("click", myAnimation);
 //  <button></button>
 //  <button></button>
 //  </div>
-const btn = document.querySelectorAll("button");
+{
+  const btn = document.querySelectorAll("button");
 
-btn.forEach((e) => {
-  console.log(e.classList.length);
-});
+  btn.forEach((e) => {
+    console.log(e.classList.length);
+  });
 
-// classList.item will show first class (blue)
-console.log(btn[0].classList.item(0));
+  // classList.item will show first class (blue)
+  console.log(btn[0].classList.item(0));
 
-// will add classlist red ot button 3
-console.log(btn[2].classList.add("red"));
-// remove class blue
-console.log(btn[2].classList.remove("blue"));
-// will switch on class if its not there or turn off if it is there
-// will not work as good in complex scripts??
-console.log(btn[2].classList.toggle("red"));
+  // will add classlist red ot button 3
+  console.log(btn[2].classList.add("red"));
+  // remove class blue
+  console.log(btn[2].classList.remove("blue"));
+  // will switch on class if its not there or turn off if it is there
+  // will not work as good in complex scripts??
+  console.log(btn[2].classList.toggle("red"));
 
-// returns Boolean value
-if (btn[1].classList.contains("red")) {
-  console.log("red");
-}
-
-// will check if it doesnt have class red
-btn[0].addEventListener("click", () => {
-  if (!btn[1].classList.contains("red")) {
-    btn[1].classList.add("red");
-  } else {
-    btn[1].classList.remove("red");
+  // returns Boolean value
+  if (btn[1].classList.contains("red")) {
+    console.log("red");
   }
-});
 
-// Old style. Will return all classes of the item
-console.log(btn[0].className);
+  // will check if it doesnt have class red
+  btn[0].addEventListener("click", () => {
+    if (!btn[1].classList.contains("red")) {
+      btn[1].classList.add("red");
+    } else {
+      btn[1].classList.remove("red");
+    }
+  });
 
+  // Old style. Will return all classes of the item
+  console.log(btn[0].className);
+}
 ////////////////////////////////
 ////////Event delegation////////
 ////////////////////////////////
@@ -835,51 +877,51 @@ function name() {}
 
 // function expression, must put ; at the end
 // can only be used after it been declared
+{
+  const logger = function () {
+    console.log("Hello");
+  };
 
-const logger = function () {
-  console.log("Hello");
-};
+  logger();
 
-logger();
+  // arrow function/ arrow notation // doesnt have this
+  const colc = (a, b) => {
+    return a + b;
+  };
 
-// arrow function/ arrow notation // doesnt have this
-const colc = (a, b) => {
-  return a + b;
-};
+  //////Callback Functions/////////
 
-//////Callback Functions/////////
+  function first() {
+    // do something
 
-function first() {
-  // do something
+    //emulating server responce as it can take time
+    setTimeout(function () {
+      console.log(1);
+    }, 500);
+  }
 
-  //emulating server responce as it can take time
-  setTimeout(function () {
-    console.log(1);
-  }, 500);
+  function second() {
+    console.log(2);
+  }
+
+  first();
+  second();
+
+  // second worked before first due to delay
+
+  // callback
+  function learJS(lang, callback) {
+    console.log(`I study: ${lang}`);
+    callback();
+  }
+
+  function done() {
+    console.log("I have finished this lesson");
+  }
+
+  // dont need to add () for the function
+  learJS("Javascript", done);
 }
-
-function second() {
-  console.log(2);
-}
-
-first();
-second();
-
-// second worked before first due to delay
-
-// callback
-function learJS(lang, callback) {
-  console.log(`I study: ${lang}`);
-  callback();
-}
-
-function done() {
-  console.log("I have finished this lesson");
-}
-
-// dont need to add () for the function
-learJS("Javascript", done);
-
 //////////////Loops/////////////////
 ////////////////////////////////////
 
