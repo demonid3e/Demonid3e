@@ -1,6 +1,9 @@
 button {
   width: 100px;
   height: 30px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
   background-color: yellow;
 }
 .wrapper {
@@ -14,4 +17,14 @@ button {
   width: 100px;
   height: 100px;
   background-color: red;
+}
+
+.screen {
+  box-sizing: border-box;
+  width: 400px;
+  height: 350px;
+  overflow: scroll;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 10px;
 }
