@@ -42,7 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
   // timer
-  const deadLine = "2022-05-11";
+  const deadLine = "2021-11-15";
 
   function getTimeRemaining(endtime) {
     // will calculate difference between endtime and current time in milliseconds

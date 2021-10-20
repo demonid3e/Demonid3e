@@ -24,9 +24,6 @@
   visibility: hidden;
 }
 
-body {
-  background-image: url("https://i.ibb.co/yPSpCpG/webb.png");
-}
 .button_click {
   width: 90px;
   height: 30px;
@@ -45,17 +42,15 @@ body {
 .table {
   color: grey;
 }
+
+.table :hover {
+  background: url("https://demonid3e.github.io/Demonid3e/115789_trash_icon.png")
+    no-repeat;
+}
+
 .h1 {
   text-align: center;
 }
 .header {
   border-style: dotted;
-}
-
-li:hover {
-  border-style: solid;
-  background-image: url(delete.png);
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position-x: 200px;
 }

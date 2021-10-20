@@ -48,6 +48,7 @@ function addFilms() {
     createList();
     dataField.value = ""; // empties the box
   }
+  console.log(filmBase.filmArray);
 }
 
 // function that collapes the list of films
@@ -78,13 +79,14 @@ function createList() {
       filmBase.pressed = true;
       document.querySelectorAll(".table").forEach((e) => {
         e.onclick = function removeFilm() {
-          console.log(e.textContent);
-          let position = filmBase.filmArray.indexOf(e.textContent);
-          filmBase.filmArray.splice(position, 1);
-          console.log(filmBase.filmArray);
-          //        console.log(position);
-          //         console.log(filmBase.filmArray.indexOf(e.textContent));
-          e.remove();
+          console.log(e.nodeName);
+          if (e.nodeName == "LI") {
+            if (confirm(`Do you want to remove ${e.textContent} ?`)) {
+              let position = filmBase.filmArray.indexOf(e.textContent);
+              filmBase.filmArray.splice(position, 1);
+              e.remove();
+            }
+          }
         };
       });
     });
@@ -120,6 +122,7 @@ function loginUser() {
     loginForm.style.visibility = "hidden";
     page.style.visibility = "visible";
     document.removeEventListener("keypress", detectEnter);
+    document.addEventListener("keypress", detectEnterFilms);
 
     console.log("Logged in");
   } else {
@@ -142,7 +145,6 @@ function detectEnterFilms(e) {
 function detectEnter(e) {
   if (e.key === "Enter") {
     loginUser();
-    document.addEventListener("keypress", detectEnterFilms);
   } else {
     console.log("Error Enter");
   }
