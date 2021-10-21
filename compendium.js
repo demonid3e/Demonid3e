@@ -1,5 +1,61 @@
 "use strict";
 
+"use strict";
+
+const box = document.querySelector(".screen"),
+  btn = document.querySelector("button");
+
+// the distance is calculated from the top left corner of the screen
+// not like in css
+
+// width is from left to the end of the box minus 15px scroll bar
+const width = box.clientWidth;
+
+// is the actual viewing height not including padding
+const height = box.clientHeight;
+// is a width including all the paddings
+const offwidth = box.offsetWidth;
+// height including padding
+const offheight = box.offsetHeight;
+// scrollHeight is the height of all box including not vissible at the moment
+
+// using scrollheight and scrollby/ scrollto
+// can create "gotop" "go bottom" etc
+const scrollheight = box.scrollHeight;
+// if text is scrollable to the right then the width of all object/text
+const scrollwidth = box.scrollWidth;
+
+console.log(width, height);
+console.log(offwidth, offheight);
+console.log(scrollheight, scrollwidth);
+
+// btn.addEventListener("click", () => {
+//   if (box.style.height == "385px") {
+//     box.style.height = box.scrollHeight + "px";
+//   } else {
+//     box.style.height = 385 + "px";
+//   }
+// });
+
+btn.addEventListener("click", () => {
+  console.log(box.scrollTop);
+});
+
+console.log(box.getBoundingClientRect());
+
+const style = window.getComputedStyle(box);
+console.log(style);
+
+//
+console.log(document.documentElement.scrollTop);
+
+// can create a go top arrow
+const topSet = (document.documentElement.scrollTop = 0);
+// will scroll 400px from current position
+window.scrollBy(0, 400);
+// will scroll 400px relative to page
+window.scrollTo(0, 400);
+
 // browser will show Date in your format
 // vscode console can show in UTC
 const now = new Date();
@@ -62,21 +118,21 @@ const timeId = setTimeout(
 
 // you can use it without assigning it to variable
 // setTimeout(logger, 3000);
+{
+  const btn = document.querySelector(".btn");
+  // will use this variable as global
+  let anotherTimer,
+    i = 0;
 
-const btn = document.querySelector(".btn");
-// will use this variable as global
-let anotherTimer,
-  i = 0;
+  // will call function once logger on click after 2 sec
+  btn.addEventListener("click", () => {
+    //const anotherTimer = setTimeout(logger, 2000);
 
-// will call function once logger on click after 2 sec
-btn.addEventListener("click", () => {
-  //const anotherTimer = setTimeout(logger, 2000);
-
-  // will be calling logger every 2 seconds recursive
-  // will not wait if function is too big
-  anotherTimer = setInterval(logger, 500);
-});
-
+    // will be calling logger every 2 seconds recursive
+    // will not wait if function is too big
+    anotherTimer = setInterval(logger, 500);
+  });
+}
 function logger() {
   if (i === 3) {
     // will stop timer
@@ -462,20 +518,20 @@ btn.forEach((btn) => {
     <div class="wrapper">...</div>
   </body> */
 }
+{
+  const box = document.getElementById("box");
 
-const box = document.getElementById("box");
+  console.log(box); //    <div class="box" id="box"></div>
 
-console.log(box); //    <div class="box" id="box"></div>
+  const btns = document.getElementsByTagName("button"); // get pseydoarray class="buttons"
+  // doesnt have any methods no properties apart from lenght
+  // even if there is only one element it still will be pseydoarray
+  const btn2 = document.getElementsByTagName("button")[1]; // will get second button only
+  const btn3 = btns[2];
+  console.log(btn3); // will get button 3
 
-const btns = document.getElementsByTagName("button"); // get pseydoarray class="buttons"
-// doesnt have any methods no properties apart from lenght
-// even if there is only one element it still will be pseydoarray
-const btn2 = document.getElementsByTagName("button")[1]; // will get second button only
-const btn3 = btns[2];
-console.log(btn3); // will get button 3
-
-const circles = document.getElementsByClassName("circle"); // get pseydoarray class="circle"
-
+  const circles = document.getElementsByClassName("circle"); // get pseydoarray class="circle"
+}
 ///////////// Modern style//////////
 
 const hearts = document.querySelectorAll(".hearts"); // using css selectors and has forEach method

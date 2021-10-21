@@ -14,13 +14,13 @@ console.log(width, height);
 console.log(offwidth, offheight);
 console.log(scrollheight, scrollwidth);
 
-// btn.addEventListener("click", () => {
-//   if (box.style.height == "385px") {
-//     box.style.height = box.scrollHeight + "px";
-//   } else {
-//     box.style.height = 385 + "px";
-//   }
-// });
+btn.addEventListener("click", () => {
+  if (box.style.height == "385px") {
+    box.style.height = box.scrollHeight + "px";
+  } else {
+    box.style.height = 385 + "px";
+  }
+});
 
 btn.addEventListener("click", () => {
   console.log(box.scrollTop);

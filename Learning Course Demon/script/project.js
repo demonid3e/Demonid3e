@@ -83,7 +83,9 @@ const getRating = function () {
 };
 
 function showMyDB(hidden) {
-  if (!hidden) console.log(personalMovieDB);
+  if (!hidden) {
+    console.log(personalMovieDB);
+  }
 }
 
 showMyDB(personalMovieDB.private);
