@@ -94,4 +94,43 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
   setClock(".timer", deadLine);
+
+  // Modal
+
+  const modalTrigger = document.querySelector("[data-modal]"),
+    modal = document.querySelector(".modal"),
+    modalCloseBtn = document.querySelector("[data-close");
+
+  modalTrigger.addEventListener("click", () => {
+    modal.style.display = "block";
+    modal.classList.add("show");
+    modal.classList.remove("hide");
+
+    // will prevent scrolling when modal is open
+    document.body.style.overflow = "hidden";
+  });
+
+  // function will close modal when clicked outside modal
+  // if code is repeated move it to function
+  function closeModal() {
+    // had to use inline style as classes didnt work
+    modal.style.display = "none";
+    document.body.style.overflow = "";
+    modal.classList.add("hide");
+    modal.classList.remove("show");
+  }
+
+  modalCloseBtn.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Escape" && modal.classList.contains("show")) {
+      closeModal();
+    }
+  });
 });

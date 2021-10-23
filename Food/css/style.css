@@ -9,7 +9,9 @@
 .hidden {
   display: none;
 }
-
+.showing {
+  display: block;
+}
 .show {
   display: block;
 }
