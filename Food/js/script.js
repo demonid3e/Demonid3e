@@ -101,14 +101,18 @@ window.addEventListener("DOMContentLoaded", () => {
     modal = document.querySelector(".modal"),
     modalCloseBtn = document.querySelector("[data-close");
 
-  modalTrigger.addEventListener("click", () => {
+  function openModal() {
     modal.style.display = "block";
     modal.classList.add("show");
     modal.classList.remove("hide");
+    // will clear interval when user opens it manually or after 6 sec
+    clearInterval(modalTimerId);
+
+    modalTrigger.addEventListener("click", openModal);
 
     // will prevent scrolling when modal is open
     document.body.style.overflow = "hidden";
-  });
+  }
 
   // function will close modal when clicked outside modal
   // if code is repeated move it to function
@@ -133,4 +137,19 @@ window.addEventListener("DOMContentLoaded", () => {
       closeModal();
     }
   });
+
+  const modalTimerId = setTimeout(openModal, 10000);
+
+  function showModalByScroll() {
+    if (
+      window.pageYOffset + document.documentElement.clientHeight + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      console.log("open");
+      openModal();
+      window.removeEventListener("scroll", showModalByScroll);
+    }
+  }
+
+  window.addEventListener("scroll", showModalByScroll);
 });
