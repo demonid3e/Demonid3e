@@ -1,6 +1,198 @@
 "use strict";
 
-"use strict";
+// Function call or function invocation
+
+// there is 4 ways to call the function:
+
+// 1) Ordinary Function: this = window,
+// if "use strict": this = undefined
+function showThis(a, b) {
+  console.log(this); // "this" will be Window in browser
+  function sum() {
+    console.log(this); // will also be undefined or Window
+    //    return this.a + this.b; wont work
+    return a + b; // will work
+  }
+  console.log(sum());
+}
+
+showThis(4, 5);
+
+// 2) Context of object methos - object it self.
+
+const obj = {
+  a: 20,
+  b: 15,
+  sum: function () {
+    console.log(this);
+    function shout() {
+      console.log(this); // will still be undefined or Window as its not part of object
+    }
+    shout();
+  },
+};
+
+obj.sum(); // {a: 20, b: 15, sum: ƒ}
+
+// 3) THIS in constructors and Classes its a new object thats been created
+
+function createUser(name, id) {
+  this.name = name;
+  this.id = id;
+  this.human = true;
+  console.log(this); // createUser {name: 'ivan', id: 33, human: true}
+}
+
+let ivan = new createUser("ivan", 33);
+
+console.log(ivan);
+
+// 4) Manual linking "this": call, apply, bind
+
+function sayName(surname) {
+  console.log(this);
+  console.log(this.name + surname);
+}
+
+const demon = {
+  name: "John",
+};
+
+// both the same but different syntaxis
+
+sayName.call(demon, "Smith"); // {name: 'John'}   John
+sayName.apply(demon, ["Smith"]); // {name: 'John'}   John
+
+function count(num) {
+  return this * num;
+}
+// creates NEW function
+const double = count.bind(2);
+console.log(double(3));
+console.log(double(13));
+
+const testBtn = document.querySelector("button");
+
+// when written "function () {}" << Classic this will be object its called on same as event.target
+
+testBtn.addEventListener("click", function () {
+  console.log(this);
+  this.style.background = "red"; // <button style="background: red;">Click</button>
+});
+// if used arrow notation THIS will not work!
+// need to use event target to get the same result
+testBtn.addEventListener("click", (e) => {
+  console.log(e.target);
+  e.target.style.background = "red"; // <button style="background: red;">Click</button>
+});
+
+// since arrow function doesnt have "this" it uses parents "this"
+// here  since sayNumber`s this is object and say() is withing sayNumber and
+// is written in arrow notation say(this) will be object "objector"
+const objector = {
+  num: 5,
+  sayNumber: function () {
+    const say = () => {
+      console.log(this); // {num: 5, sayNumber: ƒ}
+      console.log(this.num); // 5
+    };
+    say();
+  },
+};
+
+objector.sayNumber();
+
+// const tripple = (a) => {
+//   return a * 3;
+// };
+
+// if function is whithin one line of code you can use this syntaxis:
+// it will automaticaly adds return
+const tripple = (a) => a * 3;
+// Also if only using 1 argument can be written as:
+// const tripple = a => a * 3;
+
+console.log(tripple(4));
+
+// Constructor Functions ES5 standart
+
+// old type of syntaxis do not use
+const num = new Number(3);
+console.log(num); // [Number: 3]
+
+// this is example of construct Function
+function User(name, id) {
+  this.name = name;
+  this.id = id;
+  this.human = true;
+  this.hello = function () {
+    console.log(`Hello ${this.name}`);
+  };
+}
+
+// you can add to original prototype which will affect all siblings
+
+// added the new Method to original prototype
+User.prototype.exit = function () {
+  console.log(`user ${this.name} has exitted`);
+};
+
+// in this variable will be not function but OBJECT with all properties of User function
+const sasa = new User("sasa", 28);
+const alex = new User("Alex", 20);
+
+console.log(ivan); // User { name: 'Ivan', id: 28, human: true }
+console.log(alex); // User { name: 'Alex', id: 20, human: true }
+
+alex.hello(); // Hello Alex
+ivan.hello(); // Hello Ivan
+
+ivan.exit(); // user Ivan has exitted
+
+// Working with window and object dimentions
+
+{
+  const box = document.querySelector(".screen"),
+    btn = document.querySelector("button");
+
+  const width = box.clientWidth;
+  const height = box.clientHeight;
+  const offwidth = box.offsetWidth;
+  const offheight = box.offsetHeight;
+  const scrollheight = box.scrollHeight;
+  const scrollwidth = box.scrollWidth;
+
+  console.log(width, height);
+  console.log(offwidth, offheight);
+  console.log(scrollheight, scrollwidth);
+
+  btn.addEventListener("click", () => {
+    if (box.style.height == "385px") {
+      box.style.height = box.scrollHeight + "px";
+    } else {
+      box.style.height = 385 + "px";
+    }
+  });
+
+  btn.addEventListener("click", () => {
+    console.log(box.scrollTop);
+  });
+
+  console.log(box.getBoundingClientRect());
+
+  const style = window.getComputedStyle(box);
+  console.log(style);
+
+  //
+  console.log(document.documentElement.scrollTop);
+
+  // can create a go top arrow
+  const topSet = (document.documentElement.scrollTop = 0);
+  // will scroll 400px from current position
+  window.scrollBy(0, 400);
+  // will scroll 400px relative to page
+  window.scrollTo(0, 400);
+}
 
 const box = document.querySelector(".screen"),
   btn = document.querySelector("button");
@@ -548,34 +740,34 @@ console.log(oneHeart); // will give first element with css selector "hearts"
 console.log(String(null)); // typeof String
 console.log(String(4)); // typeof String
 console.log(5 + ""); // typeof String when adding string always string
+{
+  const num = 5;
+  console.log("https://vk.com/catalog/" + num); // https://vk.com/catalog/5
 
-const num = 5;
-console.log("https://vk.com/catalog/" + num); // https://vk.com/catalog/5
+  const fontSize = 26 + "px";
 
-const fontSize = 26 + "px";
+  // To Number
 
-// To Number
+  console.log(Number("4")); // string to number Typeof number
+  console.log(+"5"); // unary + typeof number
+  console.log(parseInt("15px", 10)); // 15 typeof number
 
-console.log(Number("4")); // string to number Typeof number
-console.log(+"5"); // unary + typeof number
-console.log(parseInt("15px", 10)); // 15 typeof number
+  // let answ = +prompt("Hello", ""); // string to number
 
-// let answ = +prompt("Hello", ""); // string to number
+  // To Boolean
 
-// To Boolean
+  // always false:  0, "", null, undefined, NaN;
 
-// always false:  0, "", null, undefined, NaN;
+  let switcher = null;
 
-let switcher = null;
+  if (switcher) {
+    console.log("Working...");
+  } // wont run as switcher is null
 
-if (switcher) {
-  console.log("Working...");
-} // wont run as switcher is null
+  console.log(Boolean("4")); // typeof Boolean
 
-console.log(Boolean("4")); // typeof Boolean
-
-console.log(!!"444444"); // typeof Boolean
-
+  console.log(!!"444444"); // typeof Boolean
+}
 ///// Inheritance - Object Oriented Programming ///////
 
 let str = "some";
@@ -619,18 +811,18 @@ console.log(b); // 10
 console.log(a); // 5
 
 // Non primitive data types it works by LINKS/REFERENCES
+{
+  const obj = {
+    a: 5,
+    b: 1,
+  };
+  // it only makes the link to obj not copying it value
+  const copy = obj;
 
-const obj = {
-  a: 5,
-  b: 1,
-};
-// it only makes the link to obj not copying it value
-const copy = obj;
-
-copy.a = 10;
-console.log(copy); // {a: 10, b: 1};
-console.log(obj); // {a:10, b: 1};
-
+  copy.a = 10;
+  console.log(copy); // {a: 10, b: 1};
+  console.log(obj); // {a:10, b: 1};
+}
 // surface copy only copies the first level object
 function copyObj(mainObject) {
   let objCopy = {};
