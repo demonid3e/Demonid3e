@@ -3,12 +3,16 @@
 const box = document.querySelector(".screen"),
   btn = document.querySelector("button");
 
+  
+
 const width = box.clientWidth;
 const height = box.clientHeight;
 const offwidth = box.offsetWidth;
 const offheight = box.offsetHeight;
 const scrollheight = box.scrollHeight;
 const scrollwidth = box.scrollWidth;
+
+
 
 console.log(width, height);
 console.log(offwidth, offheight);
