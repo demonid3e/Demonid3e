@@ -130,5 +130,43 @@ section article {
   border-style: solid;
   border-radius: 20px;
 }
-.gallery_image:hover {
+
+.container_main {
+border: solid 3px;
+width: 1000px;
+height: 1200px;
 }
+
+ul {
+  list-style-type: none;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.header{
+  float: left;
+  background-color: red;
+}
+
+.main {
+  float: left;
+  width: 600px;
+  background-color:seagreen;
+  padding: 20px;
+  margin: 10px;
+}
+
+.navigation{
+  
+  float: left;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  }
+
+.footer{
+  float:none;
+  background-color:sienna;
+}
+

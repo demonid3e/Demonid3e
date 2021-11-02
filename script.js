@@ -1,31 +1,6 @@
 "use strict";
 // Function call or function invocation
 
-<<<<<<< HEAD
-const box = document.querySelector(".screen"),
-  btn = document.querySelector("button");
-
-  
-
-const width = box.clientWidth;
-const height = box.clientHeight;
-const offwidth = box.offsetWidth;
-const offheight = box.offsetHeight;
-const scrollheight = box.scrollHeight;
-const scrollwidth = box.scrollWidth;
-
-
-
-console.log(width, height);
-console.log(offwidth, offheight);
-console.log(scrollheight, scrollwidth);
-
-btn.addEventListener("click", () => {
-  if (box.style.height == "385px") {
-    box.style.height = box.scrollHeight + "px";
-  } else {
-    box.style.height = 385 + "px";
-=======
 // there is 4 ways to call the function:
 
 // 1) Ordinary Function: this = window,
@@ -36,14 +11,13 @@ function showThis(a, b) {
     console.log(this); // will also be undefined or Window
     //    return this.a + this.b; wont work
     return a + b; // will work
->>>>>>> 2ba9d0687393196ff6098b4bf64f5cdfa301e777
   }
   console.log(sum());
 }
 
 showThis(4, 5);
 
-// 2) Context of object methos - object it self.
+// 2) Context of object methods - object it self.
 
 const obj = {
   a: 20,
@@ -75,6 +49,7 @@ console.log(ivan);
 // 4) Manual linking "this": call, apply, bind
 
 function sayName(surname) {
+
   console.log(this);
   console.log(this.name + surname);
 }
