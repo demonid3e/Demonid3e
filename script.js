@@ -1,40 +1,27 @@
 "use strict";
+//////// Rest operator  //////////////
 
-// ES6 CLASSES
+// Rest operator lets you add any unlimited number of arguments after defined (a , b)
+// in this example, it must be last and have ...[name]
+// Rest uses array to store them
+const log = function (a, b, ...rest) {
+  console.log(a, b, rest); // basic rest [ 'operator', 'usage' ]
+};
+//    a        b        [     rest     ]
+log("basic", "rest", "operator", "usage");
 
-class Rectangle {
-  constructor(height, width) {
-    this.height = height;
-    this.width = width;
-  }
+// default argument
+function calcOrDouble(number, basis) {
+  // old style: if basis not entered it is undefined/false
+  //        false then using 2;
+  basis = basis || 2;
 
-  // method  dont need to write "function" and no ";"
-  calcArea() {
-    return this.height * this.width;
-  }
-}
-// using "extends" copying all the methods from Rectangle
-class ColoredRectangleWithText extends Rectangle {
-  constructor(height, width, text, bgColor) {
-    // calling superconstructor which will get "  this.height = height;
-    // this.width = width;" from Rectangle
-    // SUPER MUST BE ALWAYS FIRST
-    super(height, width);
-    this.text = text;
-    this.bgColor = bgColor;
-  }
-  showMyProps() {
-    console.log(`Text: ${this.text}, Color ${this.bgColor}`);
-  }
+  console.log(number * basis);
 }
 
-const square = new Rectangle(10, 10);
-const long = new Rectangle(20, 100);
+// New way. Can set it right in the function arguments
+function calcOrDouble2(nbr, base = 2) {
+  console.log(nbr * base);
+}
 
-console.log(square.calcArea()); // 100
-console.log(long.calcArea()); // 2000
-
-const div = new ColoredRectangleWithText(25, 10, "Hello world", "red");
-
-div.showMyProps(); // Text: Hello world, Color red
-console.log(div.calcArea()); // 250
+calcOrDouble(3);
