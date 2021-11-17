@@ -1,5 +1,58 @@
 "use strict";
 
+/////// JSON //////////
+
+// to send JSON data objects need to be converted into "" strings with double commas
+
+const personne = {
+  name: "Alex",
+  tel: "+7444444444",
+  parents: {
+    mom: "Olga",
+    dad: "Mike",
+  },
+};
+const jsonPerson = JSON.stringify(personne);
+// converts object into JSON readable way
+console.log(JSON.stringify(personne)); // {"name":"Alex","tel":"+7444444444"}
+
+// parse will convert JSON data from backend to object
+console.log(JSON.parse(jsonPerson)); // { name: 'Alex', tel: '+7444444444' }
+
+// You can make a full object copy using json.parse stringify
+const clone = JSON.parse(JSON.stringify(personne));
+clone.parents.mom = "Anna";
+
+console.log(clone);
+console.log(personne);
+
+//////// Rest operator  //////////////
+
+// Rest operator lets you add any unlimited number of arguments after defined (a , b)
+// in this example, it must be last and have ...[name]
+// Rest uses array to store them
+const logg = function (a, b, ...rest) {
+  console.log(a, b, rest); // basic rest [ 'operator', 'usage' ]
+};
+//    a        b        [     rest     ]
+logg("basic", "rest", "operator", "usage");
+
+// default argument
+function calcOrDouble(number, basis) {
+  // old style: if basis not entered it is undefined/false
+  //        false then using 2;
+  basis = basis || 2;
+
+  console.log(number * basis);
+}
+
+// New way. Can set it right in the function arguments
+function calcOrDouble2(nbr, base = 2) {
+  console.log(nbr * base);
+}
+
+calcOrDouble(3);
+
 // ES6 CLASSES
 
 class Rectangle {
