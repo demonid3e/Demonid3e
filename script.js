@@ -1,26 +1,23 @@
 "use strict";
 
 class Chefs {
-  constructor(name, age, sex, working){
+  constructor(name, age, sex, working) {
     this.name = name;
     this.age = age;
     this.sex = sex;
     this.working = working;
-      }
-      showThisName(){
-        console.log(`${this.name}`);
-      }
+  }
+  showThisName() {
+    console.log(`${this.name}`);
+  }
 }
 
-
 class CarvingChef extends Chefs {
-  constructor(name, age, sex, working, carving){
+  constructor(name, age, sex, working, carving) {
     super(name, age, sex, working, carving);
     this.carving = carving;
   }
 }
-
-
 
 const Olly = new Chefs("Oliver", 25, "male", "ovens");
 const Macy = new Chefs("Macy", 21, "female", "puddings");
