@@ -20,7 +20,7 @@ inputRub.addEventListener("input", () => {
       const data = JSON.parse(request.response);
       if (isNaN(inputRub.value)){
         inputUsd.value = "Enter Digits only";
-      }else{
+      } else {
         inputUsd.value = (+inputRub.value / data.current.usd).toFixed(2);
       }
       
