@@ -18,7 +18,12 @@ inputRub.addEventListener("input", () => {
     if (request.readyState === 4 && request.status === 200) {
       console.log(request.response);
       const data = JSON.parse(request.response);
-      inputUsd.value = (+inputRub.value / data.current.usd).toFixed(2);
+      if (isNaN(inputRub.value)){
+        inputUsd.value = "Please Enter Digits Only";
+      }else{
+        inputUsd.value = (+inputRub.value / data.current.usd).toFixed(2);
+      }
+      
     } else {
       inputUsd.value = "Something went wrong";
     }

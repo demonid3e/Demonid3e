@@ -1,3 +1,4 @@
+
 "use strict";
 
 /////// JSON //////////
@@ -241,7 +242,9 @@ ivan.hello(); // Hello Ivan
 
 ivan.exit(); // user Ivan has exitted
 
+//////////////////////////////////////////////
 // Working with window and object dimentions
+///////////////////////////////////////////
 
 {
   const box = document.querySelector(".screen"),
@@ -951,12 +954,12 @@ const combined = Object.assign(numbers, add);
 console.log(combined);
 // { a: 2, b: 5, c: { x: 7, y: 4 }, d: 17, e: 20 }
 
-const clone = Object.assign({}, add);
+const cclone = Object.assign({}, add);
 
-clone.d = 20;
+cclone.d = 20;
 
 console.log(add); // { d: 17, e: 20 }
-console.log(clone); // { d: 20, e: 20 }
+console.log(cclone); // { d: 20, e: 20 }
 
 //// Array Copy ////
 
