@@ -1,5 +1,50 @@
 "use strict";
 
+// // Forms
+
+// const forms = document.querySelectorAll("form");
+
+// const message = {
+//   loading: "Downloading",
+//   succsess: "Thank you! We will contact you soon",
+//   failure: "Something went wrong",
+// };
+
+// forms.forEach((item) => {
+//   postData(item);
+// });
+
+// function postData(form) {
+//   form.addEventListener("submit", (e) => {
+//     // since default is to reload page when clicking submit
+//     e.preventDefault();
+
+//     const statusMessage = document.createElement("div");
+//     statusMessage.classList.add("status");
+//     statusMessage.textContent = message.loading;
+//     form.append(statusMessage);
+
+//     const request = new XMLHttpRequest();
+//     request.open("POST", "server.php");
+
+//     request.setRequestHeader("Content-type", "multipart/form-data");
+//     // your Forms must have "name" in them for this to work:
+//     // <input placeholder="Ваш номер телефона" name="phone" type="phone" class="modal__input"/>
+//     const formData = new FormData(form);
+
+//     request.send(formData);
+//     request.addEventListener("load", () => {
+//       console.log(request.status);
+//       if (request.status === 200) {
+//         console.log(request.response);
+//         statusMessage.textContent = message.succsess;
+//       } else {
+//         statusMessage.textContent = message.failure;
+//       }
+//     });
+//   });
+// }
+
 window.addEventListener("DOMContentLoaded", () => {
   // tabs
   const tabs = document.querySelectorAll(".tabheader__item"),
@@ -99,16 +144,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const modalTrigger = document.querySelector("[data-modal]"),
     modal = document.querySelector(".modal"),
-    modalCloseBtn = document.querySelector("[data-close");
+    modalCloseBtn = document.querySelector("[data-close]");
+
+  modalTrigger.addEventListener("click", openModal);
 
   function openModal() {
     modal.style.display = "block";
     modal.classList.add("show");
     modal.classList.remove("hide");
+    console.log("clicked");
     // will clear interval when user opens it manually or after 6 sec
     clearInterval(modalTimerId);
-
-    modalTrigger.addEventListener("click", openModal);
 
     // will prevent scrolling when modal is open
     document.body.style.overflow = "hidden";
@@ -236,13 +282,11 @@ window.addEventListener("DOMContentLoaded", () => {
     `.menu .container`
   ).render();
 
-  // Forms
-
   const forms = document.querySelectorAll("form");
 
   const message = {
     loading: "Downloading",
-    succsess: "Thank you! We will contact you soon",
+    success: "Thank you",
     failure: "Something went wrong",
   };
 
@@ -252,7 +296,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function postData(form) {
     form.addEventListener("submit", (e) => {
-      // since default is to reload page when clicking submit
       e.preventDefault();
 
       const statusMessage = document.createElement("div");
@@ -263,16 +306,28 @@ window.addEventListener("DOMContentLoaded", () => {
       const request = new XMLHttpRequest();
       request.open("POST", "server.php");
 
-      request.setRequestHeader("Content-type", "multipart/form-data");
-      // your Forms must have "name" in them for this to work:
-      // <input placeholder="Ваш номер телефона" name="phone" type="phone" class="modal__input"/>
+      // if type data is formdate dont need to set request header
+      // request.setRequestHeader("Content-type", "multipart/form-data");
+      request.setRequestHeader("Content-type", "application/json");
       const formData = new FormData(form);
+      const object = {};
+      formData.forEach(function (value, key) {
+        object[key] = value;
+      });
+      const json = JSON.stringify(object);
+      request.send(json);
+      // request.send(formData);
 
-      request.send(formData);
       request.addEventListener("load", () => {
         if (request.status === 200) {
           console.log(request.response);
-          statusMessage.textContent = message.succsess;
+          statusMessage.textContent = message.success;
+          // will reset form after sending
+          form.reset();
+          // will remove element after 2 seconds
+          setTimeout(() => {
+            statusMessage.remove();
+          }, 2000);
         } else {
           statusMessage.textContent = message.failure;
         }
