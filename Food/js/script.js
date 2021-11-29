@@ -281,7 +281,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // in class menu class container
     `.menu .container`
   ).render();
-
+// gets all forms
   const forms = document.querySelectorAll("form");
 
   const message = {
@@ -289,10 +289,16 @@ window.addEventListener("DOMContentLoaded", () => {
     success: "Thank you",
     failure: "Something went wrong",
   };
-
+// adda postData function to each form
   forms.forEach((item) => {
     postData(item);
   });
+// event listener on click removes default
+// creates new "div" add class status, inserts text message.loading
+// appends div to form with status message
+// creates new xml request "post", to server.php
+// header is json, sends this form
+// on load changes status message, cleares the form and adds timeout to message
 
   function postData(form) {
     form.addEventListener("submit", (e) => {
