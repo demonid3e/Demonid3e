@@ -238,8 +238,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
   // need send data in "";
-  // need to combine "" with `` or ''
-
+  // need to combine "" with `` or '' if need "" in text
   // this syntaxis creates element like unknown function it cant be accessed later
   //only exist to run
   new MenuCard(
@@ -281,6 +280,10 @@ window.addEventListener("DOMContentLoaded", () => {
     // in class menu class container
     `.menu .container`
   ).render();
+
+
+
+// Working with FORMS
 // gets all forms
   const forms = document.querySelectorAll("form");
 
