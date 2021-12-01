@@ -292,7 +292,7 @@ window.addEventListener("DOMContentLoaded", () => {
     success: "Thank you",
     failure: "Something went wrong",
   };
-// adda postData function to each form
+// adda postData function to each form which has "this" function as target 
   forms.forEach((item) => {
     postData(item);
   });
@@ -322,6 +322,8 @@ window.addEventListener("DOMContentLoaded", () => {
       const object = {};
       formData.forEach(function (value, key) {
         object[key] = value;
+        console.log(object[key]);
+        console.log(form);
       });
       const json = JSON.stringify(object);
       request.send(json);
