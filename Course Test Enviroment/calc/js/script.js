@@ -35,3 +35,28 @@ inputRub.addEventListener("input", () => {
 
   //
 });
+
+
+const addName = document.createElement("div");
+const clickMe = document.querySelector("button");
+
+clickMe.addEventListener("click", () =>{
+
+const req = new XMLHttpRequest();
+  req.open("GET", "js/another.json");
+  req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+  req.send();
+
+  req.addEventListener("readystatechange", () => {
+if (req.readyState === 4 && req.status === 200){
+  const deta = JSON.parse(req.response);
+  console.log(deta);
+  addName.innerHTML = "test";
+  console.log(addName);
+  inputUsd.append(addName);
+}
+
+  });
+
+});
+
