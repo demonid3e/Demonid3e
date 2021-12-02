@@ -87,7 +87,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
   // timer
-  const deadLine = "2021-11-15";
+  const deadLine = "2022-01-01";
 
   function getTimeRemaining(endtime) {
     // will calculate difference between endtime and current time in milliseconds
@@ -143,8 +143,8 @@ window.addEventListener("DOMContentLoaded", () => {
   // Modal
 
   const modalTrigger = document.querySelector("[data-modal]"),
-    modal = document.querySelector(".modal"),
-    modalCloseBtn = document.querySelector("[data-close]");
+    modal = document.querySelector(".modal");
+  // modalCloseBtn = document.querySelector("[data-close]");
 
   modalTrigger.addEventListener("click", openModal);
 
@@ -170,10 +170,10 @@ window.addEventListener("DOMContentLoaded", () => {
     modal.classList.remove("show");
   }
 
-  modalCloseBtn.addEventListener("click", closeModal);
+  // modalCloseBtn.addEventListener("click", closeModal);
 
   modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
+    if (e.target === modal || e.target.getAttribute("data-close") == "") {
       closeModal();
     }
   });
@@ -184,7 +184,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const modalTimerId = setTimeout(openModal, 100000);
+  const modalTimerId = setTimeout(openModal, 50000);
 
   function showModalByScroll() {
     if (
@@ -238,7 +238,8 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
   // need send data in "";
-  // need to combine "" with `` or '' if need "" in text
+  // need to combine "" with `` or ''
+
   // this syntaxis creates element like unknown function it cant be accessed later
   //only exist to run
   new MenuCard(
@@ -281,36 +282,29 @@ window.addEventListener("DOMContentLoaded", () => {
     `.menu .container`
   ).render();
 
-
-
-// Working with FORMS
-// gets all forms
   const forms = document.querySelectorAll("form");
 
   const message = {
-    loading: "Downloading",
+    loading: "img/form/spinner.svg",
     success: "Thank you",
     failure: "Something went wrong",
   };
-// adda postData function to each form which has "this" function as target 
+
   forms.forEach((item) => {
     postData(item);
   });
-// event listener on click removes default
-// creates new "div" add class status, inserts text message.loading
-// appends div to form with status message
-// creates new xml request "post", to server.php
-// header is json, sends this form
-// on load changes status message, cleares the form and adds timeout to message
 
   function postData(form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const statusMessage = document.createElement("div");
-      statusMessage.classList.add("status");
-      statusMessage.textContent = message.loading;
-      form.append(statusMessage);
+      const statusMessage = document.createElement("img");
+      statusMessage.src = message.loading;
+      statusMessage.style.cssText = `
+        display: block;
+        margin: 0 auto;
+      `;
+      form.insertAdjacentElement("afterend", statusMessage);
 
       const request = new XMLHttpRequest();
       request.open("POST", "server.php");
@@ -319,11 +313,10 @@ window.addEventListener("DOMContentLoaded", () => {
       // request.setRequestHeader("Content-type", "multipart/form-data");
       request.setRequestHeader("Content-type", "application/json");
       const formData = new FormData(form);
+      // convert form data for json
       const object = {};
       formData.forEach(function (value, key) {
         object[key] = value;
-        console.log(object[key]);
-        console.log(form);
       });
       const json = JSON.stringify(object);
       request.send(json);
@@ -332,17 +325,38 @@ window.addEventListener("DOMContentLoaded", () => {
       request.addEventListener("load", () => {
         if (request.status === 200) {
           console.log(request.response);
-          statusMessage.textContent = message.success;
+          showThanksModal(message.success);
           // will reset form after sending
           form.reset();
-          // will remove element after 2 seconds
-          setTimeout(() => {
-            statusMessage.remove();
-          }, 2000);
+          statusMessage.remove();
         } else {
-          statusMessage.textContent = message.failure;
+          showThanksModal(message.failure);
         }
       });
     });
+  }
+
+  function showThanksModal(message) {
+    const prevModalDialog = document.querySelector(".modal__dialog");
+    prevModalDialog.classList.add("hidden");
+    prevModalDialog.classList.remove("show");
+    console.log("added hide");
+    openModal();
+
+    const thanksModal = document.createElement("div");
+    thanksModal.classList.add("modal__dialog");
+    thanksModal.innerHTML = `
+    <div class = "modal__content">
+      <div class = "modal__close" data-close>×</div>
+      <div class="modal__title">${message}</div>
+
+    </div>`;
+    document.querySelector(".modal").append(thanksModal);
+    setTimeout(() => {
+      thanksModal.remove();
+      prevModalDialog.classList.add("show");
+      prevModalDialog.classList.remove("hidden");
+      closeModal();
+    }, 4000);
   }
 });
