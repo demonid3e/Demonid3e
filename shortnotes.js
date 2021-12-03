@@ -7,7 +7,7 @@
 console.log("Data request...");
 
 
-// in req makeking emulation request from the server for "product"
+// in req makeing emulation request from the server for "product"
 const req = new Promise(function (resolve, reject) {
   setTimeout(() => {
     console.log("Preparation of Data...");
