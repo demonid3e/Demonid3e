@@ -306,33 +306,56 @@ window.addEventListener("DOMContentLoaded", () => {
       `;
       form.insertAdjacentElement("afterend", statusMessage);
 
-      const request = new XMLHttpRequest();
-      request.open("POST", "server.php");
-
       // if type data is formdate dont need to set request header
       // request.setRequestHeader("Content-type", "multipart/form-data");
-      request.setRequestHeader("Content-type", "application/json");
+      // request.setRequestHeader("Content-type", "application/json");
+
       const formData = new FormData(form);
       // convert form data for json
       const object = {};
       formData.forEach(function (value, key) {
         object[key] = value;
       });
-      const json = JSON.stringify(object);
-      request.send(json);
+
+      // request.send(json);
       // request.send(formData);
 
-      request.addEventListener("load", () => {
-        if (request.status === 200) {
-          console.log(request.response);
+      // const request = new XMLHttpRequest();
+      // request.open("POST", "server.php");
+
+      // fetch will not throw "catch" if http request failed
+      fetch("server.php", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(object),
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          console.log(data);
           showThanksModal(message.success);
-          // will reset form after sending
-          form.reset();
+
           statusMessage.remove();
-        } else {
+        })
+        .catch(() => {
           showThanksModal(message.failure);
-        }
-      });
+        })
+        .finally(() => {
+          form.reset();
+        });
+
+      // request.addEventListener("load", () => {
+      //   if (request.status === 200) {
+      //     console.log(request.response);
+      //     showThanksModal(message.success);
+      //     // will reset form after sending
+      //     form.reset();
+      //     statusMessage.remove();
+      //   } else {
+      //     showThanksModal(message.failure);
+      //   }
+      // });
     });
   }
 

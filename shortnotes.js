@@ -1,11 +1,30 @@
-
 "use strict";
+
+///////////////////////////////
+////////FETCH API /////////////
+///////////////////////////////
+
+// getting json from link as GET request
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+  // response is a method of fetch to parse json data as promise
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+
+// post request
+fetch("https://jsonplaceholder.typicode.com/posts", {
+  method: "POST",
+  body: JSON.stringify({ name: "Alex" }),
+  headers: {
+    "Content-type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  .then((json) => console.log(json));
 
 ///////////////////////////////
 //////// PROMISES /////////////
 ///////////////////////////////
 console.log("Data request...");
-
 
 // in req makeing emulation request from the server for "product"
 const req = new Promise(function (resolve, reject) {
@@ -16,7 +35,7 @@ const req = new Promise(function (resolve, reject) {
       name: "TV",
       price: 2000,
     };
-// if resolves ok returns "product"
+    // if resolves ok returns "product"
     resolve(product);
   }, 2000);
 });
@@ -25,32 +44,35 @@ const req = new Promise(function (resolve, reject) {
 req.then((product) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-// adding status "ordered"
+      // adding status "ordered"
       product.status = "ordered";
-// giving back "product" object
+      // giving back "product" object
       resolve(product);
-// we can also use reject if something went wrong
-// reject();
+      // we can also use reject if something went wrong
+      // reject();
     }, 2000);
-// you can continue making "CHAIN" using same resolve result
-  }).then((resolvedData) => {
-   resolvedData.modify = true;
-   return resolvedData;
-// it will show resolvedData
-  }).then((resolvedData) =>{
-    console.log(resolvedData);
-    // catch is function for reject
-  }).catch(() =>{
-console.error("Something went wrong");
-// finally is what executed at the end of promise
-  }).finally(() =>{
-console.log("FINALLY");
-  });
+    // you can continue making "CHAIN" using same resolve result
+  })
+    .then((resolvedData) => {
+      resolvedData.modify = true;
+      return resolvedData;
+      // it will show resolvedData
+    })
+    .then((resolvedData) => {
+      console.log(resolvedData);
+      // catch is function for reject
+    })
+    .catch(() => {
+      console.error("Something went wrong");
+      // finally is what executed at the end of promise
+    })
+    .finally(() => {
+      console.log("FINALLY");
+    });
 });
 
-
-const test = time => {
-  return new Promise (resolve =>{
+const test = (time) => {
+  return new Promise((resolve) => {
     setTimeout(() => resolve(), time);
   });
 };
@@ -59,14 +81,12 @@ test(1000).then(() => console.log("1000 ms"));
 test(2000).then(() => console.log("2000 ms"));
 
 // will execute when both promises executed correctly
-Promise.all([test(1000), test(2000)]).then(() =>{
+Promise.all([test(1000), test(2000)]).then(() => {
   console.log("Promise all finished");
-
 });
 // will execute when ANY 1 promise executes correctly
-Promise.race([test(1000), test(2000)]).then(() =>{
+Promise.race([test(1000), test(2000)]).then(() => {
   console.log("one promise is finished");
-
 });
 
 /////// JSON //////////
