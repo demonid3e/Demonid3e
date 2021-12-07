@@ -1,30 +1,78 @@
+
 "use strict";
 
-///////////////////////////////
-////////FETCH API /////////////
-///////////////////////////////
 
-// getting json from link as GET request
-fetch("https://jsonplaceholder.typicode.com/todos/1")
-  // response is a method of fetch to parse json data as promise
-  .then((response) => response.json())
-  .then((json) => console.log(json));
+///////////////////////////////////////////
+//////////////  ARRAYS ////////////////////
+//////////////////////////////////////////
+{
+// forEach method never gives you new Array
 
-// post request
-fetch("https://jsonplaceholder.typicode.com/posts", {
-  method: "POST",
-  body: JSON.stringify({ name: "Alex" }),
-  headers: {
-    "Content-type": "application/json",
-  },
-})
-  .then((response) => response.json())
-  .then((json) => console.log(json));
+// filter:  returns New Array
+
+const names = ["Ivan", "Ana", "Ksenia", "Voldemart"];
+
+// creates new array with names with length < 5
+const shortNames = names.filter(function(name){
+    return name.length < 5;
+});
+
+console.log(shortNames); // [ 'Ivan', 'Ana' ]
+
+// map:  can change array
+
+const answers = ["IvAn", "AnnA", "Hello"];
+
+const result = answers.map(item => item.toLocaleLowerCase());
+
+console.log(result);
+
+// every/some: return boolean expression
+
+const some = [4, "dasdsdas", "asdasd"];
+// check if array item`s return === number
+console.log(some.some(item => typeof(item) === "number"));
+// if every element is number
+console.log(some.every(item => typeof(item) === "number"));
+
+// reduce: takes 2 arguments, sum === 0 at start then adds every element to the sum
+
+const arr = [4, 5, 1, 3, 2, 6];
+// can add default value of sum in this case === 3
+const res = arr.reduce((sum, current) => sum + current, 3);
+
+console.log(res);
+
+const fruits = ["apple", "pear", "plum"];
+
+const resu = fruits.reduce((sum, current) => `${sum}, ${current}`);
+console.log(resu);
+
+// using chaining
+
+const obj = {
+    ivan: "persone",
+    ann: "persone",
+    dog: "animal",
+    cat: "animal"
+};
+
+// to get only names from obj
+// creates new array of arrays from object
+const newArray = Object.entries(obj)
+// filter arrays where value is personne, will give back 2 arrays
+.filter(item => item[1] === "persone")
+// will get first element which is name in array
+.map(item => item[0]);
+console.log(newArray); // [ 'ivan', 'ann' ]
+
+}
 
 ///////////////////////////////
 //////// PROMISES /////////////
 ///////////////////////////////
 console.log("Data request...");
+
 
 // in req makeing emulation request from the server for "product"
 const req = new Promise(function (resolve, reject) {
@@ -35,7 +83,7 @@ const req = new Promise(function (resolve, reject) {
       name: "TV",
       price: 2000,
     };
-    // if resolves ok returns "product"
+// if resolves ok returns "product"
     resolve(product);
   }, 2000);
 });
@@ -44,35 +92,32 @@ const req = new Promise(function (resolve, reject) {
 req.then((product) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // adding status "ordered"
+// adding status "ordered"
       product.status = "ordered";
-      // giving back "product" object
+// giving back "product" object
       resolve(product);
-      // we can also use reject if something went wrong
-      // reject();
+// we can also use reject if something went wrong
+// reject();
     }, 2000);
-    // you can continue making "CHAIN" using same resolve result
-  })
-    .then((resolvedData) => {
-      resolvedData.modify = true;
-      return resolvedData;
-      // it will show resolvedData
-    })
-    .then((resolvedData) => {
-      console.log(resolvedData);
-      // catch is function for reject
-    })
-    .catch(() => {
-      console.error("Something went wrong");
-      // finally is what executed at the end of promise
-    })
-    .finally(() => {
-      console.log("FINALLY");
-    });
+// you can continue making "CHAIN" using same resolve result
+  }).then((resolvedData) => {
+   resolvedData.modify = true;
+   return resolvedData;
+// it will show resolvedData
+  }).then((resolvedData) =>{
+    console.log(resolvedData);
+    // catch is function for reject
+  }).catch(() =>{
+console.error("Something went wrong");
+// finally is what executed at the end of promise
+  }).finally(() =>{
+console.log("FINALLY");
+  });
 });
 
-const test = (time) => {
-  return new Promise((resolve) => {
+
+const test = time => {
+  return new Promise (resolve =>{
     setTimeout(() => resolve(), time);
   });
 };
@@ -81,12 +126,14 @@ test(1000).then(() => console.log("1000 ms"));
 test(2000).then(() => console.log("2000 ms"));
 
 // will execute when both promises executed correctly
-Promise.all([test(1000), test(2000)]).then(() => {
+Promise.all([test(1000), test(2000)]).then(() =>{
   console.log("Promise all finished");
+
 });
 // will execute when ANY 1 promise executes correctly
-Promise.race([test(1000), test(2000)]).then(() => {
+Promise.race([test(1000), test(2000)]).then(() =>{
   console.log("one promise is finished");
+
 });
 
 /////// JSON //////////
