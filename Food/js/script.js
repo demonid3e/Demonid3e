@@ -247,20 +247,42 @@ window.addEventListener("DOMContentLoaded", () => {
     return await res.json();
   };
 
-  getResorces("http://localhost:3000/menu").then((data) => {
-    // using destructurisation of data getting out values of fetch objects
-    data.forEach(({ img, altimg, title, descr, price }) => {
-      // inserting values as arguments to new Menucard
-      new MenuCard(
-        img,
-        altimg,
-        title,
-        descr,
-        price,
-        ".menu .container"
-      ).render();
-    });
+  // getResorces("http://localhost:3000/menu").then((data) => {
+  //   // using destructurisation of data getting out values of fetch objects
+  //   data.forEach(({ img, altimg, title, descr, price }) => {
+  //     // inserting values as arguments to new Menucard
+  //     new MenuCard(
+  //       img,
+  //       altimg,
+  //       title,
+  //       descr,
+  //       price,
+  //       ".menu .container"
+  //     ).render();
+  //   });
+  // });
+
+/////////////////////////////////////////////////////
+////////////////// AXIOS ////////////////////////////
+/////////////////////////////////////////////////////
+
+axios.get("http://localhost:3000/menu")
+.then((data) =>{
+  // axios promise give you object where data is one of objects
+  data.data.forEach(({ img, altimg, title, descr, price }) => {
+        // inserting values as arguments to new Menucard
+        new MenuCard(
+          img,
+          altimg,
+          title,
+          descr,
+          price,
+          ".menu .container"
+        ).render();
+  
+        });
   });
+
 
   // another method to create Menus withour using classes and patterns
   // getResorces("http://localhost:3000/menu").then((data) => createCard(data));
