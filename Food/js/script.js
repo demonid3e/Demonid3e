@@ -410,7 +410,7 @@ axios.get("http://localhost:3000/menu")
       // fetch will not throw "catch" if http request failed
       postData("http://localhost:3000/requests", json)
         .then((data) => {
-          console.log(data);
+         // console.log(data);
           showThanksModal(message.success);
 
           statusMessage.remove();
@@ -460,8 +460,69 @@ axios.get("http://localhost:3000/menu")
     }, 4000);
   }
   fetch("http://localhost:3000/menu")
-    .then((data) => data.json())
-    .then((res) => console.log(res));
+    .then((data) => data.json());
+//    .then((res) => console.log(res));
+
+
+
+
+// slider //
+
+const sliderCounter = document.querySelector(".offer__slider-counter"),
+ currentSlider = sliderCounter.querySelector("#current"),
+ totalSlider = sliderCounter.querySelector("#total"),
+ offerSliderWrapper = document.querySelector(".offer__slider-wrapper"),
+ offerSlider = offerSliderWrapper.querySelectorAll(".offer__slide"),
+ leftArrow = document.querySelector(".offer__slider-prev"),
+ rightArrow = document.querySelector(".offer__slider-next");
+ let currentPossition = 3;
+totalSlider.innerHTML = 0 + `${offerSlider.length}`;
+currentSlider.innerHTML = 0 + `${currentPossition}`;
+
+leftArrow.addEventListener("click", () => {
+  if (currentPossition == 1){
+    currentPossition = 4;
+    currentSlider.innerHTML = 0 + `${currentPossition}`;
+pageSlider();
+  }else {
+    currentPossition = currentPossition - 1;
+    currentSlider.innerHTML = 0 + `${currentPossition}`;
+    pageSlider();
+  }
+});
+
+
+rightArrow.addEventListener("click", () => {
+  if (currentPossition == 4){
+    currentPossition = 1;
+    currentSlider.innerHTML = 0 + `${currentPossition}`;
+pageSlider();
+  }else {
+    currentPossition = currentPossition + 1;
+    currentSlider.innerHTML = 0 + `${currentPossition}`;
+    pageSlider();
+  }
+});
+
+
+
+function pageSlider (){
+  
+ offerSlider.forEach((item, i) =>{
+   
+if (i + 1 == currentPossition){
+  console.log(i + 1, currentPossition, "showing");
+  item.style.display = "block";
+} else {
+  item.style.display = "none";
+}
+  
+   });
+
+  
+}
+pageSlider();
+
 });
 
 // to run server: npx json-server db.json
