@@ -462,7 +462,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // slider //
 
+  
+  
+  const slider = document.querySelector(".offer__slider");
   const sliderCounter = document.querySelector(".offer__slider-counter"),
+
     currentSlider = sliderCounter.querySelector("#current"),
     totalSlider = sliderCounter.querySelector("#total"),
     leftArrow = document.querySelector(".offer__slider-prev"),
@@ -494,6 +498,24 @@ window.addEventListener("DOMContentLoaded", () => {
     slide.style.width = width;
   });
 
+slider.style.position = "relative";
+  
+const dotWrapper = document.createElement("ol"),
+  dots = [];
+dotWrapper.classList.add("carousel-indicators");
+slider.append(dotWrapper);
+ for (let i = 0; i < 4; i++){
+  const dot = document.createElement("li");
+  dot.setAttribute("data-slide-to", i + 1);
+  dot.classList.add("dot");
+  if (i == 0){
+    dot.style.opacity = 1;
+  }
+  dotWrapper.append(dot);
+  dots.push(dot);
+ }
+
+
   rightArrow.addEventListener("click", () => {
     if (
       offset ==
@@ -516,6 +538,9 @@ window.addEventListener("DOMContentLoaded", () => {
     } else {
       currentSlider.textContent = currentPossition;
     }
+
+    dots.forEach(dot => dot.style.opacity = "0.5");
+    dots[currentPossition -1].style.opacity = 1;
   });
 
   leftArrow.addEventListener("click", () => {
@@ -538,10 +563,35 @@ window.addEventListener("DOMContentLoaded", () => {
     } else {
       currentSlider.textContent = currentPossition;
     }
+
+    
+    dots.forEach(dot => dot.style.opacity = "0.5");
+    dots[currentPossition -1].style.opacity = 1;
   });
 
-  totalSlider.innerHTML = 0 + `${offerSlider.length}`;
-  currentSlider.innerHTML = 0 + `${currentPossition}`;
+  dots.forEach (dot =>{
+    dot.addEventListener("click", (e) => {
+        const slideTo = e.target.getAttribute("data-slide-to");
+
+        currentPossition = slideTo;
+        offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+
+        slidesField.style.transform = `translateX(-${offset}px)`;
+
+        dots.forEach(dot => dot.style.opacity = "0.5");
+        dots[currentPossition -1].style.opacity = 1;
+
+        if (currentPossition < 10) {
+          currentSlider.textContent = `0${currentPossition}`;
+        } else {
+          currentSlider.textContent = currentPossition;
+        }
+
+
+    });
+  });
+  // totalSlider.innerHTML = 0 + `${offerSlider.length}`;
+  // currentSlider.innerHTML = 0 + `${currentPossition}`;
 
   // leftArrow.addEventListener("click", () => {
   //   if (currentPossition == 1){
