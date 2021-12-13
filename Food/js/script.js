@@ -267,29 +267,20 @@ window.addEventListener("DOMContentLoaded", () => {
   ////////////////// AXIOS ////////////////////////////
   /////////////////////////////////////////////////////
 
-  axios.get("http://localhost:3000/menu")
-    .then((data) => {
-      // axios promise give you object where data is one of objects
-      data.data.forEach(({
+  axios.get("http://localhost:3000/menu").then((data) => {
+    // axios promise give you object where data is one of objects
+    data.data.forEach(({ img, altimg, title, descr, price }) => {
+      // inserting values as arguments to new Menucard
+      new MenuCard(
         img,
         altimg,
         title,
         descr,
-        price
-      }) => {
-        // inserting values as arguments to new Menucard
-        new MenuCard(
-          img,
-          altimg,
-          title,
-          descr,
-          price,
-          ".menu .container"
-        ).render();
-
-      });
+        price,
+        ".menu .container"
+      ).render();
     });
-
+  });
 
   // another method to create Menus withour using classes and patterns
   // getResorces("http://localhost:3000/menu").then((data) => createCard(data));
@@ -466,19 +457,14 @@ window.addEventListener("DOMContentLoaded", () => {
       closeModal();
     }, 4000);
   }
-  fetch("http://localhost:3000/menu")
-    .then((data) => data.json());
+  fetch("http://localhost:3000/menu").then((data) => data.json());
   //    .then((res) => console.log(res));
-
-
-
 
   // slider //
 
   const sliderCounter = document.querySelector(".offer__slider-counter"),
     currentSlider = sliderCounter.querySelector("#current"),
     totalSlider = sliderCounter.querySelector("#total"),
-
     leftArrow = document.querySelector(".offer__slider-prev"),
     rightArrow = document.querySelector(".offer__slider-next");
 
@@ -489,14 +475,14 @@ window.addEventListener("DOMContentLoaded", () => {
   let currentPossition = 1;
   let offset = 0;
 
-  if(offerSlider.length < 10){
+  if (offerSlider.length < 10) {
+    console.log(offerSlider.length);
     totalSlider.textContent = `0${offerSlider.length}`;
     currentSlider.textContent = `0${currentPossition}`;
-  }else {
+  } else {
     totalSlider.textContent = slidesField.length;
     currentSlider.textContent = currentPossition;
   }
-
 
   slidesField.style.width = 100 * offerSlider.length + "%";
   slidesField.style.display = "flex";
@@ -504,36 +490,36 @@ window.addEventListener("DOMContentLoaded", () => {
 
   offerSliderWrapper.style.overflow = "hidden";
 
-
-
-  offerSlider.forEach(slide => {
+  offerSlider.forEach((slide) => {
     slide.style.width = width;
   });
 
   rightArrow.addEventListener("click", () => {
-    if (offset == +width.slice(0, width.length - 2) * (offerSlider.length - 1)) {
+    if (
+      offset ==
+      +width.slice(0, width.length - 2) * (offerSlider.length - 1)
+    ) {
       offset = 0;
-
     } else {
       offset += +width.slice(0, width.length - 2);
     }
 
     slidesField.style.transform = `translateX(-${offset}px)`;
-    if (currentPossition == slidesField.length){
+    if (currentPossition == offerSlider.length) {
       currentPossition = 1;
     } else {
       currentPossition++;
     }
-    if(slidesField.length < 10){
+
+    if (currentPossition < 10) {
       currentSlider.textContent = `0${currentPossition}`;
-    }else {
+    } else {
       currentSlider.textContent = currentPossition;
     }
   });
 
   leftArrow.addEventListener("click", () => {
     if (offset == 0) {
-
       offset = +width.slice(0, width.length - 2) * (offerSlider.length - 1);
     } else {
       offset -= +width.slice(0, width.length - 2);
@@ -541,36 +527,21 @@ window.addEventListener("DOMContentLoaded", () => {
 
     slidesField.style.transform = `translateX(-${offset}px)`;
 
-    if (currentPossition == 1){
-      currentPossition = slidesField.length;
+    if (currentPossition == 1) {
+      currentPossition = offerSlider.length;
     } else {
       currentPossition--;
     }
 
-
-
-    if(slidesField.length < 10){
+    if (currentPossition < 10) {
       currentSlider.textContent = `0${currentPossition}`;
-    }else {
+    } else {
       currentSlider.textContent = currentPossition;
     }
   });
 
-
-
-
-
   totalSlider.innerHTML = 0 + `${offerSlider.length}`;
   currentSlider.innerHTML = 0 + `${currentPossition}`;
-
-
-
-
-
-
-
-
-
 
   // leftArrow.addEventListener("click", () => {
   //   if (currentPossition == 1){
@@ -597,8 +568,6 @@ window.addEventListener("DOMContentLoaded", () => {
   //   }
   // });
 
-
-
   // function pageSlider (){
 
   //  offerSlider.forEach((item, i) =>{
@@ -612,10 +581,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   //    });
 
-
   // }
   // pageSlider();
-
 
   // function showSlides(n){
   //   if (n > slider.length){
@@ -629,8 +596,6 @@ window.addEventListener("DOMContentLoaded", () => {
   //   slides[slideIndex - 1].style.display = "block";
 
   // }
-
-
 });
 
 // to run server: npx json-server db.json
