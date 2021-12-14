@@ -79,7 +79,6 @@ window.addEventListener("DOMContentLoaded", () => {
     if (target && target.classList.contains("tabheader__item")) {
       tabs.forEach((item, i) => {
         if (target == item) {
-          console.log(item, i);
           hideTabContent();
           showTabContent(i);
         }
@@ -153,7 +152,6 @@ window.addEventListener("DOMContentLoaded", () => {
     modal.style.display = "block";
     modal.classList.add("show");
     modal.classList.remove("hide");
-    console.log("clicked");
     // will clear interval when user opens it manually or after 6 sec
     clearInterval(modalTimerId);
 
@@ -192,7 +190,6 @@ window.addEventListener("DOMContentLoaded", () => {
       window.pageYOffset + document.documentElement.clientHeight + 1 >=
       document.documentElement.scrollHeight
     ) {
-      console.log("open");
       openModal();
       window.removeEventListener("scroll", showModalByScroll);
     }
@@ -377,7 +374,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const prevModalDialog = document.querySelector(".modal__dialog");
     prevModalDialog.classList.add("hidden");
     prevModalDialog.classList.remove("show");
-    console.log("added hide");
     openModal();
 
     const thanksModal = document.createElement("div");
@@ -399,9 +395,7 @@ window.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:3000/menu").then((data) => data.json());
   //    .then((res) => console.log(res));
 
-  // slider //
-
-  
+  // SLIDER //
   
   const slider = document.querySelector(".offer__slider"),
         sliderCounter = document.querySelector(".offer__slider-counter"),
