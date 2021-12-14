@@ -1,49 +1,5 @@
 "use strict";
 
-// // Forms
-
-// const forms = document.querySelectorAll("form");
-
-// const message = {
-//   loading: "Downloading",
-//   succsess: "Thank you! We will contact you soon",
-//   failure: "Something went wrong",
-// };
-
-// forms.forEach((item) => {
-//   postData(item);
-// });
-
-// function postData(form) {
-//   form.addEventListener("submit", (e) => {
-//     // since default is to reload page when clicking submit
-//     e.preventDefault();
-
-//     const statusMessage = document.createElement("div");
-//     statusMessage.classList.add("status");
-//     statusMessage.textContent = message.loading;
-//     form.append(statusMessage);
-
-//     const request = new XMLHttpRequest();
-//     request.open("POST", "server.php");
-
-//     request.setRequestHeader("Content-type", "multipart/form-data");
-//     // your Forms must have "name" in them for this to work:
-//     // <input placeholder="Ваш номер телефона" name="phone" type="phone" class="modal__input"/>
-//     const formData = new FormData(form);
-
-//     request.send(formData);
-//     request.addEventListener("load", () => {
-//       console.log(request.status);
-//       if (request.status === 200) {
-//         console.log(request.response);
-//         statusMessage.textContent = message.succsess;
-//       } else {
-//         statusMessage.textContent = message.failure;
-//       }
-//     });
-//   });
-// }
 
 window.addEventListener("DOMContentLoaded", () => {
   // tabs
@@ -245,20 +201,7 @@ window.addEventListener("DOMContentLoaded", () => {
     return await res.json();
   };
 
-  // getResorces("http://localhost:3000/menu").then((data) => {
-  //   // using destructurisation of data getting out values of fetch objects
-  //   data.forEach(({ img, altimg, title, descr, price }) => {
-  //     // inserting values as arguments to new Menucard
-  //     new MenuCard(
-  //       img,
-  //       altimg,
-  //       title,
-  //       descr,
-  //       price,
-  //       ".menu .container"
-  //     ).render();
-  //   });
-  // });
+
 
   /////////////////////////////////////////////////////
   ////////////////// AXIOS ////////////////////////////
@@ -356,17 +299,7 @@ window.addEventListener("DOMContentLoaded", () => {
           form.reset();
         });
 
-      // request.addEventListener("load", () => {
-      //   if (request.status === 200) {
-      //     console.log(request.response);
-      //     showThanksModal(message.success);
-      //     // will reset form after sending
-      //     form.reset();
-      //     statusMessage.remove();
-      //   } else {
-      //     showThanksModal(message.failure);
-      //   }
-      // });
+
     });
   }
 
