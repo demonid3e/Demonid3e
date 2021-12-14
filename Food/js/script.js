@@ -416,7 +416,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let currentPossition = 1,
       offset = 0;
-      
+
       function checkSliderLength (){
         if (currentPossition < 10) {
           currentSlider.textContent = `0${currentPossition}`;
@@ -424,12 +424,11 @@ window.addEventListener("DOMContentLoaded", () => {
           currentSlider.textContent = currentPossition;
         }
       }
-
-    // This condition checks if, total amount of slides is less than 10
+    
+    // This condition checks if, total amount of slides is less than 10 and sets it first time
     // then it adds "0" before "current slider count"
     // otherwise it shows "current slider count as it is"
   if (offerSlider.length < 10) {
-    console.log(offerSlider.length);
     totalSlider.textContent = `0${offerSlider.length}`;
     currentSlider.textContent = `0${currentPossition}`;
   } else {
@@ -522,7 +521,7 @@ slider.append(dotWrapper);
     } else {
       currentPossition--;
     }
-checkSliderLength();
+    checkSliderLength();
 
 
     
@@ -546,7 +545,7 @@ checkSliderLength();
         dots.forEach(dot => dot.style.opacity = "0.5");
         dots[currentPossition -1].style.opacity = 1;
 
-checkSliderLength();
+    checkSliderLength();
     });
   });
 
