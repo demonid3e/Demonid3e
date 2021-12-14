@@ -1,6 +1,24 @@
 
 "use strict";
 
+//////////////////////////////////
+/////////// AXIOS  ///////////////
+//////////////////////////////////
+
+axios.get("http://localhost:3000/menu").then((data) => {
+  // axios promise give you object where data is one of objects
+  data.data.forEach(({ img, altimg, title, descr, price }) => {
+    // inserting values as arguments to new Menucard
+    new MenuCard(
+      img,
+      altimg,
+      title,
+      descr,
+      price,
+      ".menu .container"
+    ).render();
+  });
+});
 
 
 //////////////////////////////////
