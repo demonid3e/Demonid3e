@@ -285,67 +285,6 @@ window.addEventListener("DOMContentLoaded", () => {
   // another method to create Menus withour using classes and patterns
   // getResorces("http://localhost:3000/menu").then((data) => createCard(data));
 
-  // function createCard(data) {
-  //   data.forEach(({ img, altimg, title, descr, price }) => {
-  //     const element = document.createElement("div");
-  //     element.classList.add("menu__item");
-  //     element.innerHTML = `
-  //         <img src=${img} alt=${altimg} />
-  //         <h3 class="menu__item-subtitle">${title}</h3>
-  //         <div class="menu__item-descr">${descr}</div>
-  //         <div class="menu__item-divider"></div>
-  //         <div class="menu__item-price">
-  //         <div class="menu__item-cost">Цена:</div>
-  //         <div class="menu__item-total"><span>${price}</span> грн/день</div>
-  //         </div>`;
-  //     document.querySelector(".menu .container").append(element);
-  //   });
-  // }
-
-  // need send data in "";
-  // need to combine "" with `` or ''
-
-  // this syntaxis creates element like unknown function it cant be accessed later
-  //only exist to run
-  // new MenuCard(
-  //   "img/tabs/vegy.jpg",
-  //   "vegy",
-  //   'Меню "Фитнес"',
-  //   `Меню "Фитнес" - это новый подход к приготовлению блюд: больше
-  //   свежих овощей и фруктов. Продукт активных и здоровых людей. Это
-  //   абсолютно новый продукт с оптимальной ценой и высоким качеством!`,
-  //   // get number not string
-  //   5,
-  //   // in class menu class container
-  //   `.menu .container`
-  // ).render();
-
-  // new MenuCard(
-  //   "img/tabs/elite.jpg",
-  //   "elite",
-  //   "Меню “Премиум”",
-  //   `В меню “Премиум” мы используем не только красивый дизайн упаковки,
-  //   но и качественное исполнение блюд. Красная рыба, морепродукты,
-  //   фрукты - ресторанное меню без похода в ресторан!`,
-  //   // get number not string
-  //   9,
-  //   // in class menu class container
-  //   `.menu .container`
-  // ).render();
-
-  // new MenuCard(
-  //   "img/tabs/post.jpg",
-  //   "post",
-  //   'Меню "Постное"',
-  //   `Меню “Постное” - это тщательный подбор ингредиентов: полное
-  //   отсутствие продуктов животного происхождения, молоко из миндаля,
-  //   овса, кокоса или гречки, правильное количество белков за счет тофу
-  //   и импортных вегетарианских стейков.`,
-  //   // get number not string
-  //   13,
-  //   // in class menu class container
-  //   `.menu .container`
-  // ).render();
 
   const forms = document.querySelectorAll("form");
 
@@ -464,21 +403,31 @@ window.addEventListener("DOMContentLoaded", () => {
 
   
   
-  const slider = document.querySelector(".offer__slider");
-  const sliderCounter = document.querySelector(".offer__slider-counter"),
+  const slider = document.querySelector(".offer__slider"),
+        sliderCounter = document.querySelector(".offer__slider-counter"),
+        currentSlider = sliderCounter.querySelector("#current"),
+        totalSlider = sliderCounter.querySelector("#total"),
+        leftArrow = document.querySelector(".offer__slider-prev"),
+        rightArrow = document.querySelector(".offer__slider-next"),
+        slidesField = document.querySelector(".offer__slider-inner"),
+        offerSliderWrapper = document.querySelector(".offer__slider-wrapper"),
+        offerSlider = offerSliderWrapper.querySelectorAll(".offer__slide"),
+        width = window.getComputedStyle(offerSliderWrapper).width;
 
-    currentSlider = sliderCounter.querySelector("#current"),
-    totalSlider = sliderCounter.querySelector("#total"),
-    leftArrow = document.querySelector(".offer__slider-prev"),
-    rightArrow = document.querySelector(".offer__slider-next");
+  let currentPossition = 1,
+      offset = 0;
+      
+      function checkSliderLength (){
+        if (currentPossition < 10) {
+          currentSlider.textContent = `0${currentPossition}`;
+        } else {
+          currentSlider.textContent = currentPossition;
+        }
+      }
 
-  const slidesField = document.querySelector(".offer__slider-inner");
-  const offerSliderWrapper = document.querySelector(".offer__slider-wrapper");
-  const offerSlider = offerSliderWrapper.querySelectorAll(".offer__slide");
-  const width = window.getComputedStyle(offerSliderWrapper).width;
-  let currentPossition = 1;
-  let offset = 0;
-
+    // This condition checks if, total amount of slides is less than 10
+    // then it adds "0" before "current slider count"
+    // otherwise it shows "current slider count as it is"
   if (offerSlider.length < 10) {
     console.log(offerSlider.length);
     totalSlider.textContent = `0${offerSlider.length}`;
@@ -488,18 +437,31 @@ window.addEventListener("DOMContentLoaded", () => {
     currentSlider.textContent = currentPossition;
   }
 
+  // sets the whole "slider container`s" width to 100 * 4 + "%" = 400%
+  // sets display to flex and transition 0.5s to all objects within the container
   slidesField.style.width = 100 * offerSlider.length + "%";
   slidesField.style.display = "flex";
   slidesField.style.transition = "0.5s all";
 
+  // anything that doesnt fit the container should be "hidden"
   offerSliderWrapper.style.overflow = "hidden";
 
+  // setting up width of all slides in slider to the set parameter "width"
   offerSlider.forEach((slide) => {
     slide.style.width = width;
   });
 
 slider.style.position = "relative";
-  
+
+// Creating new "Ordered list",
+// Creating new object "dots",
+// adding class to "dotWraper" and appending it to slider
+// using forEach creating 4 "li" elements with data attributed i + 1,
+// adding classlist "dot" which styles it 
+// setting default position of non transparent dot to first dont i == 0
+// appending "dot" to "dotWraper"
+// pushing each "dot" to "dota object"
+
 const dotWrapper = document.createElement("ol"),
   dots = [];
 dotWrapper.classList.add("carousel-indicators");
@@ -515,7 +477,11 @@ slider.append(dotWrapper);
   dots.push(dot);
  }
 
-
+// rightArrow click event:
+// if offset = width * 4 - 1 then offset = 0
+// otherwise add width value to offset
+// ^ checks if you are at the last slider and clicking right arrow  
+// will go back to first "slide"
   rightArrow.addEventListener("click", () => {
     if (
       offset ==
@@ -525,20 +491,19 @@ slider.append(dotWrapper);
     } else {
       offset += +width.slice(0, width.length - 2);
     }
-
+  // actually moving the slides to offset position
     slidesField.style.transform = `translateX(-${offset}px)`;
+    // if you are at 4 and clicking right set number to 1
+    // else add 1 to currentPossition
     if (currentPossition == offerSlider.length) {
       currentPossition = 1;
     } else {
       currentPossition++;
     }
+    checkSliderLength();
 
-    if (currentPossition < 10) {
-      currentSlider.textContent = `0${currentPossition}`;
-    } else {
-      currentSlider.textContent = currentPossition;
-    }
-
+  // sets opacity of all dots to 0,5 apart from the one which matches
+  // currentPossition, since dots are array they start at 0 thats why -1 to currentPossitiob
     dots.forEach(dot => dot.style.opacity = "0.5");
     dots[currentPossition -1].style.opacity = 1;
   });
@@ -557,18 +522,18 @@ slider.append(dotWrapper);
     } else {
       currentPossition--;
     }
+checkSliderLength();
 
-    if (currentPossition < 10) {
-      currentSlider.textContent = `0${currentPossition}`;
-    } else {
-      currentSlider.textContent = currentPossition;
-    }
 
     
     dots.forEach(dot => dot.style.opacity = "0.5");
     dots[currentPossition -1].style.opacity = 1;
   });
-
+  // creates click listener to all dots 
+  // on click gets attribute of clicked dot and sets "slideTo" to such number
+  // sets currentPossition to setTo number
+  // the same mathematics to set offset to such position as before
+  
   dots.forEach (dot =>{
     dot.addEventListener("click", (e) => {
         const slideTo = e.target.getAttribute("data-slide-to");
@@ -581,71 +546,15 @@ slider.append(dotWrapper);
         dots.forEach(dot => dot.style.opacity = "0.5");
         dots[currentPossition -1].style.opacity = 1;
 
-        if (currentPossition < 10) {
-          currentSlider.textContent = `0${currentPossition}`;
-        } else {
-          currentSlider.textContent = currentPossition;
-        }
-
-
+checkSliderLength();
     });
   });
-  // totalSlider.innerHTML = 0 + `${offerSlider.length}`;
-  // currentSlider.innerHTML = 0 + `${currentPossition}`;
 
-  // leftArrow.addEventListener("click", () => {
-  //   if (currentPossition == 1){
-  //     currentPossition = 4;
 
-  //     currentSlider.innerHTML = 0 + `${currentPossition}`;
-  // pageSlider();
-  //   }else {
-  //     currentPossition = currentPossition - 1;
-  //     currentSlider.innerHTML = 0 + `${currentPossition}`;
-  //     pageSlider();
-  //   }
-  // });
 
-  // rightArrow.addEventListener("click", () => {
-  //   if (currentPossition == 4){
-  //     currentPossition = 1;
-  //     currentSlider.innerHTML = 0 + `${currentPossition}`;
-  // pageSlider();
-  //   }else {
-  //     currentPossition = currentPossition + 1;
-  //     currentSlider.innerHTML = 0 + `${currentPossition}`;
-  //     pageSlider();
-  //   }
-  // });
 
-  // function pageSlider (){
 
-  //  offerSlider.forEach((item, i) =>{
-
-  // if (i + 1 == currentPossition){
-  //   console.log(i + 1, currentPossition, "showing");
-  //   item.style.display = "block";
-  // } else {
-  //   item.style.display = "none";
-  // }
-
-  //    });
-
-  // }
-  // pageSlider();
-
-  // function showSlides(n){
-  //   if (n > slider.length){
-  //     slideIndex = 1;
-  //   }
-  //   if(n < 1){
-  //     slideIndex = slides.length;
-  //   }
-  //   slides.forEach(item => item.style.display = "none");
-
-  //   slides[slideIndex - 1].style.display = "block";
-
-  // }
+// end of documentContentLoaded  
 });
 
 // to run server: npx json-server db.json
