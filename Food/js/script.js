@@ -98,11 +98,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Modal
 
-  const modalTrigger = document.querySelector("[data-modal]"),
+  const modalTrigger = document.querySelectorAll("[data-modal]"),
     modal = document.querySelector(".modal");
   // modalCloseBtn = document.querySelector("[data-close]");
 
-  modalTrigger.addEventListener("click", openModal);
+  modalTrigger.forEach(item =>{
+    item.addEventListener("click", openModal);
+  });
 
   function openModal() {
     modal.style.display = "block";
