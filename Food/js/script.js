@@ -345,8 +345,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let currentPossition = 1,
       offset = 0;
+  function removeLetters (string){
+    const result = +string.replace(/\D/g, "");
+    
+    return result;
+    
+  }
 
-      function checkSliderLength (){
+
+  function checkSliderLength (){
         if (currentPossition < 10) {
           currentSlider.textContent = `0${currentPossition}`;
         } else {
@@ -414,11 +421,11 @@ slider.append(dotWrapper);
     if (
       offset ==
       // replace all non digit with nothing
-      +width.replace(/\D/g, "") * (offerSlider.length - 1)
+      removeLetters(width) * (offerSlider.length - 1)
     ) {
       offset = 0;
     } else {
-      offset += +width.replace(/\D/g, "");
+      offset += removeLetters(width);
     }
   // actually moving the slides to offset position
     slidesField.style.transform = `translateX(-${offset}px)`;
@@ -439,9 +446,9 @@ slider.append(dotWrapper);
 
   leftArrow.addEventListener("click", () => {
     if (offset == 0) {
-      offset = +width.replace(/\D/g, "") * (offerSlider.length - 1);
+      offset = removeLetters(width) * (offerSlider.length - 1);
     } else {
-      offset -= +width.replace(/\D/g, "");
+      offset -= removeLetters(width);
     }
 
     slidesField.style.transform = `translateX(-${offset}px)`;
@@ -468,7 +475,7 @@ slider.append(dotWrapper);
         const slideTo = e.target.getAttribute("data-slide-to");
 
         currentPossition = slideTo;
-        offset = +width.replace(/\D/g, "") * (slideTo - 1);
+        offset = removeLetters(width) * (slideTo - 1);
 
         slidesField.style.transform = `translateX(-${offset}px)`;
 
