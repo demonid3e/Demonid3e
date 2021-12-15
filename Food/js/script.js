@@ -419,9 +419,7 @@ slider.append(dotWrapper);
 // will go back to first "slide"
   rightArrow.addEventListener("click", () => {
     if (
-      offset ==
-      // replace all non digit with nothing
-      removeLetters(width) * (offerSlider.length - 1)
+      offset == removeLetters(width) * (offerSlider.length - 1)
     ) {
       offset = 0;
     } else {
