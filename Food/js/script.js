@@ -413,11 +413,12 @@ slider.append(dotWrapper);
   rightArrow.addEventListener("click", () => {
     if (
       offset ==
-      +width.slice(0, width.length - 2) * (offerSlider.length - 1)
+      // replace all non digit with nothing
+      +width.replace(/\D/g, "") * (offerSlider.length - 1)
     ) {
       offset = 0;
     } else {
-      offset += +width.slice(0, width.length - 2);
+      offset += +width.replace(/\D/g, "");
     }
   // actually moving the slides to offset position
     slidesField.style.transform = `translateX(-${offset}px)`;
@@ -438,9 +439,9 @@ slider.append(dotWrapper);
 
   leftArrow.addEventListener("click", () => {
     if (offset == 0) {
-      offset = +width.slice(0, width.length - 2) * (offerSlider.length - 1);
+      offset = +width.replace(/\D/g, "") * (offerSlider.length - 1);
     } else {
-      offset -= +width.slice(0, width.length - 2);
+      offset -= +width.replace(/\D/g, "");
     }
 
     slidesField.style.transform = `translateX(-${offset}px)`;
@@ -467,7 +468,7 @@ slider.append(dotWrapper);
         const slideTo = e.target.getAttribute("data-slide-to");
 
         currentPossition = slideTo;
-        offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+        offset = +width.replace(/\D/g, "") * (slideTo - 1);
 
         slidesField.style.transform = `translateX(-${offset}px)`;
 
@@ -477,6 +478,8 @@ slider.append(dotWrapper);
     checkSliderLength();
     });
   });
+
+
 
 
 
