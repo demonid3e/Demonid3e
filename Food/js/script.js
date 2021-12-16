@@ -1,6 +1,5 @@
 "use strict";
 
-
 window.addEventListener("DOMContentLoaded", () => {
   // tabs
   const tabs = document.querySelectorAll(".tabheader__item"),
@@ -102,7 +101,7 @@ window.addEventListener("DOMContentLoaded", () => {
     modal = document.querySelector(".modal");
   // modalCloseBtn = document.querySelector("[data-close]");
 
-  modalTrigger.forEach(item =>{
+  modalTrigger.forEach((item) => {
     item.addEventListener("click", openModal);
   });
 
@@ -203,8 +202,6 @@ window.addEventListener("DOMContentLoaded", () => {
     return await res.json();
   };
 
-
-
   /////////////////////////////////////////////////////
   ////////////////// AXIOS ////////////////////////////
   /////////////////////////////////////////////////////
@@ -226,7 +223,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // another method to create Menus withour using classes and patterns
   // getResorces("http://localhost:3000/menu").then((data) => createCard(data));
-
 
   const forms = document.querySelectorAll("form");
 
@@ -300,8 +296,6 @@ window.addEventListener("DOMContentLoaded", () => {
         .finally(() => {
           form.reset();
         });
-
-
     });
   }
 
@@ -331,39 +325,37 @@ window.addEventListener("DOMContentLoaded", () => {
   //    .then((res) => console.log(res));
 
   // SLIDER //
-  
+
   const slider = document.querySelector(".offer__slider"),
-        sliderCounter = document.querySelector(".offer__slider-counter"),
-        currentSlider = sliderCounter.querySelector("#current"),
-        totalSlider = sliderCounter.querySelector("#total"),
-        leftArrow = document.querySelector(".offer__slider-prev"),
-        rightArrow = document.querySelector(".offer__slider-next"),
-        slidesField = document.querySelector(".offer__slider-inner"),
-        offerSliderWrapper = document.querySelector(".offer__slider-wrapper"),
-        offerSlider = offerSliderWrapper.querySelectorAll(".offer__slide"),
-        width = window.getComputedStyle(offerSliderWrapper).width;
+    sliderCounter = document.querySelector(".offer__slider-counter"),
+    currentSlider = sliderCounter.querySelector("#current"),
+    totalSlider = sliderCounter.querySelector("#total"),
+    leftArrow = document.querySelector(".offer__slider-prev"),
+    rightArrow = document.querySelector(".offer__slider-next"),
+    slidesField = document.querySelector(".offer__slider-inner"),
+    offerSliderWrapper = document.querySelector(".offer__slider-wrapper"),
+    offerSlider = offerSliderWrapper.querySelectorAll(".offer__slide"),
+    width = window.getComputedStyle(offerSliderWrapper).width;
 
   let currentPossition = 1,
-      offset = 0;
-  function removeLetters (string){
+    offset = 0;
+  function removeLetters(string) {
     const result = +string.replace(/\D/g, "");
-    
+
     return result;
-    
   }
 
+  function checkSliderLength() {
+    if (currentPossition < 10) {
+      currentSlider.textContent = `0${currentPossition}`;
+    } else {
+      currentSlider.textContent = currentPossition;
+    }
+  }
 
-  function checkSliderLength (){
-        if (currentPossition < 10) {
-          currentSlider.textContent = `0${currentPossition}`;
-        } else {
-          currentSlider.textContent = currentPossition;
-        }
-      }
-    
-    // This condition checks if, total amount of slides is less than 10 and sets it first time
-    // then it adds "0" before "current slider count"
-    // otherwise it shows "current slider count as it is"
+  // This condition checks if, total amount of slides is less than 10 and sets it first time
+  // then it adds "0" before "current slider count"
+  // otherwise it shows "current slider count as it is"
   if (offerSlider.length < 10) {
     totalSlider.textContent = `0${offerSlider.length}`;
     currentSlider.textContent = `0${currentPossition}`;
@@ -386,46 +378,44 @@ window.addEventListener("DOMContentLoaded", () => {
     slide.style.width = width;
   });
 
-slider.style.position = "relative";
+  slider.style.position = "relative";
 
-// Creating new "Ordered list",
-// Creating new object "dots",
-// adding class to "dotWraper" and appending it to slider
-// using forEach creating 4 "li" elements with data attributed i + 1,
-// adding classlist "dot" which styles it 
-// setting default position of non transparent dot to first dont i == 0
-// appending "dot" to "dotWraper"
-// pushing each "dot" to "dota object"
+  // Creating new "Ordered list",
+  // Creating new object "dots",
+  // adding class to "dotWraper" and appending it to slider
+  // using forEach creating 4 "li" elements with data attributed i + 1,
+  // adding classlist "dot" which styles it
+  // setting default position of non transparent dot to first dont i == 0
+  // appending "dot" to "dotWraper"
+  // pushing each "dot" to "dota object"
 
-const dotWrapper = document.createElement("ol"),
-  dots = [];
-dotWrapper.classList.add("carousel-indicators");
-slider.append(dotWrapper);
- for (let i = 0; i < 4; i++){
-  const dot = document.createElement("li");
-  dot.setAttribute("data-slide-to", i + 1);
-  dot.classList.add("dot");
-  if (i == 0){
-    dot.style.opacity = 1;
+  const dotWrapper = document.createElement("ol"),
+    dots = [];
+  dotWrapper.classList.add("carousel-indicators");
+  slider.append(dotWrapper);
+  for (let i = 0; i < 4; i++) {
+    const dot = document.createElement("li");
+    dot.setAttribute("data-slide-to", i + 1);
+    dot.classList.add("dot");
+    if (i == 0) {
+      dot.style.opacity = 1;
+    }
+    dotWrapper.append(dot);
+    dots.push(dot);
   }
-  dotWrapper.append(dot);
-  dots.push(dot);
- }
 
-// rightArrow click event:
-// if offset = width * 4 - 1 then offset = 0
-// otherwise add width value to offset
-// ^ checks if you are at the last slider and clicking right arrow  
-// will go back to first "slide"
+  // rightArrow click event:
+  // if offset = width * 4 - 1 then offset = 0
+  // otherwise add width value to offset
+  // ^ checks if you are at the last slider and clicking right arrow
+  // will go back to first "slide"
   rightArrow.addEventListener("click", () => {
-    if (
-      offset == removeLetters(width) * (offerSlider.length - 1)
-    ) {
+    if (offset == removeLetters(width) * (offerSlider.length - 1)) {
       offset = 0;
     } else {
       offset += removeLetters(width);
     }
-  // actually moving the slides to offset position
+    // actually moving the slides to offset position
     slidesField.style.transform = `translateX(-${offset}px)`;
     // if you are at 4 and clicking right set number to 1
     // else add 1 to currentPossition
@@ -436,10 +426,10 @@ slider.append(dotWrapper);
     }
     checkSliderLength();
 
-  // sets opacity of all dots to 0,5 apart from the one which matches
-  // currentPossition, since dots are array they start at 0 thats why -1 to currentPossitiob
-    dots.forEach(dot => dot.style.opacity = "0.5");
-    dots[currentPossition -1].style.opacity = 1;
+    // sets opacity of all dots to 0,5 apart from the one which matches
+    // currentPossition, since dots are array they start at 0 thats why -1 to currentPossitiob
+    dots.forEach((dot) => (dot.style.opacity = "0.5"));
+    dots[currentPossition - 1].style.opacity = 1;
   });
 
   leftArrow.addEventListener("click", () => {
@@ -458,39 +448,103 @@ slider.append(dotWrapper);
     }
     checkSliderLength();
 
-
-    
-    dots.forEach(dot => dot.style.opacity = "0.5");
-    dots[currentPossition -1].style.opacity = 1;
+    dots.forEach((dot) => (dot.style.opacity = "0.5"));
+    dots[currentPossition - 1].style.opacity = 1;
   });
-  // creates click listener to all dots 
+  // creates click listener to all dots
   // on click gets attribute of clicked dot and sets "slideTo" to such number
   // sets currentPossition to setTo number
   // the same mathematics to set offset to such position as before
-  
-  dots.forEach (dot =>{
+
+  dots.forEach((dot) => {
     dot.addEventListener("click", (e) => {
-        const slideTo = e.target.getAttribute("data-slide-to");
+      const slideTo = e.target.getAttribute("data-slide-to");
 
-        currentPossition = slideTo;
-        offset = removeLetters(width) * (slideTo - 1);
+      currentPossition = slideTo;
+      offset = removeLetters(width) * (slideTo - 1);
 
-        slidesField.style.transform = `translateX(-${offset}px)`;
+      slidesField.style.transform = `translateX(-${offset}px)`;
 
-        dots.forEach(dot => dot.style.opacity = "0.5");
-        dots[currentPossition -1].style.opacity = 1;
+      dots.forEach((dot) => (dot.style.opacity = "0.5"));
+      dots[currentPossition - 1].style.opacity = 1;
 
-    checkSliderLength();
+      checkSliderLength();
     });
   });
 
+  // calculator
 
+  const result = document.querySelector(".calculating__result span");
+  let sex = "female",
+    height,
+    weight,
+    age,
+    ratio = 1.375;
 
+  function calcTotal() {
+    if (!sex || !height || !weight || !age || !ratio) {
+      result.textContent = "______";
+      console.log(age, sex, weight, height, ratio);
+      return;
+    }
+    if (sex === "female") {
+      result.textContent = Math.round(
+        (447.6 + 9.2 * weight + 3.1 * height - 4.3 * age) * ratio
+      );
+    } else {
+      result.textContent = Math.round(
+        (88.36 + 13.4 * weight + 4.8 * height - 5.7 * age) * ratio
+      );
+    }
+    console.log(age, sex, weight, height, ratio);
+  }
 
+  function getStaticInfo(parentSelector, activeClass) {
+    const elements = document.querySelectorAll(`${parentSelector} div`);
 
+    elements.forEach((elem) => {
+      elem.addEventListener("click", (e) => {
+        if (e.target.getAttribute("data-ratio")) {
+          ratio = +e.target.getAttribute("data-ratio");
+        } else {
+          sex = e.target.getAttribute("id");
+        }
+        elements.forEach((elem) => {
+          elem.classList.remove(activeClass);
+        });
+        e.target.classList.add(activeClass);
+        calcTotal();
+      });
+    });
+  }
 
+  getStaticInfo("#gender", "calculating__choose-item_active");
+  getStaticInfo(".calculating__choose_big", "calculating__choose-item_active");
 
-// end of documentContentLoaded  
+  function getDinamicInfo(selector) {
+    const input = document.querySelector(selector);
+
+    input.addEventListener("input", () => {
+      switch (input.getAttribute("id")) {
+        case "height":
+          height = +input.value;
+          break;
+        case "weight":
+          weight = +input.value;
+          break;
+        case "age":
+          age = +input.value;
+          break;
+      }
+
+      calcTotal();
+    });
+  }
+  getDinamicInfo("#height");
+  getDinamicInfo("#weight");
+  getDinamicInfo("#age");
+
+  // end of documentContentLoaded
 });
 
 // to run server: npx json-server db.json
