@@ -481,10 +481,11 @@ window.addEventListener("DOMContentLoaded", () => {
     age,
     ratio = 1.375;
 
+    // checks if any of the variables false then get ____ in span
+    // calculates using formula and writing output in span
   function calcTotal() {
     if (!sex || !height || !weight || !age || !ratio) {
       result.textContent = "______";
-      console.log(age, sex, weight, height, ratio);
       return;
     }
     if (sex === "female") {
@@ -496,7 +497,6 @@ window.addEventListener("DOMContentLoaded", () => {
         (88.36 + 13.4 * weight + 4.8 * height - 5.7 * age) * ratio
       );
     }
-    console.log(age, sex, weight, height, ratio);
   }
 
   function getStaticInfo(parentSelector, activeClass) {
@@ -504,20 +504,25 @@ window.addEventListener("DOMContentLoaded", () => {
 
     elements.forEach((elem) => {
       elem.addEventListener("click", (e) => {
+        //going trought all "divs" of the clicked parent  and checking if condition
+        // using data-ratio attribue value sets the "ratio" to that
         if (e.target.getAttribute("data-ratio")) {
           ratio = +e.target.getAttribute("data-ratio");
         } else {
+          // setting sex by using attribute id 
           sex = e.target.getAttribute("id");
         }
+        // removes activeClass from all elements
         elements.forEach((elem) => {
           elem.classList.remove(activeClass);
         });
+        //sets for the one that been clicked on
         e.target.classList.add(activeClass);
         calcTotal();
       });
     });
   }
-
+// calling a function twice, once for "gender" and second for "ratio"
   getStaticInfo("#gender", "calculating__choose-item_active");
   getStaticInfo(".calculating__choose_big", "calculating__choose-item_active");
 
@@ -540,6 +545,7 @@ window.addEventListener("DOMContentLoaded", () => {
       calcTotal();
     });
   }
+  // calling this function 3 times to get input from "height" "weight" "age"
   getDinamicInfo("#height");
   getDinamicInfo("#weight");
   getDinamicInfo("#age");
