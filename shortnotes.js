@@ -1,7 +1,23 @@
-
 "use strict";
 
+////////////////////////////
+/// Getters and Setters/////
+////////////////////////////
 
+const worker = {
+  name: "alex",
+  age: 25,
+
+  get userAge() {
+    return this.age;
+  },
+  set userAge(num) {
+    this.age = num;
+  },
+};
+
+console.log((worker.userAge = 30));
+console.log(worker.userAge);
 
 /////////////////////////////////
 //////// Regular expression /////
@@ -10,11 +26,10 @@
 // new RegExp("pattern", flags); // old style
 // /patern/f
 
-
 const ans = prompt("enter your name", ""); // Demonid3e
 
 //can combine flags
-const reg = /n/ig;
+const reg = /n/gi;
 
 // classes:
 // \d = digits
@@ -29,14 +44,11 @@ const strr = "My name is R2D2";
 // will look for word digit word digit pattern
 console.log(strr.match(/\w\d\w\d/)); // R2D2
 
-
-
-
 // will get true because Demonid3e has "n" in it
-// console.log(reg.test(ans)); // true 
+// console.log(reg.test(ans)); // true
 // i = non case sensative
 // g = global searches first itiration
-// m = 
+// m =
 // console.log(ans.search(reg)); // 4
 
 // console.log(ans.match(reg));
@@ -61,9 +73,6 @@ console.log(strr.match(/\w\d\w\d/)); // R2D2
 // replace all "-" with ":"
 // console.log("12-34-56".replace(/-/g, ":"));
 
-
-
-
 //////////////////////////////////
 /////////// AXIOS  ///////////////
 //////////////////////////////////
@@ -72,17 +81,9 @@ axios.get("http://localhost:3000/menu").then((data) => {
   // axios promise give you object where data is one of objects
   data.data.forEach(({ img, altimg, title, descr, price }) => {
     // inserting values as arguments to new Menucard
-    new MenuCard(
-      img,
-      altimg,
-      title,
-      descr,
-      price,
-      ".menu .container"
-    ).render();
+    new MenuCard(img, altimg, title, descr, price, ".menu .container").render();
   });
 });
-
 
 //////////////////////////////////
 //////// Local Storage ///////////
@@ -100,35 +101,33 @@ axios.get("http://localhost:3000/menu").then((data) => {
 // localStorage.clear();
 
 const checkbox = document.querySelector("#checkbox"),
-    newForm = document.querySelector("form"),
-    changeColor = document.querySelector("#color");
-
+  newForm = document.querySelector("form"),
+  changeColor = document.querySelector("#color");
 
 if (localStorage.getItem("isChecked")) {
-    checkbox.checked = true;
+  checkbox.checked = true;
 }
-if(localStorage.getItem("bg") === "changed"){
-    newForm.style.backgroundColor = "red";
-    }
+if (localStorage.getItem("bg") === "changed") {
+  newForm.style.backgroundColor = "red";
+}
 
-
-checkbox.addEventListener("change", () =>{
-localStorage.setItem("isChecked", true);
+checkbox.addEventListener("change", () => {
+  localStorage.setItem("isChecked", true);
 });
 
-changeColor.addEventListener("click", () =>{
-if(localStorage.getItem("bg") === "changed"){
-localStorage.removeItem("bg");
-newForm.style.backgroundColor = "#fff";
-}else{
+changeColor.addEventListener("click", () => {
+  if (localStorage.getItem("bg") === "changed") {
+    localStorage.removeItem("bg");
+    newForm.style.backgroundColor = "#fff";
+  } else {
     localStorage.setItem("bg", "changed");
-   newForm.style.backgroundColor = "red";
-}
+    newForm.style.backgroundColor = "red";
+  }
 });
 
 const personnne = {
-    name: "Alex",
-    age: 25
+  name: "Alex",
+  age: 25,
 };
 
 const serializedPersonne = JSON.stringify(personnne);
@@ -136,78 +135,75 @@ localStorage.setItem("alex", serializedPersonne);
 
 console.log(JSON.parse(localStorage.getItem("alex")));
 
-
 ///////////////////////////////////////////
 //////////////  ARRAYS ////////////////////
 //////////////////////////////////////////
 {
-// forEach method never gives you new Array
+  // forEach method never gives you new Array
 
-// filter:  returns New Array
+  // filter:  returns New Array
 
-const names = ["Ivan", "Ana", "Ksenia", "Voldemart"];
+  const names = ["Ivan", "Ana", "Ksenia", "Voldemart"];
 
-// creates new array with names with length < 5
-const shortNames = names.filter(function(name){
+  // creates new array with names with length < 5
+  const shortNames = names.filter(function (name) {
     return name.length < 5;
-});
+  });
 
-console.log(shortNames); // [ 'Ivan', 'Ana' ]
+  console.log(shortNames); // [ 'Ivan', 'Ana' ]
 
-// map:  can change array
+  // map:  can change array
 
-const answers = ["IvAn", "AnnA", "Hello"];
+  const answers = ["IvAn", "AnnA", "Hello"];
 
-const result = answers.map(item => item.toLocaleLowerCase());
+  const result = answers.map((item) => item.toLocaleLowerCase());
 
-console.log(result);
+  console.log(result);
 
-// every/some: return boolean expression
+  // every/some: return boolean expression
 
-const some = [4, "dasdsdas", "asdasd"];
-// check if array item`s return === number
-console.log(some.some(item => typeof(item) === "number"));
-// if every element is number
-console.log(some.every(item => typeof(item) === "number"));
+  const some = [4, "dasdsdas", "asdasd"];
+  // check if array item`s return === number
+  console.log(some.some((item) => typeof item === "number"));
+  // if every element is number
+  console.log(some.every((item) => typeof item === "number"));
 
-// reduce: takes 2 arguments, sum === 0 at start then adds every element to the sum
+  // reduce: takes 2 arguments, sum === 0 at start then adds every element to the sum
 
-const arr = [4, 5, 1, 3, 2, 6];
-// can add default value of sum in this case === 3
-const res = arr.reduce((sum, current) => sum + current, 3);
+  const arr = [4, 5, 1, 3, 2, 6];
+  // can add default value of sum in this case === 3
+  const res = arr.reduce((sum, current) => sum + current, 3);
 
-console.log(res);
+  console.log(res);
 
-const fruits = ["apple", "pear", "plum"];
+  const fruits = ["apple", "pear", "plum"];
 
-const resu = fruits.reduce((sum, current) => `${sum}, ${current}`);
-console.log(resu);
+  const resu = fruits.reduce((sum, current) => `${sum}, ${current}`);
+  console.log(resu);
 
-// using chaining
+  // using chaining
 
-const obj = {
+  const obj = {
     ivan: "persone",
     ann: "persone",
     dog: "animal",
-    cat: "animal"
-};
+    cat: "animal",
+  };
 
-// to get only names from obj
-// creates new array of arrays from object
-const newArray = Object.entries(obj)
-// filter arrays where value is personne, will give back 2 arrays
-.filter(item => item[1] === "persone")
-// will get first element which is name in array
-.map(item => item[0]);
-console.log(newArray); // [ 'ivan', 'ann' ]
-
+  // to get only names from obj
+  // creates new array of arrays from object
+  const newArray = Object.entries(obj)
+    // filter arrays where value is personne, will give back 2 arrays
+    .filter((item) => item[1] === "persone")
+    // will get first element which is name in array
+    .map((item) => item[0]);
+  console.log(newArray); // [ 'ivan', 'ann' ]
 }
 
 ///////////////////////////////
 //////// PROMISES /////////////
 ///////////////////////////////
 console.log("Data request...");
-
 
 // in req makeing emulation request from the server for "product"
 const req = new Promise(function (resolve, reject) {
@@ -218,7 +214,7 @@ const req = new Promise(function (resolve, reject) {
       name: "TV",
       price: 2000,
     };
-// if resolves ok returns "product"
+    // if resolves ok returns "product"
     resolve(product);
   }, 2000);
 });
@@ -227,32 +223,35 @@ const req = new Promise(function (resolve, reject) {
 req.then((product) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-// adding status "ordered"
+      // adding status "ordered"
       product.status = "ordered";
-// giving back "product" object
+      // giving back "product" object
       resolve(product);
-// we can also use reject if something went wrong
-// reject();
+      // we can also use reject if something went wrong
+      // reject();
     }, 2000);
-// you can continue making "CHAIN" using same resolve result
-  }).then((resolvedData) => {
-   resolvedData.modify = true;
-   return resolvedData;
-// it will show resolvedData
-  }).then((resolvedData) =>{
-    console.log(resolvedData);
-    // catch is function for reject
-  }).catch(() =>{
-console.error("Something went wrong");
-// finally is what executed at the end of promise
-  }).finally(() =>{
-console.log("FINALLY");
-  });
+    // you can continue making "CHAIN" using same resolve result
+  })
+    .then((resolvedData) => {
+      resolvedData.modify = true;
+      return resolvedData;
+      // it will show resolvedData
+    })
+    .then((resolvedData) => {
+      console.log(resolvedData);
+      // catch is function for reject
+    })
+    .catch(() => {
+      console.error("Something went wrong");
+      // finally is what executed at the end of promise
+    })
+    .finally(() => {
+      console.log("FINALLY");
+    });
 });
 
-
-const test = time => {
-  return new Promise (resolve =>{
+const test = (time) => {
+  return new Promise((resolve) => {
     setTimeout(() => resolve(), time);
   });
 };
@@ -261,14 +260,12 @@ test(1000).then(() => console.log("1000 ms"));
 test(2000).then(() => console.log("2000 ms"));
 
 // will execute when both promises executed correctly
-Promise.all([test(1000), test(2000)]).then(() =>{
+Promise.all([test(1000), test(2000)]).then(() => {
   console.log("Promise all finished");
-
 });
 // will execute when ANY 1 promise executes correctly
-Promise.race([test(1000), test(2000)]).then(() =>{
+Promise.race([test(1000), test(2000)]).then(() => {
   console.log("one promise is finished");
-
 });
 
 /////// JSON //////////
