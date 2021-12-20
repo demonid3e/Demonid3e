@@ -1,5 +1,83 @@
 "use strict";
 
+////////// INCAPSULATION ///////////
+
+// let you hide properties of object from user to interact with
+// you can set Getter and Setter to access this property keys/values
+// need to use special characters to Incapsulate
+// "_" inside the constructor or "#" outside but not yet in ECMA standart
+// can write conditions for setter or getter
+
+function User(name, age) {
+  this.name = name;
+  let userAge = age;
+
+  this.say = function () {
+    console.log(`User name: ${this.name}, age: ${userAge} `);
+  };
+  this.getAge = function () {
+    return userAge;
+  };
+
+  this.setAge = function (age) {
+    if (typeof age === "number" && age > 0 && age < 110) {
+      userAge = age;
+    } else {
+      console.log("Wrong Age");
+    }
+  };
+}
+
+const ivan = new User("Ivan", 27);
+
+console.log(ivan.name);
+console.log(ivan.getAge());
+
+ivan.setAge(30);
+ivan.setAge(300);
+console.log(ivan.getAge());
+
+ivan.say();
+
+class Man {
+  constructor(name, age) {
+    this.name = name;
+    this._age = age;
+  }
+  #surname = "Brils";
+
+  get surname() {
+    return this.#surname;
+  }
+  set surname(surname) {
+    this.#surname = surname;
+  }
+
+  say() {
+    console.log(`User name: ${this.name} ${this.#surname}, age: ${this._age} `);
+  }
+  get age() {
+    return this._age;
+  }
+  set age(age) {
+    if (typeof age === "number" && age > 0 && age < 110) {
+      this._age = age;
+    } else {
+      console.log("Wrong Age");
+    }
+  }
+}
+
+const demon = new Man("Demon", 33);
+
+console.log(demon.age);
+demon.age = 99;
+console.log(demon.age);
+demon.say();
+console.log(demon.surname);
+demon.surname = "Kalinka";
+console.log(demon.surname);
+
 ////////////////////////////
 /// Getters and Setters/////
 ////////////////////////////
