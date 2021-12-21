@@ -50,12 +50,23 @@ module.exports = myModule;
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/script.js");
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!************************!*\
+  !*** ./src/another.js ***!
+  \************************/
+
+
+const myModule = __webpack_require__(/*! ./script */ "./src/script.js");
+
+const myModuleInstance = new myModule();
+
+myModuleInstance.hello();
+myModuleInstance.goodbay();
+
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map
