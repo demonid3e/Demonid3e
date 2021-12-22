@@ -1,11 +1,29 @@
 {
   "big": [
     {
-      "discr": "asdfadasdad"
+      "discr": "Carvery Mains",
+      "text": "Ensure that the carvery maintain the correct temperature"
     
     },
     {
-      "discr": "asdfadasdad"
+      "discr": "Carvery Sides",
+      "text": "Complete to ensure that being held at correct temperature"
+    },
+    {
+      "discr": "Cooking & Reheating",
+      "text": "Complete to ensure the safe cooking or reheating temperature"
+    },
+    {
+      "discr": "Cooling",
+      "text": "Complete to ensure safe procidures are followed when cooling"
+    },
+    {
+      "discr": "Fridge Freezer Temperatures",
+      "text": "To be completed twice a day."
+    },
+    {
+      "discr": "Hot Holding",
+      "text": "Complete to ensure the safe cooking or reheating temperature"
     }
   
   ]
