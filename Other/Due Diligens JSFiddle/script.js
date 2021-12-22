@@ -1,17 +1,18 @@
 "use strict";
-
 const wrapper = document.querySelector(".wrapper");
+const wrappers = document.querySelectorAll(".wrapper");
 const body = document.querySelector(".body");
-
-
+const blocks = document.querySelectorAll(".ddTopic");
+const mainBlock = document.querySelectorAll(".mainBlock");
 
 class Block {
-  constructor(descr, text){
+  constructor(descr, text) {
     this.descr = descr;
     this.text = text;
-   }
-  makeBlock(){
+  }
+  makeBlock() {
     const div = document.createElement("div");
+    div.classList.add("mainBlock");
     div.innerHTML = ` <div class="block">
     <div class="ddTopic" onclick="test();">
       <img
@@ -24,30 +25,30 @@ class Block {
       >
     </div>
   </div>`;
-  wrapper.append(div);
-  console.log("im done");
+    wrapper.append(div);
   }
 }
 
-
-
-
-
-
 function test() {
-  wrapper.style.visibility = "hidden";
-  const newWrapper = document.createElement("DIV");
-  newWrapper.classList.add("new_wrapper");
-  newWrapper.innerHTML = "<div id=`test`>Business Check - Carvery Mains</div>";
-  body.prepend(newWrapper);
-  console.log("It worked");
+  // wrapper.style.visibility = "hidden";
+  mainBlock.forEach((item) => {
+    item.remove();
+  });
+
+  axios.get("http://localhost:3000/small").then((data) => {
+    data.data.forEach(({ discr, text }) => {
+      new Block(discr, text).makeBlock();
+    });
+  });
+  console.log("SMall is called");
+}
+function start() {
+  axios.get("http://localhost:3000/big").then((data) => {
+    data.data.forEach(({ discr, text }) => {
+      new Block(discr, text).makeBlock();
+    });
+    console.log("BIg is called");
+  });
 }
 
-axios.get("http://localhost:3000/big").then((data) => {
-data.data.forEach(({discr, text}) =>{
-  console.log(discr);
-  new Block(discr, text).makeBlock();
-});
-
-  
-});
+start();

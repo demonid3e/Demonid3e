@@ -3,7 +3,6 @@
     {
       "discr": "Carvery Mains",
       "text": "Ensure that the carvery maintain the correct temperature"
-    
     },
     {
       "discr": "Carvery Sides",
@@ -25,8 +24,12 @@
       "discr": "Hot Holding",
       "text": "Complete to ensure the safe cooking or reheating temperature"
     }
-  
+  ],
+
+  "small": [
+    {
+      "discr": "dasdasdsad",
+      "text": "dasdasdasdsadasdd"
+    }
   ]
-
-
 }
