@@ -2,6 +2,7 @@
 
 const wrapper = document.querySelector(".wrapper");
 const body = document.querySelector(".body");
+const button = document.querySelector(".button");
 
 
 class Block {
@@ -31,7 +32,9 @@ const testMe = new Block("asdasdasd").makeBlock();
 
 console.log(testMe);
 
-
+button.addEventListener("click", ()=>{
+  console.log("click click");
+});
 
 
 
@@ -43,3 +46,9 @@ function test() {
   body.prepend(newWrapper);
   console.log("It worked");
 }
+
+axios.get("http://localhost:3000/test").then((data) => {
+console.log(data.data);
+
+  
+});
