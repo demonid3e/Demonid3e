@@ -28,9 +28,7 @@ class Block {
   }
 }
 
-const testMe = new Block("asdasdasd").makeBlock();
 
-console.log(testMe);
 
 button.addEventListener("click", ()=>{
   console.log("click click");
@@ -47,8 +45,11 @@ function test() {
   console.log("It worked");
 }
 
-axios.get("http://localhost:3000/test").then((data) => {
-console.log(data.data);
+axios.get("http://localhost:3000/big").then((data) => {
+data.data.forEach(({discr}) =>{
+  console.log(discr);
+  new Block(discr).makeBlock();
+});
 
   
 });

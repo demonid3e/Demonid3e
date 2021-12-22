@@ -1,9 +1,14 @@
 {
-  "test": [
+  "big": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "discr": "asdfadasdad"
+    
+    },
+    {
+      "discr": "asdfadasdad"
     }
+  
   ]
+
+
 }
