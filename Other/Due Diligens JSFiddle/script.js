@@ -3,7 +3,6 @@ const wrapper = document.querySelector(".wrapper");
 const wrappers = document.querySelectorAll(".wrapper");
 const body = document.querySelector(".body");
 const blocks = document.querySelectorAll(".ddTopic");
-const mainBlock = document.querySelectorAll(".mainBlock");
 
 class Block {
   constructor(descr, text) {
@@ -31,10 +30,11 @@ class Block {
 
 function test() {
   // wrapper.style.visibility = "hidden";
+  const mainBlock = document.querySelectorAll(".mainBlock");
   mainBlock.forEach((item) => {
     item.remove();
+    console.log("deleting");
   });
-
   axios.get("http://localhost:3000/small").then((data) => {
     data.data.forEach(({ discr, text }) => {
       new Block(discr, text).makeBlock();
