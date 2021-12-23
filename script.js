@@ -1,32 +1,41 @@
 "use strict";
 
-///// Modules //////
+// must have a name of variable to export
 
-const app = "123";
 
-const number = 1;
+/// file 1
+export let one =1;
+let two = 2;
 
-// annonymous, self calling function expression
-(function () {
-  let number = 2;
-  console.log(number);
-  console.log(number + 3);
-})();
+export {two};
+// using default will let you import function/object directly as is 
+// default can only be one
+export default function sayHi(){
+  console.log("hello");
+}
 
-console.log(number);
+// file 2
 
-/////
-// before usserr cant access privat function
-// returning result of privat function as sayHello
-// now we can use this method in usserr
+// import {one, two} from "./main";
+// or you can straight away rename as you import
+// can also import all from file as one object
 
-const usserr = (function () {
-  const privat = function () {
-    console.log("Its private");
-  };
-  return {
-    sayHello: privat,
-  };
-})();
+import * as data from "./main";
 
-usserr.sayHello();
+console.log(data.one);
+// can also call functions
+
+data.sayHi();
+
+import {one as first} from "./main";
+
+console.log(`${one} and ${two}`);
+
+
+// using default will let you import function/object directly as is 
+import sayHi from "./main";
+
+// HTML you can use type="module" to let browser read multiple script files after each other
+
+// <script type="module" src="./js/main.js"></script>
+// <script type="module" src="./js/sript.js"></script>
