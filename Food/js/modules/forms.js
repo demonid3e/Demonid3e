@@ -1,9 +1,14 @@
 "use strict"; 
 
+
+// for forms.js to function correctly we importing 3 functions
+// open and close modal from modal
+// and POST request function from services
 import {closeModal, openModal} from "./modal";
 import {postData} from "../services/services";
 
-
+// because that variable dosnt exist yet when the code executes
+// moved arguments to main script file so it passes the same arguments to all functions
 function form (formSelector, modalTimerId) {
     
   //// FORMS
@@ -96,7 +101,7 @@ function form (formSelector, modalTimerId) {
       closeModal(".modal");
     }, 4000);
   }
-  fetch("http://localhost:3000/menu").then((data) => data.json());
+  // fetch("http://localhost:3000/menu").then((data) => data.json());
   //    .then((res) => console.log(res));
 
 

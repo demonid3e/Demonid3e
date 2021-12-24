@@ -8,6 +8,7 @@ const modal = document.querySelector(modalSelector);
   modal.classList.remove("hide");
 
   console.log(modalTimerId);
+  // check if modalTimerId was created, only then removing it after xxx time
   if(modalTimerId){
   // will clear interval when user opens it manually or after 6 sec
   clearInterval(modalTimerId);
@@ -40,7 +41,7 @@ function modal (triggerSelector, modalSelector, modalTimerId) {
   modal = document.querySelector(modalSelector);
 // modalCloseBtn = document.querySelector("[data-close]");
 
-// since in arrow function you cant call function straight away (no argument must be given)
+// since in arrow function you cant call function straight away (no argument can be given),
 // we use another annonymous function to call that function in this case openModal(modalSelector)
 modalTrigger.forEach((item) => {
   item.addEventListener("click", () => openModal(modalSelector, modalTimerId));

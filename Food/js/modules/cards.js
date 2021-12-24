@@ -1,5 +1,5 @@
 "use strict";
-
+// since cards.js is using GET requests function we import it
 import {getResorces} from "../services/services";
 
 function card () {
@@ -48,8 +48,12 @@ function card () {
   ////////////////// AXIOS ////////////////////////////
   /////////////////////////////////////////////////////
 
+
+
+
   getResorces("http://localhost:3000/menu").then((data) => {
     // axios promise give you object where data is one of objects
+    // by destructorising we get for each result of data into object with such keys
     data.forEach(({ img, altimg, title, descr, price }) => {
       // inserting values as arguments to new Menucard
       new MenuCard(

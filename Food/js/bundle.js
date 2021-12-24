@@ -154,7 +154,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/services */ "./js/services/services.js");
 
-
+// since cards.js is using GET requests function we import it
 
 
 function card () {
@@ -203,8 +203,12 @@ function card () {
   ////////////////// AXIOS ////////////////////////////
   /////////////////////////////////////////////////////
 
+
+
+
   (0,_services_services__WEBPACK_IMPORTED_MODULE_0__.getResorces)("http://localhost:3000/menu").then((data) => {
     // axios promise give you object where data is one of objects
+    // by destructorising we get for each result of data into object with such keys
     data.forEach(({ img, altimg, title, descr, price }) => {
       // inserting values as arguments to new Menucard
       new MenuCard(
@@ -239,9 +243,14 @@ __webpack_require__.r(__webpack_exports__);
  
 
 
+// for forms.js to function correctly we importing 3 functions
+// open and close modal from modal
+// and POST request function from services
 
 
 
+// because that variable dosnt exist yet when the code executes
+// moved arguments to main script file so it passes the same arguments to all functions
 function form (formSelector, modalTimerId) {
     
   //// FORMS
@@ -334,7 +343,7 @@ function form (formSelector, modalTimerId) {
       (0,_modal__WEBPACK_IMPORTED_MODULE_0__.closeModal)(".modal");
     }, 4000);
   }
-  fetch("http://localhost:3000/menu").then((data) => data.json());
+  // fetch("http://localhost:3000/menu").then((data) => data.json());
   //    .then((res) => console.log(res));
 
 
@@ -366,6 +375,7 @@ const modal = document.querySelector(modalSelector);
   modal.classList.remove("hide");
 
   console.log(modalTimerId);
+  // check if modalTimerId was created, only then removing it after xxx time
   if(modalTimerId){
   // will clear interval when user opens it manually or after 6 sec
   clearInterval(modalTimerId);
@@ -398,7 +408,7 @@ function modal (triggerSelector, modalSelector, modalTimerId) {
   modal = document.querySelector(modalSelector);
 // modalCloseBtn = document.querySelector("[data-close]");
 
-// since in arrow function you cant call function straight away (no argument must be given)
+// since in arrow function you cant call function straight away (no argument can be given),
 // we use another annonymous function to call that function in this case openModal(modalSelector)
 modalTrigger.forEach((item) => {
   item.addEventListener("click", () => openModal(modalSelector, modalTimerId));
@@ -750,7 +760,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 
 
-//
+// folder services is used to store scripts that provide service to the code
+// like Post and Ged functions that can be utilised for different tasks
 
   // use async to wait for promise to resolve, must be used with await
   const postData = async (url, data) => {
