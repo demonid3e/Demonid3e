@@ -1,17 +1,17 @@
 "use strict";
 
-function slider () {
+function slider ({container, slide, nextArrow, prevArrow, totalCounter, currentCounter, wrapper, field}) {
       // SLIDER //
 
-  const slider = document.querySelector(".offer__slider"),
+  const slider = document.querySelector(container),
   sliderCounter = document.querySelector(".offer__slider-counter"),
-  currentSlider = sliderCounter.querySelector("#current"),
-  totalSlider = sliderCounter.querySelector("#total"),
-  leftArrow = document.querySelector(".offer__slider-prev"),
-  rightArrow = document.querySelector(".offer__slider-next"),
-  slidesField = document.querySelector(".offer__slider-inner"),
-  offerSliderWrapper = document.querySelector(".offer__slider-wrapper"),
-  offerSlider = offerSliderWrapper.querySelectorAll(".offer__slide"),
+  currentSlider = sliderCounter.querySelector(currentCounter),
+  totalSlider = sliderCounter.querySelector(totalCounter),
+  leftArrow = document.querySelector(prevArrow),
+  rightArrow = document.querySelector(nextArrow),
+  slidesField = document.querySelector(field),
+  offerSliderWrapper = document.querySelector(wrapper),
+  offerSlider = offerSliderWrapper.querySelectorAll(slide),
   width = window.getComputedStyle(offerSliderWrapper).width;
 
 let currentPossition = 1,
@@ -151,4 +151,4 @@ dots.forEach((dot) => {
 
 }
 
-module.exports = slider;
+export default  slider;

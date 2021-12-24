@@ -1,5 +1,7 @@
 "use strict";
 
+import {getResorces} from "../services/services";
+
 function card () {
     // Using classes for Cards
 
@@ -40,22 +42,15 @@ function card () {
     }
   }
 
-  const getResorces = async (url) => {
-    // await will wait for any responce
-    const res = await fetch(url);
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-    }
-    return await res.json();
-  };
+
 
   /////////////////////////////////////////////////////
   ////////////////// AXIOS ////////////////////////////
   /////////////////////////////////////////////////////
 
-  axios.get("http://localhost:3000/menu").then((data) => {
+  getResorces("http://localhost:3000/menu").then((data) => {
     // axios promise give you object where data is one of objects
-    data.data.forEach(({ img, altimg, title, descr, price }) => {
+    data.forEach(({ img, altimg, title, descr, price }) => {
       // inserting values as arguments to new Menucard
       new MenuCard(
         img,
@@ -70,4 +65,4 @@ function card () {
 
 }
 
-module.exports = card;
+export default  card;

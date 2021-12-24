@@ -1,10 +1,10 @@
 "use strict";
 
-function tabs () {
+function tabs (tabsSelector, tabsContentSelector, tabsParentSelector, activeClass) {
      // tabs
-  const tabs = document.querySelectorAll(".tabheader__item"),
-  tabsContent = document.querySelectorAll(".tabcontent"),
-  tabsParent = document.querySelector(".tabheader__items");
+  const tabs = document.querySelectorAll(tabsSelector),
+  tabsContent = document.querySelectorAll(tabsContentSelector),
+  tabsParent = document.querySelector(tabsParentSelector);
 
 function hideTabContent() {
   tabsContent.forEach((item) => {
@@ -12,7 +12,7 @@ function hideTabContent() {
     item.classList.remove("show");
   });
   tabs.forEach((item) => {
-    item.classList.remove("tabheader__item_active");
+    item.classList.remove(activeClass);
   });
 }
 
@@ -22,7 +22,7 @@ function showTabContent(i = 1) {
   tabsContent[i].classList.remove("hidden");
 
   // dont add . because classList already knows its class
-  tabs[i].classList.add("tabheader__item_active");
+  tabs[i].classList.add(activeClass);
 }
 
 hideTabContent();
@@ -30,8 +30,9 @@ showTabContent();
 
 tabsParent.addEventListener("click", (event) => {
   const target = event.target;
-
-  if (target && target.classList.contains("tabheader__item")) {
+// since we use classlist method we cant pass just selector with dot we need to remove dot
+// give new tabsSelector but start from 1st symbol
+  if (target && target.classList.contains(tabsSelector.slice(1))) {
     tabs.forEach((item, i) => {
       if (target == item) {
         hideTabContent();
@@ -42,4 +43,4 @@ tabsParent.addEventListener("click", (event) => {
 });
 }
 
-module.exports = tabs;
+export default  tabs;

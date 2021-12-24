@@ -1,9 +1,8 @@
 "use strict";
 
-function timer () {
+function timer (id, deadLine) {
      // timer
-  const deadLine = "2022-01-01";
-
+  
   function getTimeRemaining(endtime) {
     // will calculate difference between endtime and current time in milliseconds
     const t = Date.parse(endtime) - Date.parse(new Date()),
@@ -54,8 +53,8 @@ function timer () {
       }
     }
   }
-  setClock(".timer", deadLine);
+  setClock(id, deadLine);
 
 }
 
-module.exports = timer;
+export default  timer;
