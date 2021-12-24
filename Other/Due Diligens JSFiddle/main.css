@@ -1,5 +1,5 @@
 .wrapper {
-  width: 400px;
+  width: 450px;
   border-style: solid;
   border-width: 1px;
 }
@@ -42,4 +42,51 @@
   font-weight: bold;
   font-size: 18px;
   background-color: yellow;
+}
+
+.line {
+  display: flex;
+  margin: 5px;
+}
+
+.bun_number {
+  position: relative;
+  float: left;
+  margin-right: 30px;;
+}
+
+#select_time{
+  position: relative;
+
+  margin-right: 20px;
+}
+
+#date_time{
+  position: relative;
+  float: right;
+}
+
+.top_mains{
+  margin: 5px;
+  margin-bottom: 20px;
+}
+
+
+.temperature {
+  width: 20%;
+  float: right;
+  margin-right: 50px;
+  
+}
+
+#select {
+  position: relative;
+  float: right;
+  width: 33%;
+}
+
+.meat{
+  position: relative;
+  float: left;
+  width: 33%;
 }
