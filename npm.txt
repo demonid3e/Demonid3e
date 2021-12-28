@@ -1,0 +1,9 @@
+webpack
+webpack cli
+json-server
+node.js
+Babel
+babel cli
+Babel polyfills
+core-js
+
