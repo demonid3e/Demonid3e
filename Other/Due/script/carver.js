@@ -1,4 +1,6 @@
 "use strict";
+import exportButtons from "./modules/buttons.js";
+
 const wrapper = document.querySelector(".wrapper");
 
 class CarveryMain {
@@ -36,3 +38,4 @@ class CarveryMain {
   }
   
   carveryMain();
+  exportButtons(2);

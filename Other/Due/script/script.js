@@ -1,4 +1,7 @@
 "use strict";
+
+import exportButtons from "./modules/buttons.js";
+
 const wrapper = document.querySelector(".wrapper");
 const wrappers = document.querySelectorAll(".wrapper");
 const body = document.querySelector(".body");
@@ -52,4 +55,4 @@ function start() {
 }
 
 start();
-
+exportButtons(1);
