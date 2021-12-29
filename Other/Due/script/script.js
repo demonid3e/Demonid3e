@@ -2,7 +2,7 @@
 
 import exportButtons from "./modules/buttons.js";
 
-const wrapper = document.querySelector(".wrapper");
+const wrapper = document.querySelector(".wrapper_form");
 const wrappers = document.querySelectorAll(".wrapper");
 const body = document.querySelector(".body");
 const blocks = document.querySelectorAll(".ddTopic");
@@ -13,7 +13,7 @@ class Block {
     this.text = text;
   }
   makeBlock() {
-    const div = document.createElement("div");
+    const div = document.createElement("form");
     div.classList.add("mainBlock");
     div.innerHTML = ` <div class="block">
     <div class="ddTopic" onclick="window.location.href='carvery_mains.html'">
