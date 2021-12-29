@@ -2,7 +2,7 @@
 
 import exportButtons from "./modules/buttons.js";
 
-const wrapper = document.querySelector(".wrapper_form");
+const wrapper = document.querySelector(".wrapper_main");
 const wrappers = document.querySelectorAll(".wrapper");
 const body = document.querySelector(".body");
 const blocks = document.querySelectorAll(".ddTopic");

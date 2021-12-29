@@ -1,9 +1,20 @@
-.wrapper {
+.wrapper_main {
   width: 450px;
-  height: 500px;
+  height: 480px;
   border-style: solid;
   border-width: 1px;
 }
+
+.navigation {
+  height: 30px;
+
+}
+
+.wrapper_form{
+  height: 30px;
+
+}
+
 .book {
   width: 30px;
   height: 40px;
