@@ -1,7 +1,7 @@
 "use strict";
 import exportButtons from "./modules/buttons.js";
 
-const wrapper = document.querySelector(".wrapper");
+const wrapper = document.querySelector(".category_wrapper");
 
 class CarveryMain {
     constructor(meat){
