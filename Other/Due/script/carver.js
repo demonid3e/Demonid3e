@@ -2,6 +2,7 @@
 import exportButtons from "./modules/buttons.js";
 
 const wrapper = document.querySelector(".category_wrapper");
+const timeSelection = doc
 
 class CarveryMain {
     constructor(meat){
