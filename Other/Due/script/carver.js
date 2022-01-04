@@ -2,7 +2,9 @@
 import exportButtons from "./modules/buttons.js";
 
 const wrapper = document.querySelector(".category_wrapper");
-const timeSelection = doc
+const sendButton = document.querySelector(".carvery_mains_send");
+const timeSelector = document.querySelector("#select_time");
+const dateSelector = document.querySelector("#date_time");
 
 class CarveryMain {
     constructor(meat){
@@ -38,5 +40,22 @@ class CarveryMain {
     });
   }
   
+sendButton.addEventListener("click", () => sendData());
+
+function sendData () {
+  axios({
+    method: 'post',
+    url: 'http://localhost:3000/post',
+    timeout: 4000,    // 4 seconds timeout
+    data: {
+     "time": timeSelector.value,
+     "date": dateSelector.value  
+    }
+  })
+  .then(response => {/* handle the response */})
+  .catch(error => console.error('timeout exceeded'));
+  console.log(timeSelector.value);
+}
+  console.log(dateSelector.defaultValue);
   carveryMain();
   exportButtons(2);

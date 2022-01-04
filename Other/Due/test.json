@@ -27,10 +27,8 @@
     {
       "discr": "Daily Hand Over Comments",
       "text": ""
-
     }
   ],
-
   "small": [
     {
       "discr": "dasdasdsad",
@@ -66,7 +64,12 @@
     {
       "meat": "Sauce"
     }
-
+  ],
+  "post": [
+    {
+      "time": "12",
+      "date": "2000-05-05",
+      "id": 1
+    }
   ]
-
 }
