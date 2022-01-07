@@ -53,4 +53,3 @@ ReactDOM.render(
   anotherElem,
 
   document.getElementById("root")
-);
