@@ -6,24 +6,24 @@ import App from "./App";
 const text = "Hello World";
 
 // react element:
-// const elem = <h2>Hello World</h2>;
+const elem = <h2>Hello World</h2>;
 
 // you can use React syntaxis - 3 arguments: "element", "element class or null if none", "content of element"
-// const elem = React.createElement(
-//   "h2",
-//   { className: "greetings" },
-//   "Hello World"
-// );
+const elem = React.createElement(
+  "h2",
+  { className: "greetings" },
+  "Hello World"
+);
 
 // for ^  Virtual DOM does this:
 
-// const element = {
-//   type: "h2",
-//   props: {
-//     className: "greetings",
-//     children: "Hello world"
-//   }
-// };
+const element = {
+  type: "h2",
+  props: {
+    className: "greetings",
+    children: "Hello world"
+  }
+};
 
 //
 // cant put objects

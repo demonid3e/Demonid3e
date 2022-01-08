@@ -1,40 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 const Header = () => {
-  return <h2>Hello World!</h2>
-}
+  return <h2>Hello World!</h2>;
+};
 
-const Field = () =>{
-  return <input type="text" placeholder='Type Here' />
-}
+// const Field = () => {
+//   const holder = "Enter here";
+//   const styledField = {
+//     width: "300px",
+//   };
 
-function Btn(){
-  const text = "Done";
+//   return <input type="text" placeholder={holder} style={styledField} />;
+// };
+
+function Btn() {
+  const text = "Enter";
   const logged = false;
-  return <button>{logged ? text : "Log in"}  </button> 
+  return <button>{logged ? text : "Log in"} </button>;
+}
+class Field extends React.Component {
+  render() {
+    const holder = "Enter here";
+    const styledField = {
+      width: "300px",
+    };
+    return <input type="text" placeholder={holder} style={styledField} />;
+  }
 }
 
-function App() {  
-   return    (
-     
-     <div className="App">
-         <img src={logo} className="App-logo" alt="logo" />
-       
-       <Header />
-       <Field />
-       <Btn />
-      
-       {/* <header className="App-header">
+function App() {
+  return (
+    <div className="App">
+      <img src={logo} className="App-logo" alt="logo" />
+
+      <Header />
+      <Field />
+      <Btn />
+
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
          <p>
            Edit <code>src/App.js</code> and save to reload.
          </p>
 
        </header> */}
-     </div>
-
-   );
+    </div>
+  );
 }
-
+export { Header };
 export default App;
