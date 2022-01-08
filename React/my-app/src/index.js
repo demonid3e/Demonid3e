@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 
-const text = "Hello World";
+// const text = "Hello World";
 
 // react element:
 // const elem = <h2>Hello World</h2>;
@@ -30,27 +30,27 @@ const text = "Hello World";
 // array will concatinate
 // when creating multilined code need to add ()
 // must have 1 div for all children
-const anotherElem = (
-  <div>
-    <h2>Text: {text}</h2>
-    <input type="text" />
-    {/* 
-      css classes must be written in camelCase
-      instead of "class" need to use "className"
-      cant use "for" need to use "htmlFor"
+// const anotherElem = (
+//   <div>
+//     <h2>Text: {text}</h2>
+//     <input type="text" />
+//     {/* 
+//       css classes must be written in camelCase
+//       instead of "class" need to use "className"
+//       cant use "for" need to use "htmlFor"
       
-    */}
-    <label htmlFor=""></label>
-    <button tabIndex={0}>Test</button>
-  </div>
-);
+//     */}
+//     <label htmlFor=""></label>
+//     <button tabIndex={0}>Test</button>
+//   </div>
+// );
 
 ReactDOM.render(
   // <React.StrictMode>
-  //   <App />
+    <App />,
   // </React.StrictMode>,
 
-  anotherElem,
+  // anotherElem,
 
   document.getElementById("root")
 );
