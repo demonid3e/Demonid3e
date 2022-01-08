@@ -1,7 +1,8 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { Header } from "./App";
 
 // const text = "Hello World";
 
@@ -34,11 +35,11 @@ import App from "./App";
 //   <div>
 //     <h2>Text: {text}</h2>
 //     <input type="text" />
-//     {/* 
+//     {/*
 //       css classes must be written in camelCase
 //       instead of "class" need to use "className"
 //       cant use "for" need to use "htmlFor"
-      
+
 //     */}
 //     <label htmlFor=""></label>
 //     <button tabIndex={0}>Test</button>
@@ -46,11 +47,9 @@ import App from "./App";
 // );
 
 ReactDOM.render(
-  // <React.StrictMode>
-    <App />,
-  // </React.StrictMode>,
-
-  // anotherElem,
+  <StrictMode>
+    <App />
+  </StrictMode>,
 
   document.getElementById("root")
 );

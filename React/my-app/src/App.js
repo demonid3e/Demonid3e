@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -35,7 +35,9 @@ function App() {
     <div className="App">
       <img src={logo} className="App-logo" alt="logo" />
 
-      <Header />
+      <StrictMode>
+        <Header />
+      </StrictMode>
       <Field />
       <Btn />
 
