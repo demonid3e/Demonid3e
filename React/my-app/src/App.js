@@ -30,11 +30,30 @@ class Field extends React.Component {
   }
 }
 
+/// props
+//cant modify Props without rerendering page
+// can put anything as props
+// can put object inside prop {{firstName: "Demon"}}
+// can put "my name is {name()}"
+// <WhoAmI name={() => {return "John"}} surname="Smyth" link="facebook.com" />
+
+function WhoAmI({ name, surname, link }) {
+  return (
+    <div>
+      <h1>
+        My name is {name} , surname - {surname}
+      </h1>
+      <a href={link}>My Profile</a>
+    </div>
+  );
+}
+
 function App() {
   return (
     <div className="App">
       <img src={logo} className="App-logo" alt="logo" />
-
+      <WhoAmI name="John" surname="Smyth" link="facebook.com" />
+      <WhoAmI name="Demon" surname="Demon" link="www.bbc.co.uk" />
       <StrictMode>
         <Header />
       </StrictMode>
