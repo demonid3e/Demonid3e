@@ -7,13 +7,13 @@ const timeSelector = document.querySelector("#select_time");
 const dateSelector = document.querySelector("#date_time");
 
 class CarveryMain {
-    constructor(meat){
-      this.meat = meat;
-    }
-    render(){
-      const line = document.createElement("div");
-      line.classList.add("wrapper_line");
-      line.innerHTML = `
+  constructor(meat) {
+    this.meat = meat;
+  }
+  render() {
+    const line = document.createElement("div");
+    line.classList.add("wrapper_line");
+    line.innerHTML = `
       <div class="line">
       <span class="meat">${this.meat}</span>
       <input class="temperature" type="text">
@@ -26,36 +26,69 @@ class CarveryMain {
       </select>
   </div>
   `;
-  wrapper.append(line);
-  
-    }
+    wrapper.append(line);
   }
-  
-  function carveryMain() {
-    axios.get("http://localhost:3000/carveryMains").then((data) => {
-      data.data.forEach(({ meat }) => {
+}
+
+function carveryFetch() {
+  fetch("http://localhost:3000/carveryMains")
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach(({ meat }) => {
         new CarveryMain(meat).render();
       });
       console.log("carvery main is called");
     });
-  }
-  
+}
+
+// function carveryMain() {
+//   axios.get("http://localhost:3000/carveryMains").then((data) => {
+//     data.data.forEach(({ meat }) => {
+//       new CarveryMain(meat).render();
+//     });
+//     console.log("carvery main is called");
+//   });
+// }
+
 sendButton.addEventListener("click", () => sendData());
 
-function sendData () {
-  axios({
-    method: 'post',
-    url: 'http://localhost:3000/post',
-    timeout: 4000,    // 4 seconds timeout
-    data: {
-     "time": timeSelector.value,
-     "date": dateSelector.value  
-    }
-  })
-  .then(response => {/* handle the response */})
-  .catch(error => console.error('timeout exceeded'));
-  console.log(timeSelector.value);
+async function postData(url = "") {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      time: timeSelector.value,
+      date: dateSelector.value,
+    }),
+  });
+  return response.json();
 }
-  console.log(dateSelector.defaultValue);
-  carveryMain();
-  exportButtons(2);
+function sendData() {
+  postData("http://localhost:3000/post").then((data) => {
+    console.log(data); // JSON data parsed by `data.json()` call
+  });
+}
+
+// function sendData() {
+//   axios({
+//     method: "post",
+//     url: "http://localhost:3000/post",
+//     timeout: 4000, // 4 seconds timeout
+//     data: {
+//       time: timeSelector.value,
+//       date: dateSelector.value,
+//     },
+//   })
+//     .then((response) => {
+//       /* handle the response */
+//     })
+//     .catch((error) => console.error("timeout exceeded"));
+//   console.log(timeSelector.value);
+// }
+console.log(dateSelector.defaultValue);
+// carveryMain();
+exportButtons(2);
+
+carveryFetch();
