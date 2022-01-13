@@ -1,19 +1,11 @@
 import React, { StrictMode } from "react";
 import logo from "./logo.svg";
+import { Component } from "react";
 import "./App.css";
 
 const Header = () => {
   return <h2>Hello World!</h2>;
 };
-
-// const Field = () => {
-//   const holder = "Enter here";
-//   const styledField = {
-//     width: "300px",
-//   };
-
-//   return <input type="text" placeholder={holder} style={styledField} />;
-// };
 
 function Btn() {
   const text = "Enter";
@@ -30,22 +22,45 @@ class Field extends React.Component {
   }
 }
 
-/// props
-//cant modify Props without rerendering page
-// can put anything as props
-// can put object inside prop {{firstName: "Demon"}}
-// can put "my name is {name()}"
-// <WhoAmI name={() => {return "John"}} surname="Smyth" link="facebook.com" />
 
-function WhoAmI({ name, surname, link }) {
-  return (
-    <div>
-      <h1>
-        My name is {name} , surname - {surname}
-      </h1>
-      <a href={link}>My Profile</a>
-    </div>
-  );
+class WhoAmI extends Component {
+    constructor (props){
+      super(props);
+      this.state = {
+        years: 27,
+        text: "fsdfdf"
+      }
+    }
+    nextYear = () => {
+      console.log("+++");
+      // watch 1
+      this.setState(state => ({
+        years: state.years + 1
+      }))
+    //  this.setState({
+        // is incorect way   // years: ++this.state.years
+        // correct way    years: this.state.years + 1 
+        // correct way is based on previous state, if previous state is wrong due to lag,
+        // it will give bugs  to prevent  use "watch1" whith different syntaxys in callback function
+
+     //  })
+    }
+
+
+
+    render() {
+      const {name, surname, link} = this.props;
+      return (
+          <div>
+            <button onClick={this.nextYear}>{this.state.text}</button>
+            
+            <h1>
+            My name is {name} , surname - {surname}, age - {this.state.years}
+           </h1>
+            <a href={link}>My Profile</a>
+          </div>
+      );
+ }
 }
 
 function App() {
@@ -60,13 +75,6 @@ function App() {
       <Field />
       <Btn />
 
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-         <p>
-           Edit <code>src/App.js</code> and save to reload.
-         </p>
-
-       </header> */}
     </div>
   );
 }
