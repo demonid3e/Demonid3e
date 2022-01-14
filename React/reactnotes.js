@@ -3,6 +3,8 @@ const Header = () => {
   return <h2>Hello World!</h2>;
 };
 
+
+// // using function you can return values even as an object
 // const Field = () => {
 //   const holder = "Enter here";
 //   const styledField = {
@@ -12,11 +14,16 @@ const Header = () => {
 //   return <input type="text" placeholder={holder} style={styledField} />;
 // };
 
+
+// you CANT use conditinal statements but CAN use ternary operator
 function Btn() {
   const text = "Enter";
   const logged = false;
   return <button>{logged ? text : "Log in"} </button>;
 }
+
+
+// react classes need to be exdended from
 class Field extends React.Component {
   render() {
     const holder = "Enter here";
@@ -56,6 +63,8 @@ function App() {
       </StrictMode>
       <Field />
       <Btn />
+</div>
+
 
 const text = "Hello World";
 
