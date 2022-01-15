@@ -34,7 +34,7 @@
       </div>
       <div class="wrapper_form">
         <label for="carvery_cooking">Enter the Session:</label>
-        <select name="carvery_cooking" id="carvery_cooking">
+        <select class="small_input" name="carvery_cooking" id="carvery_cooking">
           <option value="blank"></option>
           <option value="Breakfast">Breakfast</option>
           <option value="Lunch">Lunch</option>
@@ -46,20 +46,89 @@
             <span class="cooking_product">Product</span>
             <span class="cooking_temp_first">Temp C</span>
             <span class="cooking_temp_second">Temp C</span>
+          </div>
+          <br />
+          <div class="cooking_product_row">
+            <input
+              class="big_input"
+              type="text"
+              name="first_product"
+              id="first_product"
+            />
+            <input
+              class="small_input"
+              type="text"
+              name="first_temperature_left"
+              id="first_temperature_left"
+            />
+            <input
+              class="small_input"
+              type="text"
+              name="first_temperature_right"
+              id="first_temperature_right"
+            />
+          </div>
+          <div class="cooking_product_row">
+            <input
+              class="big_input"
+              type="text"
+              name="second_product"
+              id="second_product"
+            />
+            <input
+              class="small_input"
+              type="text"
+              name="second_temperature_left"
+              id="second_temperature_left"
+            />
+            <input
+              class="small_input"
+              type="text"
+              name="second_temperature_right"
+              id="second_temperature_right"
+            />
+          </div>
+          <br />
+          <span class="cooking_item_description"
+            >Please enter cooking/reheating temperature of a item of chicken
+            served in this session. If no chicken is served then leave blank.
+          </span>
+          <div class="cooking_product_row">
+            <input
+              class="big_input"
+              type="text"
+              name="second_product"
+              id="third_product"
+            />
+            <input
+              class="small_input"
+              type="text"
+              name="third_temperature_left"
+              id="third_temperature_left"
+            />
+            <input
+              class="small_input"
+              type="text"
+              name="third_temperature_right"
+              id="third_temperature_right"
+            />
+          </div>
+          <span class="cooking_burger_description">
+            Enter the temperature of burger cooked in this session. If you do
+            not cook any burgers then leave blank.
+          </span>
+          <div class="cooking_burger_wrapper">
+            <label for="burger_one_left">Lunch Burger 1</label>
+            <input class="small_input" type="text" id="burger_one_left" />
+            <input class="small_input" type="text" id="burger_one_right" />
             <br />
-            <div class="cooking_product_row">
-              <input type="text" name="first_product" id="first_product" />
-              <input
-                type="text"
-                name="first_temperature_left"
-                id="first_temperature_left"
-              />
-              <input
-                type="text"
-                name="first_temperature_right"
-                id="first_temperature_right"
-              />
-            </div>
+            <label for="burger_two_left">Lunch Burger 2</label>
+            <input class="small_input" type="text" id="burger_two_left" />
+            <input class="small_input" type="text" id="burger_two_right" />
+            <br />
+            <label for="burger_three_left">Lunch Burger 3</label>
+            <input class="small_input" type="text" id="burger_three_left" />
+            <input class="small_input" type="text" id="burger_three_right" />
           </div>
         </div>
       </div>
