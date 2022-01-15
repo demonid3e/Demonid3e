@@ -1,49 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/Due/main.css" />
     <title>Business - Cooking & Reheating</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="wrapper_main">
-        <div class="header_mains">
-            <span class="check_carvery_mains">Business Check - Cooking & Reheating</span>
-            <button class="carvery_mains_back" type="submit">Back</button>
-            <button class="carvery_mains_delete" type="submit">Delete</button>
-            <button class="carvery_mains_send" type="submit">Send</button>
-            <button class="carvery_mains_select" type="submit">Select</button>
-        </div>
-        <span class="mains_title">Carvery Cooking & Reheating Check</span>
+      <div class="header_mains">
+        <span class="check_carvery_mains"
+          >Business Check - Cooking & Reheating</span
+        >
+        <button class="carvery_mains_back" type="submit">Back</button>
+        <button class="carvery_mains_delete" type="submit">Delete</button>
+        <button class="carvery_mains_send" type="submit">Send</button>
+        <button class="carvery_mains_select" type="submit">Select</button>
+      </div>
+      <span class="mains_title">Carvery Cooking & Reheating Check</span>
 
-        <div class="carvery_cooking_description">
-            <span class="carvery_cooking_description_text">
-                Cook and reheat all foods to a minimum core temperature of 75c and reheat all items to 82c in Scotland. Exceptions to this are included in your brand book.
-            </span>
-        </div>
+      <div class="carvery_cooking_description">
+        <span class="carvery_cooking_description_text">
+          Cook and reheat all foods to a minimum core temperature of 75c and
+          reheat all items to 82c in Scotland. Exceptions to this are included
+          in your brand book.
+        </span>
+      </div>
 
-        <div class="top_mains">
-            <span class="bun_number">BUN 180750</span>
-            <br>
-        </div>
-        <div class="wrapper_form">
-            <label for="carvery_cooking">Enter the Session:</label>
-            <select name="carvery_cooking" id="carvery_cooking">
-                <option value="blank"></option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Evening">Evening</option>
-            </select>
-        </div>
-    </div>
-    <div class="btn_wrapper">
-        <div class="buttons">
-          <button class="previous">Back</button>
-          <button class="next">Next</button>
+      <div class="top_mains">
+        <span class="bun_number">BUN 180750</span>
+        <br />
+      </div>
+      <div class="wrapper_form">
+        <label for="carvery_cooking">Enter the Session:</label>
+        <select name="carvery_cooking" id="carvery_cooking">
+          <option value="blank"></option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Evening">Evening</option>
+        </select>
+        <div class="cooking_wrapper">
+          <span class="cooking_session_selector"></span>
+          <div class="cooking_session_item_description">
+            <span class="cooking_product">Product</span>
+            <span class="cooking_temp_first">Temp C</span>
+            <span class="cooking_temp_second">Temp C</span>
+            <br />
+            <div class="cooking_product_row">
+              <input type="text" name="first_product" id="first_product" />
+              <input
+                type="text"
+                name="first_temperature_left"
+                id="first_temperature_left"
+              />
+              <input
+                type="text"
+                name="first_temperature_right"
+                id="first_temperature_right"
+              />
+            </div>
+          </div>
         </div>
       </div>
-   <script type="module" src="/Due/script/cook.js"></script>     
-</body>
+    </div>
+    <div class="btn_wrapper">
+      <div class="buttons">
+        <button class="previous">Back</button>
+        <button class="next">Next</button>
+      </div>
+    </div>
+    <script type="module" src="/Due/script/cook.js"></script>
+  </body>
 </html>
