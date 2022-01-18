@@ -2,22 +2,25 @@
 
 import exportButtons from "./modules/buttons.js";
 
-const wrapper = document.querySelector(".wrapper_main");
-const wrappers = document.querySelectorAll(".wrapper");
-const body = document.querySelector(".body");
-const blocks = document.querySelectorAll(".ddTopic");
+const wrapper_menu = document.querySelector(".wrapper_menu"),
+      ddBlock = document.querySelectorAll(".ddBlock");
+
 let counter = 0;
 
 class Block {
-  constructor(descr, text) {
+  constructor(descr, text, id) {
     this.descr = descr;
     this.text = text;
+    this.id = id;
   }
   makeBlock() {
     let links = ["carvery_mains.html", "carvery_sides.html"];
     
-    const div = document.createElement("form");
+    const div = document.createElement("div");
     div.classList.add("mainBlock");
+
+    
+     div.setAttribute("id", `${this.id}`);
     div.innerHTML = ` <div class="block">
     <div class="ddTopic" onclick="window.location.href='${links[counter]}'">
       <img
@@ -30,37 +33,18 @@ class Block {
       >
     </div>
   </div>`;
-    wrapper.append(div);
+    wrapper_menu.append(div);
     counter++;
-    console.log(counter);
-    
+
   }
 }
 
 
 
-
-
-function test() {
-  // wrapper.style.visibility = "hidden";
-  const mainBlock = document.querySelectorAll(".mainBlock");
-  mainBlock.forEach((item) => {
-    item.remove();
-    console.log("deleting");
-  });
-  axios.get("http://localhost:3000/small").then((data) => {
-    data.data.forEach(({ discr, text }) => {
-      new Block(discr, text).makeBlock();
-    });
-  });
-  console.log("SMall is called");
-}
-
-
 function start() {
   axios.get("http://localhost:3000/big").then((data) => {
-    data.data.forEach(({ discr, text }) => {
-      new Block(discr, text).makeBlock();
+    data.data.forEach(({ discr, text, id }) => {
+      new Block(discr, text, id).makeBlock();
     });
     console.log("BIg is called");
   });
