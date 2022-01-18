@@ -15,12 +15,12 @@
   padding-left: 10px;
   padding-top: 20px;
 }
-.select_clean{
+.select_clean {
   float: right;
   margin-top: 5px;
   margin-right: 50px;
 }
-.check_carvery_mains{
+.check_carvery_mains {
   font-size: large;
 }
 .wrapper {
@@ -123,4 +123,12 @@
   position: relative;
   float: left;
   width: 33%;
+}
+
+.small_input {
+  width: 80px;
+}
+
+.big_input {
+  width: 120px;
 }
