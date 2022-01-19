@@ -1,5 +1,6 @@
 "use strict";
 import exportButtons from "./modules/buttons.js";
+import exportHeaderButtons from "./modules/header.js";
 
 const wrapper = document.querySelector(".category_wrapper");
 const sendButton = document.querySelector(".carvery_mains_send");
@@ -89,6 +90,8 @@ function sendData() {
 // }
 console.log(dateSelector.defaultValue);
 // carveryMain();
+exportHeaderButtons();
 exportButtons(2);
-
 carveryFetch();
+
+

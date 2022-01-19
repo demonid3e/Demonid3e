@@ -2,6 +2,7 @@
 
 import exportButtons from "./modules/buttons.js";
 
+
 const wrapper_menu = document.querySelector(".wrapper_menu"),
       ddBlock = document.querySelectorAll(".ddBlock");
 
@@ -47,3 +48,4 @@ function start() {
 
 start();
 exportButtons(1);
+

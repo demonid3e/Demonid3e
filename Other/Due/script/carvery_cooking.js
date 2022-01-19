@@ -1,6 +1,7 @@
 "use strict";
 
 import exportButtons from "./modules/buttons.js";
+import exportHeaderButtons from "./modules/header.js";
 
 const selectCooking = document.querySelector("#carvery_cooking");
 
@@ -14,3 +15,4 @@ selectCooking.addEventListener("change", () => {
 // display true and all values are corresponding to selection
 
 exportButtons(4);
+exportHeaderButtons();

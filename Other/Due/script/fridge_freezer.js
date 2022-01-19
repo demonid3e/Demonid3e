@@ -1,6 +1,7 @@
 "use strict";
 
 import exportButtons from "./modules/buttons.js";
+import exportHeaderButtons from "./modules/header.js";
 
 
 
@@ -9,6 +10,5 @@ import exportButtons from "./modules/buttons.js";
 
 
 
-
-
+exportHeaderButtons();
 exportButtons(5)
