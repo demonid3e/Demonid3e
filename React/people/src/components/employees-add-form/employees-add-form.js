@@ -1,5 +1,7 @@
 import "./employees-add-form.css";
 
+
+// using function here instead of class to render form component
 const EmployeesAddForm = () => {
   return (
     <div className="app-add-form">

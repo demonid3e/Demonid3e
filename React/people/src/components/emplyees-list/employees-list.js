@@ -9,7 +9,7 @@ const EmployeesList = ({ data }) => {
   const elements = data.map((item) => {
     // getting out only id, all the rest is in itemProps
     const { id, ...itemProps } = item;
-    //    return <EmployeesListItem name={item.name} salary={item.salary} />;
+    // return <EmployeesListItem name={item.name} salary={item.salary} />;
     // using spread operator we can change to
     // return <EmployeesListItem {...item} />;
 
