@@ -28,10 +28,17 @@ class WhoAmI extends Component {
       super(props);
       this.state = {
         years: 27,
-        text: "fsdfdf"
+        text: "+++",
+        position: ""
       }
+      // we binding  "own" "this", to EACH new class we make
+
+      this.nextYear = this.nextYear.bind(this);
     }
-    nextYear = () => {
+
+    // context of this will be lost if used function this way, we must use bind to keep track
+    // of "this", on event listeners or you can you arrow function which will work without bind
+    nextYear() {
       console.log("+++");
       // watch 1
       this.setState(state => ({
@@ -44,19 +51,37 @@ class WhoAmI extends Component {
         // it will give bugs  to prevent  use "watch1" whith different syntaxys in callback function
 
      //  })
-    }
 
+
+    }
+    commitInputChanges = (e, color) => {
+      console.log(color);
+      this.setState({
+        position: e.target.value
+      })
+    }
 
 
     render() {
       const {name, surname, link} = this.props;
+      const {position, years} = this.state;
       return (
           <div>
+            <form>
+              <span>Enter job title </span>
+              {/* to pass arguments to event listener use anonymous function with (e) */}
+             <input type="text" onChange={(e) => this.commitInputChanges(e, "some color")} />
+           </form>
+            {/* to keep track "this" you can use anonymous function
+            <button onClick={() => this.nextYear()}>{this.state.text}</button>   */}
             <button onClick={this.nextYear}>{this.state.text}</button>
             
             <h1>
-            My name is {name} , surname - {surname}, age - {this.state.years}
+            My name is {name} , surname - {surname},
+            age - {years}, 
+            position - {position}
            </h1>
+
             <a href={link}>My Profile</a>
           </div>
       );
