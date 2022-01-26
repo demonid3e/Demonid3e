@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
     <title>Carvery - Cooling</title>
 </head>
 <body>
@@ -14,13 +15,55 @@
             <button class="carvery_mains_delete" type="submit">Delete</button>
             <button class="carvery_mains_send" type="submit">Send</button>
             <button class="carvery_mains_select" type="submit">Select</button>
-          </div>
-
-
-
-
+        </div>
+          <div class="cooling_title">Cooling</div>
+          <div class="cooling_description">Only products specified to be cooled in your brand cookbook can be cooled. <br> You Must not cool items unless the cook book advises they can be.</div>
+        <div class="bun_wrapper">
+          <span class="bun_number">BUN: 180750</span>
+        </div>
+        <br>
+        <div class="cooling_paragraph_wrapper">
+          <img src="" alt="picture like">
+          <p class="cooling_paragraph">Food must be cooled to below 8c within 3 hours. <br> Ensure you are permitted to cool this item before cooling commences. For information on what can be cooled in your brand please see your brand cook book.</p>
+        </div>
+        <div class="cooling_wrapper_items">
+          <label for="cooling_product">Product:</label>
+          <input type="text" name="cooling_product" id="cooling_product" placeholder="Required">
+          <br>
+          <label for="cooling_product_category">Product Category: <br> (Select the type of food being cooled)</label>
+          <input type="text" name="cooling_product_category" id="cooling_product_category" placeholder="Required">
+          <label for="cooling_start_time">Start Cool Time:</label>
+          <input type="datetime-local" name="cooling_start_time" id="cooling_start_time">
+          <br>
+          <label for="cooling_start_temp">Start Cool Temp:</label>
+          <input type="text" name="cooling_start_temp" id="cooling_start_temp">
+          <br>
+          <label for="cooling_sold">Was Product sold/<br>discarded before cooling?</label>
+          <select name="cooling_sold" id="cooling_sold">
+            <option value="blank"></option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+          <br>
+          <label for="cooling_transfer_fridge">Transfer To Fridge Time</label>
+          <input type="datetime-local" name="cooling_transfer_fridge" id="cooling_transfer_fridge">
+          <br>
+          <label for="cooling_transfer_temp">Transfer Temp</label>
+          <input type="text" name="cooling_transfer_temp" id="cooling_transfer_temp">
+          <br>
+          <label for="cooling_final_time">Final Cooling Time</label>
+          <input type="datetime-local" name="cooling_final_time" id="cooling_final_time">
+          <br>
+          <label for="cooling_final_temp">Final Cooling Temp</label>
+          <input type="text" name="cooling_final_temp" id="cooling_final_temp">
+          <br>
+          <label for="cooling_total_time">Total Cooling Time</label>
+          <span id="cooling_total_time"></span>
+          <br>
+          <label for="cooling_decision">Decision:</label>
+          <span id="cooling_decision"></span>
+        </div>
     </div>
-
     <div class="btn_wrapper">
         <div class="buttons">
           <button class="previous">Back</button>
