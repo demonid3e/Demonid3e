@@ -15,7 +15,8 @@ class Block {
     this.id = id;
   }
   makeBlock() {
-    let links = ["carvery_mains.html", "carvery_sides.html", "carvery_cooking.html","carvery_cooling.html","fridge_freezer.html"];
+    let links = ["carvery_mains.html", "carvery_sides.html", "carvery_cooking.html","carvery_cooling.html",
+    "fridge_freezer.html", "carvery_hold.html", "carvery_comments.html"];
     
     const div = document.createElement("div");
     div.classList.add("mainBlock");

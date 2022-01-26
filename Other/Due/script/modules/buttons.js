@@ -5,7 +5,8 @@ function exportButtons (set) {
   let counter = set;
 
     const webpages = ["index.html", "carvery_mains.html", "carvery_sides.html", 
-    "carvery_cooking.html", "carvery_cooling.html", "fridge_freezer.html"];
+    "carvery_cooking.html", "carvery_cooling.html", "fridge_freezer.html",
+    "carvery_hold.html", "carvery_comments.html" ];
    
     
     const prevArrow = document.querySelector(".previous"),
