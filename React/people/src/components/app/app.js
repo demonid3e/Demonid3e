@@ -20,7 +20,29 @@ class App extends Component {
         { name: "Dema B.", salary: 15000, increase: false, id: 4 },
       ],
     };
+    this.maxId = 5;
   }
+
+  // takes name and salary
+  addPerson = (name, salary) => {
+    //creates new object where name is name salary is salary, increase default false
+    // id maxid +1
+    //from Current DATA creates a newArr with all data + new Item
+    // then returns new DATA from newArr
+    const newItem = {
+      name,
+      salary,
+      increase: false,
+      id: this.maxId++,
+    };
+    this.setState(({ data }) => {
+      const newArr = [...data, newItem];
+      return {
+        data: newArr,
+      };
+    });
+  };
+
   deleteItem = (id) => {
     this.setState(({ data }) => {
       // ANOTHER WAY OF DOING IT
@@ -34,6 +56,7 @@ class App extends Component {
     });
     console.log("deleted");
   };
+
   // this object is passed as PROPS OBJECT to EmployeeList component in app
   // you must add id so JSX don`t rerender all page just the edited part
 
@@ -47,7 +70,7 @@ class App extends Component {
         </div>
         {/* data props is passed as object */}
         <EmployeesList data={this.state.data} onDelete={this.deleteItem} />
-        <EmployeesAddForm />
+        <EmployeesAddForm onAdd={this.addPerson} />
       </div>
     );
   }

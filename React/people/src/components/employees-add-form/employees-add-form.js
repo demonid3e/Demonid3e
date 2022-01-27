@@ -14,12 +14,23 @@ class EmployeesAddForm extends Component {
       [e.target.name]: e.target.value,
     });
   };
+  // calls event prevent default
+  // since onAdd is prop of form passes:
+  // this.state.name as name argument
+  // this.state.salary as salary argument
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.props.onAdd(this.state.name, this.state.salary);
+    // this line sets empty strings after add
+    this.setState({ name: "", salary: "" });
+  };
+
   render() {
     const { name, salary } = this.state;
     return (
       <div className="app-add-form">
         <h3>Add new employee</h3>
-        <form className="add-form d-flex">
+        <form className="add-form d-flex" onSubmit={this.onSubmit}>
           <input
             type="text"
             className="form-control new-post-label"
