@@ -9,8 +9,15 @@ function exportButtons (set) {
     "carvery_hold.html", "carvery_comments.html" ];
    
     
+    
     const prevArrow = document.querySelector(".previous"),
-          nextArrow = document.querySelector(".next");
+          nextArrow = document.querySelector(".next"),
+          btn = document.querySelectorAll("button");
+
+          btn.forEach ((e) =>{
+            e.classList.add("btn", "btn-sm", "btn-primary");
+            console.log(e);
+          });
     
     prevArrow.addEventListener("click", () => {
     
@@ -41,6 +48,8 @@ function exportButtons (set) {
        });
        console.log(counter);
        return counter;
+
+    
 
 }
 

@@ -8,8 +8,12 @@ function exportHeaderButtons (){
           selectBtn = document.querySelector('[data-button="select"]'),
           btn = document.querySelectorAll("button");
     
+    deleteBtn.classList.add("btn-danger");
+    // backBtn.classList.add("btn-primary");
+    // sendBtn.classList.add("btn-primary");
+    // selectBtn.classList.add("btn-primary");
     btn.forEach ((e) =>{
-      e.classList.add("btn", "btn-sm");
+      e.classList.add("btn", "btn-sm", "btn-primary");
       console.log(e);
     });
 
