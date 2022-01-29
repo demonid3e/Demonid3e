@@ -17,7 +17,7 @@ class CarveryMain {
     line.innerHTML = `
       <div class="line">
       <span class="meat">${this.meat}</span>
-      <input class="temperature" type="text">
+      <input class="temperature" type="number">
       <select name="select" id="select">
           <option value="blank"></option>
           <option value="sold">Sold</option>
@@ -93,5 +93,3 @@ console.log(dateSelector.defaultValue);
 exportHeaderButtons();
 exportButtons(2);
 carveryFetch();
-
-

@@ -1,72 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
     <title>Business - Carvery Mains</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="wrapper_main">
-        <div class="header_mains">
-            <span class="check_carvery_mains">Business Check - Carvery Mains</span>
-            <button class="carvery_mains_back" data-button="back" type="submit">Back</button>
-            <button class="carvery_mains_delete" data-button="delete" type="submit">Delete</button>
-            <button class="carvery_mains_send" data-button="send" type="submit">Send</button>
-            <button class="carvery_mains_select" data-button="select" type="submit">Select</button>
-        </div>
-        <span class="mains_title">Carvery Deck Temperatures</span>
-        
-        <div class="top_mains">
-            <span class="bun_number">BUN 180750</span>
-            <select name="select_time" id="select_time">
-                <option value="12">12</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-            </select>
-            <input type="date" name="date_time" id="date_time" value="2000-05-05">
-        </div>
-        <div class="category_wrapper">
-        </div>
-        <br>
-        <span class="mains_description">Any Temperature below 65 degress centigrade must have a corrective action performed. Please see the Carvery Deck Decision Tree on page 266 of the Safety Policy for futher details.</span>
-        <br>
-        <br>
-        <div class="mains_footer">
-            <div class="mains_deck_check">
-                <div class="mains_deck_check_description">
-                    <span class="mains_deck_check_description">Deck and Gravy</span>
-                    <br>
-                    <span class="mains_deck_check_description">Station Check</span>
-                </div>
-                <br>
-                <div class="mains_deck_check_clean">
-                    <span>Guest carving deck queue area and gravy station are, if you have one, are free from spillages and food debris?</span>
-                    <select name="select_clean" id="select_clean" class="select_clean">
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                        <option value=""></option>
-                        </select>
-                </div>
-            </div>
-        </div>
+      <div class="header_mains">
+        <span class="check_carvery_mains">Business Check - Carvery Mains</span>
+        <button class="carvery_mains_back" data-button="back" type="submit">
+          Back
+        </button>
+        <button class="carvery_mains_delete" data-button="delete" type="submit">
+          Delete
+        </button>
+        <button class="carvery_mains_send" data-button="send" type="submit">
+          Send
+        </button>
+        <button class="carvery_mains_select" data-button="select" type="submit">
+          Select
+        </button>
+      </div>
+      <span class="mains_title">Carvery Deck Temperatures</span>
 
-    </div>
-    <div class="btn_wrapper">
-        <div class="buttons">
-          <button class="previous">Back</button>
-          <button class="next">Next</button>
+      <div class="top_mains">
+        <span class="bun_number">BUN 180750</span>
+        <select name="select_time" id="select_time">
+          <option value="12">12</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select>
+        <input
+          type="datetime-local"
+          name="date_time"
+          id="date_time"
+          value="2000-05-05"
+        />
+      </div>
+      <div class="category_wrapper"></div>
+      <br />
+      <span class="mains_description"
+        >Any Temperature below 65 degress centigrade must have a corrective
+        action performed. Please see the Carvery Deck Decision Tree on page 266
+        of the Safety Policy for futher details.</span
+      >
+      <br />
+      <br />
+      <div class="mains_footer">
+        <div class="mains_deck_check">
+          <div class="mains_deck_check_description">
+            <span class="mains_deck_check_description">Deck and Gravy</span>
+            <br />
+            <span class="mains_deck_check_description">Station Check</span>
+          </div>
+          <br />
+          <div class="mains_deck_check_clean">
+            <span
+              >Guest carving deck queue area and gravy station are, if you have
+              one, are free from spillages and food debris?</span
+            >
+            <select name="select_clean" id="select_clean" class="select_clean">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+              <option value=""></option>
+            </select>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="btn_wrapper">
+      <div class="buttons">
+        <button class="previous">Back</button>
+        <button class="next">Next</button>
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-   <script type="module" src="./script/carvery_mains.js"></script>     
-</body>
+    <script type="module" src="./script/carvery_mains.js"></script>
+  </body>
 </html>
