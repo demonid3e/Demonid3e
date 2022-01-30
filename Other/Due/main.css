@@ -4,7 +4,11 @@
 .wrapper_main {
   
   width: 560px;
+<<<<<<< HEAD
   height: 600px;
+=======
+  height: 750px;
+>>>>>>> dd2e5277c3cf72107350f15c2f86f33713950071
   border-style: double;
   border-width: 4px;
 }
@@ -16,7 +20,6 @@
   padding-left: 10px;
   padding-top: 10px;
 }
-
 
 .select_clean {
   float: right;
