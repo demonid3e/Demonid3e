@@ -14,10 +14,34 @@ class App extends Component {
     super(props);
     this.state = {
       data: [
-        { name: "Tanya B.", salary: 800, increase: true, id: 1 },
-        { name: "Valerie B.", salary: 3000, increase: false, id: 2 },
-        { name: "Ana B.", salary: 5000, increase: false, id: 3 },
-        { name: "Dema B.", salary: 15000, increase: false, id: 4 },
+        {
+          name: "Tanya B.",
+          salary: 800,
+          increase: true,
+          promote: false,
+          id: 1,
+        },
+        {
+          name: "Valerie B.",
+          salary: 3000,
+          increase: false,
+          promote: false,
+          id: 2,
+        },
+        {
+          name: "Ana B.",
+          salary: 5000,
+          increase: false,
+          promote: false,
+          id: 3,
+        },
+        {
+          name: "Dema B.",
+          salary: 15000,
+          increase: false,
+          promote: true,
+          id: 4,
+        },
       ],
     };
     this.maxId = 5;
@@ -33,6 +57,7 @@ class App extends Component {
       name,
       salary,
       increase: false,
+      promote: false,
       id: this.maxId++,
     };
     this.setState(({ data }) => {
@@ -60,16 +85,60 @@ class App extends Component {
   // this object is passed as PROPS OBJECT to EmployeeList component in app
   // you must add id so JSX don`t rerender all page just the edited part
 
+  onToggleProp = (id, prop) => {
+    // this.setState(({ data }) => {
+    //   const index = data.findIndex((elem) => elem.id === id);
+    //   const old = data[index];
+    //   const newItem = { ...old, increase: !old.increase };
+    //   const newArray = [
+    //     ...data.slice(0, index),
+    //     newItem,
+    //     ...data.slice(index + 1),
+    //   ];
+    //   return {
+    //     data: newArray,
+    //   };
+    // });
+    this.setState(({ data }) => ({
+      data: data.map((item) => {
+        if (item.id === id) {
+          return { ...item, [prop]: !item[prop] };
+        }
+        return item;
+      }),
+    }));
+
+    console.log(`Increase this ${id}`);
+  };
+
+  // onToggleRise = (id) => {
+  //   this.setState(({ data }) => ({
+  //     data: data.map((item) => {
+  //       if (item.id === id) {
+  //         return { ...item, promote: !item.promote };
+  //       }
+  //       return item;
+  //     }),
+  //   }));
+  //   console.log(`Rise this ${id}`);
+  // };
+
   render() {
+    const employees = this.state.data.length;
+    const increased = this.state.data.filter((item) => item.increase).length;
     return (
       <div className="app">
-        <AppInfo />
+        <AppInfo employees={employees} increased={increased} />
         <div className="search-panel">
           <SearchPanel />
           <AppFilter />
         </div>
         {/* data props is passed as object */}
-        <EmployeesList data={this.state.data} onDelete={this.deleteItem} />
+        <EmployeesList
+          data={this.state.data}
+          onDelete={this.deleteItem}
+          onToggleProp={this.onToggleProp}
+        />
         <EmployeesAddForm onAdd={this.addPerson} />
       </div>
     );
