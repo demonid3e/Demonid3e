@@ -6,7 +6,8 @@ import exportHeaderButtons from "./modules/header.js";
 const selectCooking = document.querySelector("#carvery_cooking"),
     cookingWrapper = document.querySelector(".cooking_wrapper"),
     cookingSessionName = document.querySelector(".cooking_session_name"),
-    cookingNonBreakfast = document.querySelector(".cooking_non_breakfast");
+    cookingNonBreakfast = document.querySelector(".cooking_non_breakfast"),
+    burgers = document.querySelectorAll(".burger");
 
 
 
@@ -25,7 +26,10 @@ function checkCookingStatus () {
     if(selectCooking.value === "Lunch" || selectCooking.value === "Evening"){
         cookingWrapper.classList.remove("hide");
         cookingNonBreakfast.classList.remove("hide");
-        cookingSessionName.innerHTML = selectCooking.value;    
+        cookingSessionName.innerHTML = selectCooking.value;
+        burgers.forEach((item, i) =>{
+            item.innerHTML = `${selectCooking.value} Burger ${i + 1}`;
+        });    
     }
     if(selectCooking.value === "Breakfast"){
         cookingNonBreakfast.classList.add("hide");
