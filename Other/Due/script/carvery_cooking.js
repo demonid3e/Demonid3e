@@ -4,25 +4,36 @@ import exportButtons from "./modules/buttons.js";
 import exportHeaderButtons from "./modules/header.js";
 
 const selectCooking = document.querySelector("#carvery_cooking"),
-    blankData = document.querySelector('[data-value="blank"]'),
-    cookingWrapper = document.querySelector(".cooking_wrapper");
+    cookingWrapper = document.querySelector(".cooking_wrapper"),
+    cookingSessionName = document.querySelector(".cooking_session_name"),
+    cookingNonBreakfast = document.querySelector(".cooking_non_breakfast");
 
 
-    cookingWrapper.style.display = "none";
+
 
 selectCooking.addEventListener("change", () => {
-    if(blankData.value != "blank"){
-        cookingWrapper.style.display = "block";
-    }
+    checkCookingStatus();
+
 })
 
-console.log("this is blank value", blankData.value);
+function checkCookingStatus () {
+    if(selectCooking.value === "Blank"){
+        cookingWrapper.classList.add("hide");
+        cookingNonBreakfast.classList.add("hide");
+        cookingSessionName.innerHTML = "";
+    }
+    if(selectCooking.value === "Lunch" || selectCooking.value === "Evening"){
+        cookingWrapper.classList.remove("hide");
+        cookingNonBreakfast.classList.remove("hide");
+        cookingSessionName.innerHTML = selectCooking.value;    
+    }
+    if(selectCooking.value === "Breakfast"){
+        cookingNonBreakfast.classList.add("hide");
+        cookingWrapper.classList.remove("hide");
+        cookingSessionName.innerHTML = selectCooking.value;
+    }
+}
 
-// create a layout with ${} in object and make it display none,
-// if blank display none, if one of the selection 
-// display true and all values are corresponding to selection
-
-
-
+checkCookingStatus();
 exportButtons(4);
 exportHeaderButtons();

@@ -88,7 +88,7 @@ function sendData() {
 //     .catch((error) => console.error("timeout exceeded"));
 //   console.log(timeSelector.value);
 // }
-console.log(dateSelector.defaultValue);
+// console.log(dateSelector.defaultValue);
 // carveryMain();
 exportHeaderButtons();
 exportButtons(2);

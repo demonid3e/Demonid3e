@@ -14,7 +14,6 @@ function exportHeaderButtons (){
     // selectBtn.classList.add("btn-primary");
     btn.forEach ((e) =>{
       e.classList.add("btn", "btn-sm", "btn-primary");
-      console.log(e);
     });
 
     backBtn.addEventListener("click", () =>{

@@ -16,7 +16,6 @@ function exportButtons (set) {
 
           btn.forEach ((e) =>{
             e.classList.add("btn", "btn-sm", "btn-primary");
-            console.log(e);
           });
     
     prevArrow.addEventListener("click", () => {
