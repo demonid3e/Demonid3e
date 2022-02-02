@@ -43,6 +43,7 @@ class App extends Component {
           id: 4,
         },
       ],
+      term: "a",
     };
     this.maxId = 5;
   }
@@ -123,19 +124,35 @@ class App extends Component {
   //   console.log(`Rise this ${id}`);
   // };
 
+  searchEmp = (items, term) => {
+    if (term.length === 0) {
+      return items;
+    }
+
+    return items.filter((item) => {
+      return item.name.indexOf(term) > -1;
+    });
+  };
+
+  onUpdateSearch = (term) => {
+    this.setState({ term });
+  };
+
   render() {
+    const { data, term } = this.state;
     const employees = this.state.data.length;
     const increased = this.state.data.filter((item) => item.increase).length;
+    const visibleData = this.searchEmp(data, term);
     return (
       <div className="app">
         <AppInfo employees={employees} increased={increased} />
         <div className="search-panel">
-          <SearchPanel />
+          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
           <AppFilter />
         </div>
         {/* data props is passed as object */}
         <EmployeesList
-          data={this.state.data}
+          data={visibleData}
           onDelete={this.deleteItem}
           onToggleProp={this.onToggleProp}
         />

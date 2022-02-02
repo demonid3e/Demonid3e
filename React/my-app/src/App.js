@@ -1,6 +1,6 @@
 import React, { StrictMode } from "react";
 import logo from "./logo.svg";
-import { Component } from "react";
+import { Component, Fragment } from "react";
 import "./App.css";
 
 const Header = () => {
@@ -62,7 +62,7 @@ class WhoAmI extends Component {
     const { name, surname, link } = this.props;
     const { position, years } = this.state;
     return (
-      <div>
+      <Fragment>
         <form>
           <span>Enter job title </span>
           {/* to pass arguments to event listener use anonymous function with (e) */}
@@ -81,7 +81,7 @@ class WhoAmI extends Component {
         </h1>
 
         <a href={link}>My Profile</a>
-      </div>
+      </Fragment>
     );
   }
 }

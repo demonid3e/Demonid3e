@@ -21,17 +21,18 @@ class EmployeesAddForm extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     console.log(this.state.name.length);
-    if(this.state.name.length >= 3 && this.state.salary.length >= 1){
+    if (this.state.name.length >= 3 && this.state.salary.length >= 1) {
       this.props.onAdd(this.state.name, this.state.salary);
       // this line sets empty strings after add
       this.setState({ name: "", salary: "" });
-      console.log("all good")
-    }else if (this.state.name.length < 3){
+      console.log("all good");
+    } else if (this.state.name.length < 3) {
       console.log("Name is too short, please enter longer name");
-    }else if (this.state.salary.length <= 0){
+      this.setState({ name: "", salary: "" });
+    } else if (this.state.salary.length <= 0) {
       console.log("Salary cant be 0, please enter correct salary");
+      this.setState({ name: "", salary: "" });
     }
-
   };
 
   render() {
