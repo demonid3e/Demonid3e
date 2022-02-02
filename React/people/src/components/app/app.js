@@ -43,7 +43,8 @@ class App extends Component {
           id: 4,
         },
       ],
-      term: "a",
+      term: "",
+      filter: "",
     };
     this.maxId = 5;
   }

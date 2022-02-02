@@ -16,6 +16,7 @@ const EmployeesList = ({ data, onDelete, onToggleProp }) => {
     // we taking the rest of props in item that left and passing them to EmployeListItem
     return (
       <EmployeesListItem
+        // key is used so JSX only renders the ones that changes
         key={id}
         {...itemProps}
         onDelete={() => onDelete(id)}
