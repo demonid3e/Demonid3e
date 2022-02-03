@@ -44,6 +44,8 @@ const EmployeesListItem = (props) => {
   if (rise) {
     classNames += " like";
   }
+
+  // checkIncreas();
   // this where JSX renders the page
   return (
     // sets the classnames of LI to one from classNames variable
