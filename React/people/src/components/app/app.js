@@ -87,7 +87,10 @@ class App extends Component {
   // this object is passed as PROPS OBJECT to EmployeeList component in app
   // you must add id so JSX don`t rerender all page just the edited part
 
+
   onToggleProp = (id, prop) => {
+    const test = this.state.data.filter((item) => item.increase);
+    console.log(test);
     // this.setState(({ data }) => {
     //   const index = data.findIndex((elem) => elem.id === id);
     //   const old = data[index];
@@ -109,7 +112,6 @@ class App extends Component {
         return item;
       }),
     }));
-
     console.log(`Increase this ${id}`);
   };
 
@@ -143,6 +145,7 @@ class App extends Component {
     const { data, term } = this.state;
     const employees = this.state.data.length;
     const increased = this.state.data.filter((item) => item.increase).length;
+    
     const visibleData = this.searchEmp(data, term);
     return (
       <div className="app">
