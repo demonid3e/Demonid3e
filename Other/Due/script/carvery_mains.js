@@ -2,31 +2,42 @@
 import exportButtons from "./modules/buttons.js";
 import exportHeaderButtons from "./modules/header.js";
 
-const wrapper = document.querySelector(".category_wrapper");
-const sendButton = document.querySelector(".carvery_mains_send");
-const timeSelector = document.querySelector("#select_time");
-const dateSelector = document.querySelector("#date_time");
+
+
+  
+
+
+const wrapper = document.querySelector(".category_wrapper"),
+  sendButton = document.querySelector(".carvery_mains_send"),
+  timeSelector = document.querySelector("#select_time"),
+  dateSelector = document.querySelector("#date_time"),
+  title = document.querySelector("title");
+  let obj = {};
+ let counter = 0;
 
 class CarveryMain {
   constructor(meat) {
     this.meat = meat;
+    this.counter = counter;
   }
+  
   render() {
     const line = document.createElement("div");
     line.classList.add("wrapper_line");
     line.innerHTML = `
       <div class="line">
       <span class="meat">${this.meat}</span>
-      <input class="temperature" type="number">
-      <select name="select" id="select">
+      <input class="temperature_send" type="number" value="">
+      <select name="select" class="select_send" id="select  ${this.counter}">
           <option value="blank"></option>
           <option value="sold">Sold</option>
           <option value="discard">Discard</option>
           <option value="returned">Returned to Shaam</option>
-          <option value="nod">Not on Deck</option>
+          <option value="not">Not on Deck</option>
       </select>
   </div>
   `;
+    counter++;
     wrapper.append(line);
   }
 }
@@ -53,6 +64,7 @@ function carveryFetch() {
 
 sendButton.addEventListener("click", () => sendData());
 
+
 async function postData(url = "") {
   const response = await fetch(url, {
     method: "POST",
@@ -60,6 +72,7 @@ async function postData(url = "") {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      title: title.innerText,
       time: timeSelector.value,
       date: dateSelector.value,
     }),
@@ -71,6 +84,8 @@ function sendData() {
     console.log(data); // JSON data parsed by `data.json()` call
   });
 }
+
+
 
 // function sendData() {
 //   axios({
@@ -90,6 +105,9 @@ function sendData() {
 // }
 // console.log(dateSelector.defaultValue);
 // carveryMain();
+
 exportHeaderButtons();
 exportButtons(2);
 carveryFetch();
+
+

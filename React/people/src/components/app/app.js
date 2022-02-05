@@ -163,7 +163,7 @@ class App extends Component {
         return items;
     }
   };
-
+  // on call sets the current filter value to the one that been passed
   onFilterSelect = (filter) => {
     this.setState({ filter });
     
@@ -176,7 +176,6 @@ class App extends Component {
     const increased = this.state.data.filter((item) => item.increase).length;
     // makes it to be able to search when filter is on
     const visibleData = this.filterPost(this.searchEmp(data, term), filter);
-    console.log(visibleData);  
     return (
       <div className="app">
         <AppInfo employees={employees} increased={increased} />
