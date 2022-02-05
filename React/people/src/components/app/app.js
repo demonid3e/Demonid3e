@@ -152,7 +152,7 @@ class App extends Component {
   //     console.log("I`m higher", higherFilter);
   //   }
   // };
-
+// 
   filterPost = (items, filter) => {
     switch (filter) {
       case "rise":
@@ -166,13 +166,17 @@ class App extends Component {
 
   onFilterSelect = (filter) => {
     this.setState({ filter });
+    
   };
 
   render() {
+    
     const { data, term, filter } = this.state;
     const employees = this.state.data.length;
     const increased = this.state.data.filter((item) => item.increase).length;
+    // makes it to be able to search when filter is on
     const visibleData = this.filterPost(this.searchEmp(data, term), filter);
+    console.log(visibleData);  
     return (
       <div className="app">
         <AppInfo employees={employees} increased={increased} />

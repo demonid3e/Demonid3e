@@ -6,8 +6,10 @@ const AppFilter = (props) => {
     { name: "rise", label: "Good Performing" },
     { name: "moreThen1000", label: "Pay Higher than 1000$" },
   ];
-
+// buttons are created using map method from array
   const buttons = buttonsData.map(({ name, label }) => {
+    // when creating buttons, checks if current filter is matches name of button called
+    // if true adds class btn-light false default 
     const active = props.filter === name;
     const clazz = active ? "btn-light" : "btn-outline-light";
     return (
@@ -15,6 +17,8 @@ const AppFilter = (props) => {
         className={`btn ${clazz}`}
         type="button"
         key={name}
+        // calls onFilterSelect, because it of arrow function "this.name" 
+        // is name of the button its called on, so it is passed to filter variable in app.js 
         onClick={() => props.onFilterSelect(name)}
       >
         {label}
