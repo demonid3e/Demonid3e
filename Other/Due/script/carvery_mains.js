@@ -11,9 +11,10 @@ const wrapper = document.querySelector(".category_wrapper"),
   sendButton = document.querySelector(".carvery_mains_send"),
   timeSelector = document.querySelector("#select_time"),
   dateSelector = document.querySelector("#date_time"),
-  title = document.querySelector("title");
-  let obj = {};
- let counter = 0;
+  selectButton = document.querySelector(".carvery_mains_select");
+  
+let obj = {};
+let counter = 0;
 
 class CarveryMain {
   constructor(meat) {
@@ -25,10 +26,10 @@ class CarveryMain {
     const line = document.createElement("div");
     line.classList.add("wrapper_line");
     line.innerHTML = `
-      <div class="line">
-      <span class="meat">${this.meat}</span>
-      <input class="temperature_send" type="number" value="">
-      <select name="select" class="select_send" id="select  ${this.counter}">
+      <div class="line ${this.meat}">
+      <span class="meat" id="meat_${this.counter}">${this.meat}</span>
+      <input class="temperature_send" type="number" value="" id="input_${this.counter}">
+      <select name="select" class="select_send" id="select_${this.counter}">
           <option value="blank"></option>
           <option value="sold">Sold</option>
           <option value="discard">Discard</option>
@@ -66,15 +67,16 @@ sendButton.addEventListener("click", () => sendData());
 
 
 async function postData(url = "") {
+  getFormData();
   const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      title: title.innerText,
-      time: timeSelector.value,
-      date: dateSelector.value,
+    body: JSON.stringify({obj
+      // title: title.innerText,
+      // time: timeSelector.value,
+      // date: dateSelector.value,
     }),
   });
   return response.json();
@@ -86,6 +88,33 @@ function sendData() {
 }
 
 
+
+
+selectButton.addEventListener("click", () => {
+  getFormData();
+});
+
+
+
+function getFormData() {
+  const wrapperLine = document.querySelectorAll(".wrapper_line");
+
+  obj ={
+    title: document.querySelector("title").innerText,
+    time: document.querySelector("#select_time").value,
+    date: document.querySelector("#date_time").value,
+  
+  }
+  wrapperLine.forEach((item, i) =>{
+  const itemName = item.querySelector(".meat").innerText;
+  const inputValue = item.querySelector(`#input_${i}`).value;
+  const selectValue = item.querySelector(`#select_${i}`).value;
+    console.log(itemName, inputValue, selectValue);
+    obj[itemName] = inputValue + selectValue;
+  })
+
+console.log(obj);
+}
 
 // function sendData() {
 //   axios({
