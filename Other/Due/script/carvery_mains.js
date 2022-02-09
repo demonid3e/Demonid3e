@@ -1,6 +1,7 @@
 "use strict";
 import exportButtons from "./modules/buttons.js";
 import exportHeaderButtons from "./modules/header.js";
+import setCurrentTime from "./modules/setTime.js";
 
 
 
@@ -13,7 +14,9 @@ const wrapper = document.querySelector(".category_wrapper"),
   selectButton = document.querySelector(".carvery_mains_select");
 let counter = 0;
 
-dateSelector.value = new Date().toISOString().slice(0,16);
+
+
+
 class CarveryMain {
   constructor(meat) {
     this.meat = meat;
@@ -119,8 +122,12 @@ function getFormData() {
 // console.log(dateSelector.defaultValue);
 // carveryMain();
 
+
+
+
 exportHeaderButtons();
 exportButtons(2);
 carveryFetch();
+setCurrentTime(dateSelector);
 
-
+ 
