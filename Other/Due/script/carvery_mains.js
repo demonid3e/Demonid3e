@@ -9,13 +9,10 @@ import exportHeaderButtons from "./modules/header.js";
 
 const wrapper = document.querySelector(".category_wrapper"),
   sendButton = document.querySelector(".carvery_mains_send"),
-  timeSelector = document.querySelector("#select_time"),
   dateSelector = document.querySelector("#date_time"),
   selectButton = document.querySelector(".carvery_mains_select");
-let obj = "";
 let counter = 0;
 
-// dateSelector.value = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay() + new Date().getHours() + ":" + new Date().getMinutes();
 dateSelector.value = new Date().toISOString().slice(0,16);
 class CarveryMain {
   constructor(meat) {
@@ -74,11 +71,7 @@ async function postData(url = "") {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({CarveryMain
-      // title: title.innerText,
-      // time: timeSelector.value,
-      // date: dateSelector.value,
-    }),
+    body: JSON.stringify({CarveryMain}),
   });
   return response.json();
 }
@@ -87,15 +80,6 @@ function sendData() {
     console.log(data); // JSON data parsed by `data.json()` call
   });
 }
-
-
-
-
-selectButton.addEventListener("click", () => {
-  getFormData();
-});
-
-
 
 function getFormData() {
   const wrapperLine = document.querySelectorAll(".wrapper_line");
@@ -114,7 +98,6 @@ function getFormData() {
     CarveryMain[itemName] = `Temperature is: ${inputValue}  status is: ${selectValue}`;
   })
 
-console.log(obj);
 }
 
 // function sendData() {
