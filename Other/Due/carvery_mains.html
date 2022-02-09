@@ -32,9 +32,9 @@
       </div>
       <span class="mains_title">Carvery Deck Temperatures</span>
 
-      <div class="top_mains">
+      <form class="top_mains">
         <span class="bun_number">BUN 180750</span>
-        <select name="select_time" id="select_time" class="send">
+        <select name="select_time" id="select_time" class="send" required>
           <option value="12">12</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -45,12 +45,13 @@
           <option value="9">9</option>
         </select>
         <input
+          required
           type="datetime-local"
           name="date_time"
           id="date_time"
           value=""
         />
-      </div>
+      </form>
       <form class="category_wrapper"></form>
       <br />
       <span class="mains_description"

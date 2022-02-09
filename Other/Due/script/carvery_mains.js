@@ -12,10 +12,11 @@ const wrapper = document.querySelector(".category_wrapper"),
   timeSelector = document.querySelector("#select_time"),
   dateSelector = document.querySelector("#date_time"),
   selectButton = document.querySelector(".carvery_mains_select");
-  
-let obj = {};
+let obj = "";
 let counter = 0;
 
+// dateSelector.value = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay() + new Date().getHours() + ":" + new Date().getMinutes();
+dateSelector.value = new Date().toISOString().slice(0,16);
 class CarveryMain {
   constructor(meat) {
     this.meat = meat;
@@ -73,7 +74,7 @@ async function postData(url = "") {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({obj
+    body: JSON.stringify({CarveryMain
       // title: title.innerText,
       // time: timeSelector.value,
       // date: dateSelector.value,
@@ -99,7 +100,7 @@ selectButton.addEventListener("click", () => {
 function getFormData() {
   const wrapperLine = document.querySelectorAll(".wrapper_line");
 
-  obj ={
+  CarveryMain ={
     title: document.querySelector("title").innerText,
     time: document.querySelector("#select_time").value,
     date: document.querySelector("#date_time").value,
@@ -110,7 +111,7 @@ function getFormData() {
   const inputValue = item.querySelector(`#input_${i}`).value;
   const selectValue = item.querySelector(`#select_${i}`).value;
     console.log(itemName, inputValue, selectValue);
-    obj[itemName] = inputValue + selectValue;
+    CarveryMain[itemName] = `Temperature is: ${inputValue}  status is: ${selectValue}`;
   })
 
 console.log(obj);
