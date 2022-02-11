@@ -11,7 +11,7 @@ const setDateOne = document.querySelector("#side_date_time"),
   sendBtn = document.querySelector(".carvery_mains_send "),
   selectBtn = document.querySelector(".carvery_mains_select ");
 
-//global variables
+//global variables.
 var carverySides = {};
 
 // getting all values of inputs from the page
