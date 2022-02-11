@@ -1,28 +1,23 @@
 "use strict";
+// modules
 import exportButtons from "./modules/buttons.js";
 import exportHeaderButtons from "./modules/header.js";
 import setCurrentTime from "./modules/setTime.js";
 
-
-
-  
-
-
+// Variables for this page
 const wrapper = document.querySelector(".category_wrapper"),
   sendButton = document.querySelector(".carvery_mains_send"),
-  dateSelector = document.querySelector("#date_time"),
-  selectButton = document.querySelector(".carvery_mains_select");
+  dateSelector = document.querySelector("#date_time");
 let counter = 0;
+var sendCarvery = {};
 
-
-
-
+// class that creates items on Carvery main from test.json
 class CarveryMain {
   constructor(meat) {
     this.meat = meat;
     this.counter = counter;
   }
-  
+
   render() {
     const line = document.createElement("div");
     line.classList.add("wrapper_line");
@@ -44,6 +39,7 @@ class CarveryMain {
   }
 }
 
+// function that gets items from json file and builds elements using class
 function carveryFetch() {
   fetch("http://localhost:3000/carveryMains")
     .then((response) => response.json())
@@ -55,18 +51,10 @@ function carveryFetch() {
     });
 }
 
-// function carveryMain() {
-//   axios.get("http://localhost:3000/carveryMains").then((data) => {
-//     data.data.forEach(({ meat }) => {
-//       new CarveryMain(meat).render();
-//     });
-//     console.log("carvery main is called");
-//   });
-// }
-
+// event listeners
 sendButton.addEventListener("click", () => sendData());
 
-
+// creating fetch "post" using getFormData info
 async function postData(url = "") {
   getFormData();
   const response = await fetch(url, {
@@ -74,60 +62,46 @@ async function postData(url = "") {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({CarveryMain}),
+    body: JSON.stringify({ sendCarvery }),
   });
   return response.json();
 }
+
+// sending data
 function sendData() {
   postData("http://localhost:3000/post").then((data) => {
     console.log(data); // JSON data parsed by `data.json()` call
   });
 }
 
+// getting all elements from input fields on the page
 function getFormData() {
   const wrapperLine = document.querySelectorAll(".wrapper_line");
 
-  CarveryMain ={
+  sendCarvery = {
     title: document.querySelector("title").innerText,
     time: document.querySelector("#select_time").value,
     date: document.querySelector("#date_time").value,
-  
-  }
-  wrapperLine.forEach((item, i) =>{
-  const itemName = item.querySelector(".meat").innerText;
-  const inputValue = item.querySelector(`#input_${i}`).value;
-  const selectValue = item.querySelector(`#select_${i}`).value;
+  };
+  wrapperLine.forEach((item, i) => {
+    const itemName = item.querySelector(".meat").innerText;
+    const inputValue = item.querySelector(`#input_${i}`).value;
+    const selectValue = item.querySelector(`#select_${i}`).value;
     console.log(itemName, inputValue, selectValue);
-    CarveryMain[itemName] = `Temperature is: ${inputValue}  status is: ${selectValue}`;
-  })
-
+    sendCarvery[
+      itemName
+    ] = `Temperature is: ${inputValue}  status is: ${selectValue}`;
+  });
 }
 
-// function sendData() {
-//   axios({
-//     method: "post",
-//     url: "http://localhost:3000/post",
-//     timeout: 4000, // 4 seconds timeout
-//     data: {
-//       time: timeSelector.value,
-//       date: dateSelector.value,
-//     },
-//   })
-//     .then((response) => {
-//       /* handle the response */
-//     })
-//     .catch((error) => console.error("timeout exceeded"));
-//   console.log(timeSelector.value);
-// }
-// console.log(dateSelector.defaultValue);
-// carveryMain();
-
-
-
-
+// header buttons
 exportHeaderButtons();
-exportButtons(2);
-carveryFetch();
-setCurrentTime(dateSelector);
 
- 
+// footer buttons
+exportButtons(2);
+
+// calling a fetch that builds page content
+carveryFetch();
+
+// setting current time into datetime selector
+setCurrentTime(dateSelector);
