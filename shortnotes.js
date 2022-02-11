@@ -1,20 +1,18 @@
-
 "use strict";
 
 ////////////////////////////////////
-//////////// function generators ////// 
-
-function* generator(){
-    yield "S"; // { value: 'S', done: false }
-    yield "c"; // { value: 'S', done: false }
-    yield "r"; // { value: 'S', done: false }
-    yield "i"; // { value: 'S', done: false }
-    yield "p"; // { value: 'S', done: false }
-    yield "t"; // { value: 'S', done: false }
-}   // if called 7th time { value: undefined, done: true }
+//////////// function generators //////
+//
+function* generator() {
+  yield "S"; // { value: 'S', done: false }
+  yield "c"; // { value: 'S', done: false }
+  yield "r"; // { value: 'S', done: false }
+  yield "i"; // { value: 'S', done: false }
+  yield "p"; // { value: 'S', done: false }
+  yield "t"; // { value: 'S', done: false }
+} // if called 7th time { value: undefined, done: true }
 
 const str = generator();
-
 
 console.log(str.next());
 
@@ -23,30 +21,29 @@ console.log(str.next().done); // false
 
 // will work n time or < than been called
 function* counting(n) {
-    for (let i = 0; i < n; i++){
-        yield i;
-    }
+  for (let i = 0; i < n; i++) {
+    yield i;
+  }
 }
 
 for (let k of counting(7)) {
- console.log(k);   
+  console.log(k);
 }
-"use strict";
+("use strict");
 
 ////////////////////////////////////
-//////////// function generators ////// 
+//////////// function generators //////
 
-function* generator(){
-    yield "S"; // { value: 'S', done: false }
-    yield "c"; // { value: 'S', done: false }
-    yield "r"; // { value: 'S', done: false }
-    yield "i"; // { value: 'S', done: false }
-    yield "p"; // { value: 'S', done: false }
-    yield "t"; // { value: 'S', done: false }
-}   // if called 7th time { value: undefined, done: true }
+function* generator() {
+  yield "S"; // { value: 'S', done: false }
+  yield "c"; // { value: 'S', done: false }
+  yield "r"; // { value: 'S', done: false }
+  yield "i"; // { value: 'S', done: false }
+  yield "p"; // { value: 'S', done: false }
+  yield "t"; // { value: 'S', done: false }
+} // if called 7th time { value: undefined, done: true }
 
 const str = generator();
-
 
 console.log(str.next());
 
@@ -55,28 +52,27 @@ console.log(str.next().done); // false
 
 // will work n time or < than been called
 function* counting(n) {
-    for (let i = 0; i < n; i++){
-        yield i;
-    }
+  for (let i = 0; i < n; i++) {
+    yield i;
+  }
 }
 
 for (let k of counting(7)) {
- console.log(k);   
+  console.log(k);
 }
-
 
 ////////////////////////////////////////
 //////////  TRY CATCH FINALLY //////////
 ////////////////////////////////////////
 
 // when sees try/catch, try executed first, catch ignored
-// if "try" has any error, catch will execute, and all other code 
+// if "try" has any error, catch will execute, and all other code
 // after try/catch will execute too.
 // if this construction is not used then code will trow a error and will stop
 
 try {
   console.log("Normal"); // will show normal
-  console.log(a);        // here is the error
+  console.log(a); // here is the error
   console.log("result"); // this code is not executed due to error
 } catch (error) {
   console.log("Error"); // this is executed due to error
@@ -94,12 +90,12 @@ console.log("still normal"); // this code is executed too
 // Example: two pages index.html and contact.html
 // index.html has button/class active, contact.html doesnt
 // if try/catch contructed wasnt used then in index.html it will work fine
-// on contact html it will stop and the code after catch wouldnt execute 
+// on contact html it will stop and the code after catch wouldnt execute
 // if try/catch used then, it would check if that element exists
 
-try{
-  document.querySelector(".active").addEventListener("click", () =>{
-      console.log("click");
+try {
+  document.querySelector(".active").addEventListener("click", () => {
+    console.log("click");
   });
 } catch (e) {
   console.log("button doesnt exist");
@@ -107,22 +103,22 @@ try{
 
 console.log("Normal");
 // when sees try/catch, try executed first, catch ignored
-// if "try" has any error, catch will execute, and all other code 
+// if "try" has any error, catch will execute, and all other code
 // after try/catch will execute too.
 // if this construction is not used then code will trow a error and will stop
 
 try {
-    console.log("Normal"); // will show normal
-    console.log(a);        // here is the error
-    console.log("result"); // this code is not executed due to error
+  console.log("Normal"); // will show normal
+  console.log(a); // here is the error
+  console.log("result"); // this code is not executed due to error
 } catch (error) {
-    console.log("Error"); // this is executed due to error
-    console.log(error);
-    console.log(error.name);
-    console.log(error.message);
-    console.log(error.stack);
+  console.log("Error"); // this is executed due to error
+  console.log(error);
+  console.log(error.name);
+  console.log(error.message);
+  console.log(error.stack);
 } finally {
-    console.log("This code will execute regardless");
+  console.log("This code will execute regardless");
 }
 
 console.log("still normal"); // this code is executed too
@@ -131,36 +127,29 @@ console.log("still normal"); // this code is executed too
 // Example: two pages index.html and contact.html
 // index.html has button/class active, contact.html doesnt
 // if try/catch contructed wasnt used then in index.html it will work fine
-// on contact html it will stop and the code after catch wouldnt execute 
+// on contact html it will stop and the code after catch wouldnt execute
 // if try/catch used then, it would check if that element exists
 
-try{
-    document.querySelector(".active").addEventListener("click", () =>{
-        console.log("click");
-    });
+try {
+  document.querySelector(".active").addEventListener("click", () => {
+    console.log("click");
+  });
 } catch (e) {
-    console.log("button doesnt exist");
+  console.log("button doesnt exist");
 }
 
 console.log("Normal");
 
-
-
-
-
-
-
 // must have a name of variable to export
 
-
 /// file 1
-export let one =1;
+export let one = 1;
 let two = 2;
 
-export {two};
-// using default will let you import function/object directly as is 
+export { two };
+// using default will let you import function/object directly as is
 // default can only be one
-export default function sayHi(){
+export default function sayHi() {
   console.log("hello");
 }
 
@@ -177,12 +166,11 @@ console.log(data.one);
 
 data.sayHi();
 
-import {one as first} from "./main";
+import { one as first } from "./main";
 
 console.log(`${one} and ${two}`);
 
-
-// using default will let you import function/object directly as is 
+// using default will let you import function/object directly as is
 import sayHi from "./main";
 
 // HTML you can use type="module" to let browser read multiple script files after each other
