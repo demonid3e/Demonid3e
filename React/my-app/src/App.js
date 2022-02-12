@@ -1,7 +1,28 @@
 import React, { StrictMode } from "react";
 import logo from "./logo.svg";
 import { Component, Fragment } from "react";
+import styled from "styled-components";
 import "./App.css";
+
+const EmpItem = styled.div`
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  d
+`;
+
+const NewHeader = styled.h2`
+  font-size: 22px;
+`;
+
+const Button = styled.button`
+  display: block;
+  padding: 5px 15px;
+  background-color: gold;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadiw: 5px 5px 10px rgba(0, 0, 0, 0.2);
+`;
 
 const Header = () => {
   return <h2>Hello World!</h2>;
@@ -62,7 +83,7 @@ class WhoAmI extends Component {
     const { name, surname, link } = this.props;
     const { position, years } = this.state;
     return (
-      <Fragment>
+      <EmpItem>
         <form>
           <span>Enter job title </span>
           {/* to pass arguments to event listener use anonymous function with (e) */}
@@ -73,31 +94,38 @@ class WhoAmI extends Component {
         </form>
         {/* to keep track "this" you can use anonymous function
             <button onClick={() => this.nextYear()}>{this.state.text}</button>   */}
-        <button onClick={this.nextYear}>{this.state.text}</button>
+        <Button onClick={this.nextYear}>{this.state.text}</Button>
 
-        <h1>
+        <NewHeader>
           My name is position - {position}
           {name} , surname - {surname}, age - {years},
-        </h1>
+        </NewHeader>
 
         <a href={link}>My Profile</a>
-      </Fragment>
+      </EmpItem>
     );
   }
 }
 
+const Wrapper = styled.div`
+  width: 600px;
+  margin: 80px auto 0 auto;
+`;
+
 function App() {
   return (
-    <div className="App">
-      <img src={logo} className="App-logo" alt="logo" />
-      <WhoAmI name="John" surname="Smyth" link="facebook.com" />
-      <WhoAmI name="Demon" surname="Demon" link="www.bbc.co.uk" />
-      <StrictMode>
-        <Header />
-      </StrictMode>
-      <Field />
-      <Btn />
-    </div>
+    <Wrapper>
+      <div className="App">
+        <img src={logo} className="App-logo" alt="logo" />
+        <WhoAmI name="John" surname="Smyth" link="facebook.com" />
+        <WhoAmI name="Demon" surname="Demon" link="www.bbc.co.uk" />
+        <StrictMode>
+          <Header />
+        </StrictMode>
+        <Field />
+        <Btn />
+      </div>
+    </Wrapper>
   );
 }
 export { Header };
