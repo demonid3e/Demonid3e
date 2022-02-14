@@ -4,6 +4,7 @@ import { Component, Fragment } from "react";
 import styled from "styled-components";
 import "./App.css";
 
+// example of styled div
 const EmpItem = styled.div`
   padding: 20px;
   margin-bottom: 15px;
@@ -12,10 +13,12 @@ const EmpItem = styled.div`
   d
 `;
 
+// instead of using h2 tag you can you styled h2 tag name NewHeader
 const NewHeader = styled.h2`
   font-size: 22px;
 `;
 
+// same as above, just with button
 const Button = styled.button`
   display: block;
   padding: 5px 15px;
@@ -33,6 +36,7 @@ function Btn() {
   const logged = false;
   return <button>{logged ? text : "Log in"} </button>;
 }
+
 class Field extends React.Component {
   render() {
     const holder = "Enter here";

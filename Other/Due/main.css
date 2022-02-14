@@ -2,7 +2,6 @@
   font-size: 14px;
 }
 .wrapper_main {
-  
   width: 560px;
   height: 600px;
   border-style: double;
@@ -133,4 +132,15 @@
 
 .big_input {
   width: 120px;
+}
+
+.btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+  outline: 0;
+}
+
+.btn:focus {
+  outline: 0;
 }
