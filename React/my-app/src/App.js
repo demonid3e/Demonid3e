@@ -10,8 +10,18 @@ const EmpItem = styled.div`
   margin-bottom: 15px;
   border-radius: 5px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  d
+  a {
+    display: block;
+    margin: 10px 0 10px 0;
+    color: black;
+    color: ${props => props.active ? "orange" : "black"};
+  }
+  input {
+    display: block;
+    margin-top: 10px;
+  }
 `;
+
 
 // instead of using h2 tag you can you styled h2 tag name NewHeader
 const NewHeader = styled.h2`
@@ -19,7 +29,7 @@ const NewHeader = styled.h2`
 `;
 
 // same as above, just with button
-const Button = styled.button`
+export const Button = styled.button`
   display: block;
   padding: 5px 15px;
   background-color: gold;
@@ -87,7 +97,16 @@ class WhoAmI extends Component {
     const { name, surname, link } = this.props;
     const { position, years } = this.state;
     return (
-      <EmpItem>
+      <EmpItem active="true">
+        {/* to keep track "this" you can use anonymous function
+            <button onClick={() => this.nextYear()}>{this.state.text}</button>   */}
+        <Button onClick={this.nextYear}>{this.state.text}</Button>
+        <NewHeader>
+          My name is position - {position}
+          {name} , surname - {surname}, age - {years},
+        </NewHeader>
+
+        <a href={link}>My Profile</a>
         <form>
           <span>Enter job title </span>
           {/* to pass arguments to event listener use anonymous function with (e) */}
@@ -96,16 +115,6 @@ class WhoAmI extends Component {
             onChange={(e) => this.commitInputChanges(e, "some color")}
           />
         </form>
-        {/* to keep track "this" you can use anonymous function
-            <button onClick={() => this.nextYear()}>{this.state.text}</button>   */}
-        <Button onClick={this.nextYear}>{this.state.text}</Button>
-
-        <NewHeader>
-          My name is position - {position}
-          {name} , surname - {surname}, age - {years},
-        </NewHeader>
-
-        <a href={link}>My Profile</a>
       </EmpItem>
     );
   }
