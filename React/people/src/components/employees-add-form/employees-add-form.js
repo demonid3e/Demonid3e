@@ -3,13 +3,18 @@ import { Component } from "react";
 import "./employee-add-form.scss";
 
 class EmployeesAddForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       name: "",
       salary: "",
     };
-  }
+// this will work the same as below without using contructor
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     name: "",
+  //     salary: "",
+  //   };
+  // }
   onValueChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -35,6 +40,15 @@ class EmployeesAddForm extends Component {
       this.setState({ name: "", salary: "" });
     }
   };
+
+  // normally you cant use method on classes but with "static" it can be done
+  static onLog = () => {
+    console.log("Hey");
+  }
+
+  // Class fields
+static logged = "on";
+
 
   render() {
     const { name, salary } = this.state;
@@ -67,5 +81,8 @@ class EmployeesAddForm extends Component {
     );
   }
 }
+
+EmployeesAddForm.onLog();
+console.log(EmployeesAddForm.logged);
 
 export default EmployeesAddForm;
