@@ -7,6 +7,9 @@ const config = require("config");
 const app = express();
 const mongoose = require("mongoose");
 
+// might need to add js to file if not working
+app.use("/api/auth", require("./routes/auth_routes") );
+
 // gets port value from config, if none uses 5000
 const PORT = config.get("port") || 5000;
 

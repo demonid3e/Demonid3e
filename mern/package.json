@@ -14,6 +14,7 @@
   "author": "Dema Brils <demonid3e@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "config": "^3.3.7",
     "express": "^4.17.2",
     "mongoose": "^6.2.1"
