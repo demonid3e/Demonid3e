@@ -1,16 +1,21 @@
+
+// npm run server
+
+
 const express = require("express");
 const config = require("config");
 const app = express();
 const mongoose = require("mongoose");
 
+// gets port value from config, if none uses 5000
 const PORT = config.get("port") || 5000;
 
-
+// connects to Database, after succsseful connection starts app
 async function start() {
     try {
        await mongoose.connect(config.get("mongoUri"), {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+        // useNewUrlParser: true,
+        // useUnifiedTopology: true,
         // useCreateIndex: true
 
        });
