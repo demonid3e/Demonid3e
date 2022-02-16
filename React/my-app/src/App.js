@@ -16,7 +16,7 @@ const EmpItem = styled.div`
     color: black;
     color: ${props => props.active ? "orange" : "black"};
   }
-  input {
+    input {
     display: block;
     margin-top: 10px;
   }
@@ -37,16 +37,19 @@ export const Button = styled.button`
   box-shadiw: 5px 5px 10px rgba(0, 0, 0, 0.2);
 `;
 
+
 const Header = () => {
   return <h2>Hello World!</h2>;
 };
 
+// creating a button inside which it has ternary operator 
 function Btn() {
   const text = "Enter";
   const logged = false;
   return <button>{logged ? text : "Log in"} </button>;
 }
 
+// creating custom inpud with customised holder and styles, that uses object to pass styles
 class Field extends React.Component {
   render() {
     const holder = "Enter here";
@@ -66,7 +69,6 @@ class WhoAmI extends Component {
       position: "",
     };
     // we binding  "own" "this", to EACH new class we make
-
     this.nextYear = this.nextYear.bind(this);
   }
 
