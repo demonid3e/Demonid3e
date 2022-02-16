@@ -1,6 +1,6 @@
 import React, { StrictMode } from "react";
 import logo from "./logo.svg";
-import { Component, Fragment } from "react";
+import { Component } from "react";
 import styled from "styled-components";
 import "./App.css";
 
