@@ -3,6 +3,8 @@ const {Router} = require("express");
 const router = Router();
 const User = require("../model/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config");
 // const { createIndexes } = require("../model/User");
 const {check, validationResult} = require("express-validator");
 
@@ -11,10 +13,21 @@ const {check, validationResult} = require("express-validator");
 router.post(
     "/register", [
     check("email", "Incorrect Email").isEmail(),
+    check("password", "Minimal Length of password is 6 symbols").isLength({min: 6})
     
     ],
     async (req, res) => {
     try {
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array(),
+                message: "Wrong credential durring registration "
+            })
+        }
+
+
         // getting email and password from request body
         const {email, password} = req.body;
         // email: email because key is the same you can use just email
@@ -43,11 +56,40 @@ router.post(
 });
 
 // /api/auth/login
-router.post("/login", async (req, res) => {
+router.post("/login",
+[
+    check("email", "Enter correct email").normalizeEmail().isEmail(),
+    check("password", "Enter password").exists()
+], 
+    async (req, res) => {
     try {
 
- 
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array(),
+                message: "Wrong credential durring login "
+            })
+        }
 
+        const {email, password} = req.body;
+        const user = await User.findOne({email});
+        if(!user) {
+            return res.status(400).json({message: "User is not found"
+            })
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch)   {
+            return res.status(400).json({message: "Wrong password, try again"})
+        }
+
+        const token = jwt.sign(
+            {  userId: user.id },
+            config.get("jwtSecret"),
+            { expiresIn: "1h"}
+        )
+            res.json({token, userId: user.id})
+        // default catch with error element 
     } catch (e) {
         res.status(500).json({message: "Something went wrong, please try again"});
     }
