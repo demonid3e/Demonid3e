@@ -33,15 +33,9 @@ function getFormData() {
   };
 }
 
-const formItems = [product, cookTemp, cookTempTwoHours, decision];
-// function clearFormData () {
 
-//   product.value = "",
-//   cookTemp.value = "",
-//   cookTempTwoHours.value = "",
-//   decision.value = "";
-  
-// }
+// clearing form entries
+const formItems = [product, cookTemp, cookTempTwoHours, decision];
 
 async function dataFormClear (){
   formItems.forEach( (item) =>{
@@ -71,7 +65,7 @@ async function postData(url = "") {
 
 // fetch that sends data to server
 function sendData() {
-  postData("http://localhost:3000/post").then((data) => {
+  postData("http://localhost:3000/CarverySides").then((data) => {
     console.log(data); // JSON data parsed by `data.json()` call
   });
 }

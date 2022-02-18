@@ -41,7 +41,7 @@ class CarveryMain {
 
 // function that gets items from json file and builds elements using class
 function carveryFetch() {
-  fetch("http://localhost:3000/carveryMains")
+  fetch("http://localhost:3000/carveryMainsMeat")
     .then((response) => response.json())
     .then((data) => {
       data.forEach(({ meat }) => {
@@ -69,7 +69,7 @@ async function postData(url = "") {
 
 // sending data
 function sendData() {
-  postData("http://localhost:3000/post").then((data) => {
+  postData("http://localhost:3000/CarveryMains").then((data) => {
     console.log(data); // JSON data parsed by `data.json()` call
   });
 }
