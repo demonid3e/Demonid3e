@@ -27,12 +27,22 @@
           <img src="" alt="picture like">
           <p class="cooling_paragraph">Food must be cooled to below 8c within 3 hours. <br> Ensure you are permitted to cool this item before cooling commences. For information on what can be cooled in your brand please see your brand cook book.</p>
         </div>
-        <div class="cooling_wrapper_items">
+        <form class="cooling_wrapper_items">
           <label for="cooling_product">Product:</label>
           <input type="text" name="cooling_product" id="cooling_product" placeholder="Required">
           <br>
           <label for="cooling_product_category">Product Category: <br> (Select the type of food being cooled)</label>
-          <input type="text" name="cooling_product_category" id="cooling_product_category" placeholder="Required">
+          <select type="text" name="cooling_product_category" id="cooling_product_category">
+            <option value="Blank" selected></option>
+            <option value="Poultry">Poultry (eg. Chicken,Turkey, Duck)</option>
+            <option value="RedMeat">Red Meat (eg. Beef, Lamb, Pork)</option>
+            <option value="ProcessedMeat">Processed Meat (eg. Sausage,Bacon)</option>
+            <option value="Fish">Fish (eg. Smoked Haddock)</option>
+            <option value="InHouse">In House Prepared Meals/Soups/Sauces</option>
+            <option value="FruitVeg">Fruit & Vegetables</option>
+            <option value="Desserts">Deserts (eg. Creme Brulee)</option>
+            <option value="Other">Other</option>
+          </select>
           <label for="cooling_start_time">Start Cool Time:</label>
           <input type="datetime-local" name="cooling_start_time" id="cooling_start_time">
           <br>
@@ -63,7 +73,7 @@
           <br>
           <label for="cooling_decision">Decision:</label>
           <span id="cooling_decision"></span>
-        </div>
+        </form>
     </div>
     <div class="btn_wrapper">
         <div class="buttons">

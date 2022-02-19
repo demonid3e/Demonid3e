@@ -199,7 +199,28 @@
       "id": 2
     }
   ],
-  "Cooling": [],
+  "Cooling": [
+    {
+      "coolingData": {
+        "test": "test"
+      },
+      "id": 1
+    },
+    {
+      "coolingData": {
+        "cooling_product": "",
+        "cooling_product_category": "Blank",
+        "cooling_start_time": "2022-02-19T15:06",
+        "cooling_start_temp": "",
+        "cooling_sold": "blank",
+        "cooling_transfer_fridge": "2022-02-19T15:06",
+        "cooling_transfer_temp": "",
+        "cooling_final_time": "",
+        "cooling_final_temp": ""
+      },
+      "id": 2
+    }
+  ],
   "Fridge_Freezer": [],
   "HotHolding": [],
   "Comments": []
