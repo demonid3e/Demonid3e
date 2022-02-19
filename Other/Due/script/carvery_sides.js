@@ -7,6 +7,7 @@ import setCurrentTime from "./modules/setTime.js";
 
 // variables
 const setDateOne = document.querySelector("#side_date_time"),
+  wrapper = document.querySelector(".top_mains"),
   setDateTwo = document.querySelector("#side_date_time_2"),
   sendBtn = document.querySelector(".carvery_mains_send "),
   selectBtn = document.querySelector(".carvery_mains_select "),
@@ -34,16 +35,6 @@ function getFormData() {
 }
 
 
-// clearing form entries
-const formItems = [product, cookTemp, cookTempTwoHours, decision];
-
-async function dataFormClear (){
-  formItems.forEach( (item) =>{
-    item.value = "";
-  })
-  
-}
-
 
 // event listeners:
 sendBtn.addEventListener("click", () => sendData());
@@ -58,8 +49,9 @@ async function postData(url = "") {
     },
     body: JSON.stringify({ carverySides }),
   });
-  dataFormClear();
-  // clearFormData();
+  wrapper.reset();
+  setCurrentTime(setDateOne);
+  setCurrentTime(setDateTwo);
   return response.json();
 }
 

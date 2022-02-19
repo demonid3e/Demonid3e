@@ -13,14 +13,13 @@ const selectCooking = document.querySelector("#carvery_cooking"),
     selectBtn = document.querySelector(".carvery_mains_select"),
     burgers = document.querySelectorAll(".burger");
 
-var dataFields = [];
 var CookingData =  {};
 
 
 
 // event listeners:
 sendBtn.addEventListener("click", () => sendData());
-selectBtn.addEventListener("click", () => checkCookingStatus());
+selectBtn.addEventListener("click", () => cookingWrapper.reset());
 // Session selector
 selectCooking.addEventListener("change", () => checkCookingStatus());
 
@@ -43,14 +42,12 @@ const  firstName = document.querySelector("#first_product"),
   burgerThreeLeft = document.querySelector("#burger_three_left"),
   burgerThreeRight = document.querySelector("#burger_three_right");
 
-  dataFields = [firstName, firstInputLeft, firstInputRight, secondInputLeft, secondInputRight, secondName, thirdInputLeft,thirdInputRight, thirdName, burgerOneLeft, burgerOneRight, burgerTwoLeft, burgerTwoRight, burgerThreeLeft, burgerThreeRight];
 
     if(selectCooking.value === "Blank"){
         cookingWrapper.classList.add("hide");
         cookingNonBreakfast.classList.add("hide");
         cookingSessionName.innerHTML = "";
         CookingData = {};
-        console.log(CookingData);
 
     }
     if(selectCooking.value === "Lunch" || selectCooking.value === "Evening"){
@@ -81,22 +78,15 @@ const  firstName = document.querySelector("#first_product"),
           }
         }
     }
-    console.log(CookingData);
-    return CookingData, dataFields;
+   return CookingData;
 }
 
-async function dataFormClear (){
-  dataFields.forEach( (item) =>{
-    item.value = "";
-  })
-  
-}
+
 
 
 // fetch that  prepeares  carverySides data for json file
 async function postData(url = "") {
   checkCookingStatus();
-  dataFormClear();
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -104,7 +94,8 @@ async function postData(url = "") {
     },
     body: JSON.stringify({ CookingData }),
   });
-  
+  cookingWrapper.reset();
+  selectCooking.value = "Blank";
   return response.json();
 }
 

@@ -7,6 +7,7 @@ import setCurrentTime from "./modules/setTime.js";
 // Variables for this page
 const wrapper = document.querySelector(".category_wrapper"),
   sendButton = document.querySelector(".carvery_mains_send"),
+  selectButton = document.querySelector(".carvery_mains_select"),
   dateSelector = document.querySelector("#date_time");
 let counter = 0;
 var sendCarvery = {};
@@ -64,6 +65,7 @@ async function postData(url = "") {
     },
     body: JSON.stringify({ sendCarvery }),
   });
+  wrapper.reset()
   return response.json();
 }
 
