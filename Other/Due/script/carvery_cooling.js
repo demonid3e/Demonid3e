@@ -23,7 +23,7 @@ selectButton.addEventListener("click", () => myFunction());
 
 
 
-function myFunction() {
+function getCoolingData() {
     var elements = coolingWrapper.elements;
     for(var i = 0 ; i < elements.length ; i++){
         var item = elements.item(i);
@@ -40,6 +40,7 @@ function myFunction() {
 
 // fetch that  prepeares  carverySides data for json file
 async function postData(url = "") {
+    getCoolingData();
     const response = await fetch(url, {
       method: "POST",
       headers: {

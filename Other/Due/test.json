@@ -219,6 +219,38 @@
         "cooling_final_temp": ""
       },
       "id": 2
+    },
+    {
+      "coolingData": {},
+      "id": 3
+    },
+    {
+      "coolingData": {
+        "cooling_product": "",
+        "cooling_product_category": "Blank",
+        "cooling_start_time": "2022-02-20T11:47",
+        "cooling_start_temp": "",
+        "cooling_sold": "blank",
+        "cooling_transfer_fridge": "2022-02-20T11:47",
+        "cooling_transfer_temp": "",
+        "cooling_final_time": "",
+        "cooling_final_temp": ""
+      },
+      "id": 4
+    },
+    {
+      "coolingData": {
+        "cooling_product": "dasda",
+        "cooling_product_category": "ProcessedMeat",
+        "cooling_start_time": "2022-02-27T11:48",
+        "cooling_start_temp": "3454",
+        "cooling_sold": "yes",
+        "cooling_transfer_fridge": "2022-02-20T14:48",
+        "cooling_transfer_temp": "6346456",
+        "cooling_final_time": "2022-02-20T16:48",
+        "cooling_final_temp": "6456"
+      },
+      "id": 5
     }
   ],
   "Fridge_Freezer": [
@@ -319,6 +351,19 @@
       "id": 2
     }
   ],
-  "HotHolding": [],
+  "HotHolding": [
+    {
+      "holdData": {
+        "EquipmentUsedToHold": "asdsa",
+        "EquipmentUsedToHoldInput": "dasd",
+        "TimeStartHold": "2022-02-20T12:11",
+        "CookedTemperature": "wqewe",
+        "TimeHold2Hours": "2022-02-20T12:11",
+        "CookedTemperature2Hours": "eqwe",
+        "cooked_discard_select": "sold"
+      },
+      "id": 1
+    }
+  ],
   "Comments": []
 }
