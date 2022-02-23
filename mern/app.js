@@ -1,5 +1,5 @@
 
-// npm run server
+// npm run dev
 
 
 const express = require("express");
