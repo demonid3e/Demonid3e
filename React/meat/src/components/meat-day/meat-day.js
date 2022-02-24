@@ -16,22 +16,15 @@ class MeatDay extends Component {
         }
         this.test = (e) => {
             if (this.state[e.target.name] !== e.target.checked) {
-                const newArr =  Object.entries(this.state);
-                newArr.filter(name => name.includes(e.target.name)).map(filteredName => console.log(filteredName[0]));
- 
-
-                
-        }
+                // const newArr =  Object.entries(this.state);
+                // newArr.filter(name => name.includes(e.target.name)).map(filteredName => console.log(filteredName[0]));
+                this.setState({[e.target.name]: !this.state[e.target.name]});                
+            }
    
         }
 
-        }
+    }
 
-
-
-    
-    
-  
     render () {
         return (
             <div className="meat-day">
