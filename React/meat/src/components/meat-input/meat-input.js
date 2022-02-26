@@ -1,5 +1,6 @@
 import { Component } from "react";
 import "./meat-input.css";
+import MeatInputItem from "./meat-input-item/meat-input-item";
 
 class MeatInput extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class MeatInput extends Component {
     }
     
     onUpdate = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
+        // state is current state, function is used so there is no problem assync changing of state
+        this.setState(state => ({ [e.target.name]: e.target.value }));
         console.log(this.state);
       };
     render () {
@@ -22,14 +24,10 @@ class MeatInput extends Component {
             <div className="meat-input">
                 <h1>Please Enter how many Joints you have in stock:</h1>
                 <form className="meat-input-form">
-                    <label htmlFor="input-beef"> Beef: </label>
-                    <input type="number" name="beef" id="input-beef"  onChange={this.onUpdate} className="input"/>
-                    <label htmlFor="input-gammon"> Gammon: </label>
-                    <input type="number" name="gammon" id="input-gammon"  onChange={this.onUpdate} className="input"   />
-                    <label htmlFor="input-turkey"> Turkey: </label>        
-                    <input type="number" name="turkey" id="input-turkey"  onChange={this.onUpdate} className="input"   />
-                    <label htmlFor="input-pork"> Pork: </label>
-                    <input type="number" name="pork" id="input-pork"  onChange={this.onUpdate} className="input"   />
+                    <MeatInputItem id="input-beef" name="beef" text="Beef: " />
+                    <MeatInputItem id="input-beef" name="beef" text="Beef: "/>
+                    <MeatInputItem id="input-beef" name="beef" text="Beef: "/>
+                    <MeatInputItem id="input-beef" name="beef" text="Beef: " />
                 </form>
             </div>
         )

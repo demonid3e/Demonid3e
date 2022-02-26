@@ -3,6 +3,7 @@ import MeatInput from "../components/meat-input/meat-input";
 import MeatDelivery from "../components/meat-delivery/meat-delivery";
 import MeatDay from "../components/meat-day/meat-day";
 import {Component} from "react";
+import "./App";
 
 
 
@@ -32,7 +33,8 @@ class App extends Component {
     return (
       <div className="App">
         <MeatPanel data={this.state.data}/>
-        <MeatInput onUpdate={this.onUpdate} data={this.state.data}/>
+        <MeatInput onUpdate={this.onUpdate} data={this.state.data}  />
+
         <MeatDelivery/>
         <MeatDay />
       </div>
