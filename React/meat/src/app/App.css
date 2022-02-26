@@ -1,0 +1,25 @@
+.meat-input {
+    padding: 25px;
+    background-color: #224b80;
+    border-radius: 4px;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
+    color: #fff;
+  }
+
+.meat-input-form {
+    display:table-row;
+  }
+
+/* removes arrows on inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.meat-input-item {
+    display:  table-row;
+}
