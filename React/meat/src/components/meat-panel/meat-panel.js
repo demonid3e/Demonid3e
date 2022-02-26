@@ -5,10 +5,13 @@ class  MeatPanel extends Component {
   constructor(props){
     super(props);
     this.state = {
-      Gammon: 0,
-      Beef: 0,
-      Turkey: 0,
-      Pork: 0
+      data: {
+        Gammon: 0,
+        Beef: 0,
+        Turkey: 0,
+        Pork: 0
+      } 
+
 
     }
   }

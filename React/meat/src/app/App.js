@@ -11,18 +11,28 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      beef: 0
+      beef: "1",
+      gammon: "",
+      turkey: "",
+      pork: "",
+ 
     }
     // onUpdate = (props) => {
     //   this.setState({ state: this.props.data });
     // }
 
+
+  }
+
+  onUpdate = () => {
+    this.setState({});
+    console.log("app" ,this.state);
   }
   render() {
     return (
       <div className="App">
-        <MeatPanel/>
-        <MeatInput onUpdate={this.onUpdate}/>
+        <MeatPanel data={this.state.data}/>
+        <MeatInput onUpdate={this.onUpdate} data={this.state.data}/>
         <MeatDelivery/>
         <MeatDay />
       </div>
