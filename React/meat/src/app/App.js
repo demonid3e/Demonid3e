@@ -13,9 +13,9 @@ class App extends Component {
     this.state = {
       beef: 0
     }
-    onUpdate = (beef) => {
-      this.setState({ beef });
-    };
+    // onUpdate = (props) => {
+    //   this.setState({ state: this.props.data });
+    // }
 
   }
   render() {

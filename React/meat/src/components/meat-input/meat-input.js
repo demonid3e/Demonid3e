@@ -12,27 +12,24 @@ class MeatInput extends Component {
         }
         
     }
+    
     onUpdate = (e) => {
-        const beef = e.target.value;
-        this.setState({ beef });
-        this.props.onUpdate(beef);
+        this.setState({ [e.target.name]: e.target.value });
         console.log(this.state);
       };
     render () {
-        const {beef, gammon, turkey, pork} = this.state;
         return (
             <div className="meat-input">
                 <h1>Please Enter how many Joints you have in stock:</h1>
                 <form className="meat-input-form">
                     <label htmlFor="input-beef"> Beef: </label>
-                    <input type="number" id="input-beef" value={beef} onChange={this.onUpdate} className="input"/>
+                    <input type="number" name="beef" id="input-beef"  onChange={this.onUpdate} className="input"/>
                     <label htmlFor="input-gammon"> Gammon: </label>
-                    <input type="number" id="input-gammon" value={gammon} onChange={this.onUpdate} className="input"   step="0.01"/>
+                    <input type="number" name="gammon" id="input-gammon"  onChange={this.onUpdate} className="input"   />
                     <label htmlFor="input-turkey"> Turkey: </label>        
-                    <input type="number" id="input-turkey" value={turkey} onChange={this.onUpdate} className="input"    step="0.01"/>
+                    <input type="number" name="turkey" id="input-turkey"  onChange={this.onUpdate} className="input"   />
                     <label htmlFor="input-pork"> Pork: </label>
-                    <input type="number" id="input-pork" value={pork} onChange={this.onUpdate} className="input"   step="0.01" />
-
+                    <input type="number" name="pork" id="input-pork"  onChange={this.onUpdate} className="input"   />
                 </form>
             </div>
         )
