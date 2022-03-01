@@ -12,11 +12,12 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      beef: "1",
-      gammon: "",
-      turkey: "",
-      pork: "",
- 
+
+        Beef: "5",
+        Gammon: "",
+        Turkey: "2",
+        Pork: ""
+      
     }
     // onUpdate = (props) => {
     //   this.setState({ state: this.props.data });
@@ -25,15 +26,15 @@ class App extends Component {
 
   }
 
-  onUpdate = () => {
-    this.setState({});
-    console.log("app" ,this.state);
+  onUpdate = (meat, value) => {
+    this.setState({ [meat]: [value] })
+    console.log("app" ,this.state, `this meat is: ${meat}`);
   }
   render() {
     return (
       <div className="App">
-        <MeatPanel data={this.state.data}/>
-        <MeatInput onUpdate={this.onUpdate} data={this.state.data}  />
+        <MeatPanel data={this.state}/>
+        <MeatInput onUpdate={this.onUpdate} data={this.state}  />
 
         <MeatDelivery/>
         <MeatDay />

@@ -9,7 +9,7 @@ class MeatInputItem extends Component {
         }       
     }
 
-    onUpdate = (e) => {
+    onChange = (e) => {
         // state is current state, function is used so there is no problem assync changing of state
         this.setState({ [e.target.name]: e.target.value });
         console.log(this.state);
@@ -18,7 +18,7 @@ class MeatInputItem extends Component {
         return (
             <div className="meat-input-item">
                 <label htmlFor={this.props.id}> {this.props.text} </label>
-                <input type="number" name={this.props.name} id={this.props.id}  onChange={this.onUpdate} className="input"/>
+                <input onChange={ e => {this.props.onUpdate(e.target.name, e.target.value); this.onChange(e)}} type="number" name={this.props.name} id={this.props.id}   className="input"/>
             </div>
         )
     }
