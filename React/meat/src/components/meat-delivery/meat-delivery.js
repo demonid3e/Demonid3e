@@ -1,5 +1,6 @@
 import "./meat-delivery.css";
 import { Component } from "react";
+import MeatDeliveryItem from "./meat-delivery-item/meat-delivery-item";
 
 
 class MeatDelivery extends Component {
@@ -18,15 +19,10 @@ class MeatDelivery extends Component {
             <div className="meat-delivery">
                 <h1>Please Enter how many Joints you are expecting on Delivery:</h1>
                 <form className="meat-delivery-form">
-                    <label htmlFor="input-beef"> Beef: </label>
-                    <input type="number" id="delivery-beef" className="input" placeholder={this.state.beef} step="0.01"/>
-                    <label htmlFor="input-gammon"> Gammon: </label>
-                    <input type="number" id="delivery-gammon" className="input" placeholder={this.state.gammon} step="0.01"/>
-                    <label htmlFor="input-turkey"> Turkey: </label>        
-                    <input type="number" id="delivery-turkey" className="input"  placeholder={this.state.turkey} step="0.01"/>
-                    <label htmlFor="input-pork"> Pork: </label>
-                    <input type="number" id="delivery-pork" className="input" placeholder={this.state.pork}  />
-
+                <MeatDeliveryItem onDelivery={this.props.onDelivery} id="delivery-beef" text="Beef: " name="Beef"/>
+                <MeatDeliveryItem onDelivery={this.props.onDelivery} id="delivery-gammon" text="Gammon: " name="Gammon"/>
+                <MeatDeliveryItem onDelivery={this.props.onDelivery} id="delivery-turkey" text="Turkey: " name="Turkey"/>
+                <MeatDeliveryItem onDelivery={this.props.onDelivery} id="delivery-pork" text="Pork: " name="Pork"/>
                 </form>
             </div>
         )
