@@ -10,20 +10,40 @@ class RandomChar extends Component {
         this.updateCHar();
     }
     state = {
-        char: {}
+        char: {
+        }
     }
         // using component creating a new class to test and passing responce into console
      marvelService = new MarvelService();
 
      onCharLoaded = (char) => {
-         this.setState({char})
+         if(char.description === ""){
+            this.setState({char});
+
+
+             const charCopy = {char};
+             charCopy.char.description = "this is test text";
+            this.setState({charCopy});
+            console.log(charCopy);
+
+         } else {
+            this.setState({char});
+            const anotherCopy = {char};
+            console.log(anotherCopy);
+            const descrCopy = anotherCopy.char.description;
+            console.log(descrCopy.length);
+
+
+         }
      }
+
 
     updateCHar = () => {
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
         this.marvelService
         .getCharacter(id)
         .then(this.onCharLoaded)
+        
     }
 
 
