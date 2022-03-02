@@ -17,10 +17,13 @@ class RandomChar extends Component {
      marvelService = new MarvelService();
 
      onCharLoaded = (char) => {
+        this.setState({char});
+
          if(char.description === ""){
             this.setState({char});
 
-
+            ////// need to rework this bit 
+            //maybe use a function that will be called after fetch
              const charCopy = {char};
              charCopy.char.description = "this is test text";
             this.setState({charCopy});
@@ -29,9 +32,8 @@ class RandomChar extends Component {
          } else {
             this.setState({char});
             const anotherCopy = {char};
-            console.log(anotherCopy);
-            const descrCopy = anotherCopy.char.description;
-            console.log(descrCopy.length);
+            const descrCopy = anotherCopy.char.description.slice(0, 100) + "...";
+            this.setState({descrCopy});
 
 
          }
