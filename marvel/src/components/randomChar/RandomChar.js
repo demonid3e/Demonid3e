@@ -7,7 +7,7 @@ import MarvelService from "../../services/MarvelService.js"
 class RandomChar extends Component {
     constructor (props) {
         super(props);
-        this.updateCHar();
+        this.updateChar();
     }
     state = {
         char: {
@@ -18,36 +18,16 @@ class RandomChar extends Component {
 
      onCharLoaded = (char) => {
         this.setState({char});
-
-         if(char.description === ""){
-            this.setState({char});
-
-            ////// need to rework this bit 
-            //maybe use a function that will be called after fetch
-             const charCopy = {char};
-             charCopy.char.description = "this is test text";
-            this.setState({charCopy});
-            console.log(charCopy);
-
-         } else {
-            this.setState({char});
-            const anotherCopy = {char};
-            const descrCopy = anotherCopy.char.description.slice(0, 100) + "...";
-            this.setState({descrCopy});
-
-
-         }
-     }
-
-
-    updateCHar = () => {
+  
+    } 
+ 
+    updateChar = () => {
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
         this.marvelService
         .getCharacter(id)
         .then(this.onCharLoaded)
-        
+                
     }
-
 
     render () {
         const {char: {name, description, thumbnail, homepage, wiki}} = this.state;
