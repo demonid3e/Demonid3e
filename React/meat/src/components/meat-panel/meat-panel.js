@@ -2,6 +2,9 @@ import { Component } from "react";
 import "./meat-panel.css";
 
 class  MeatPanel extends Component {
+
+
+  // wrote component that shows when there is no days or less than 2 days selected
   
   render() {
       let {Beef, Gammon, Turkey, Pork,} = this.props.data;
