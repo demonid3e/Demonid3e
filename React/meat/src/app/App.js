@@ -16,7 +16,16 @@ class App extends Component {
         Beef: "",
         Gammon: "",
         Turkey: "",
-        Pork: ""
+        Pork: "",
+
+        delivery: {
+            
+          Beef: "",
+          Gammon: "",
+          Turkey: "",
+          Pork: ""
+          
+        }
       
     }
     // onUpdate = (props) => {
@@ -27,12 +36,18 @@ class App extends Component {
   }
 
   onDelivery = (meat,value) => {
-    console.log(`this ${meat} has this ${value}`);
+    const delivery = {...this.state.delivery};
+    delivery[meat] = parseInt(value);
+    this.setState({delivery});
+    console.log(this.state);
+
   }
 
+  
 
   onUpdate = (meat, value) => {
-    this.setState({ [meat]: [value] })
+    this.setState({ [meat]: parseInt(value) })
+    console.log(this.state, "hey its mee");
   }
   render() {
     return (
