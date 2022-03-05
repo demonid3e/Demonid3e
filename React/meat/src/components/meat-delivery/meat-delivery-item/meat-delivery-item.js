@@ -10,7 +10,6 @@ class MeatDeliveryItem extends Component {
     }
 
     render (){
-        // const {Beef, Gammon, Turkey, Pork} = this.props.data;
 
         return (
             

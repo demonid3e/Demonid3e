@@ -26,18 +26,15 @@ class App extends Component {
           Pork: ""
           
         },
-        days: {
-
-          Sunday: false,
-          Monday: false
-
-        },
-        Sunday: true,
-        Monday: false
+        Sunday: false,
+        Monday: false,
+        Tuesday: false,
+        Wednesday: false,
+        Thursday: false,
+        Friday: false,
+        Saturday: false
     }
-    // onUpdate = (props) => {
-    //   this.setState({ state: this.props.data });
-    // }
+
 
 
   }
@@ -52,8 +49,6 @@ class App extends Component {
 
   onDays = (e) => {
     if (this.state[e.target.name] !== e.target.checked) {
-      // const newArr =  Object.entries(this.state);
-      // newArr.filter(name => name.includes(e.target.name)).map(filteredName => console.log(filteredName[0]));
       this.setState({[e.target.name]: !this.state[e.target.name]}); 
       console.log(this.state);
   }

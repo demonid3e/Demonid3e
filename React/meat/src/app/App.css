@@ -9,6 +9,14 @@
 .meat-input-form {
     display:table-row;
   }
+.meat-input-item{
+    font-size: 40px;
+    display: table-cell;
+    height: 100px;
+    list-style-type: none;
+    padding: 10px;
+    vertical-align: middle;
+  }
 
 /* removes arrows on inputs */
 input[type="number"]::-webkit-outer-spin-button,
@@ -20,6 +28,6 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
-.meat-input-item {
-    display:  table-row;
+input {
+  width: 50px;
 }
