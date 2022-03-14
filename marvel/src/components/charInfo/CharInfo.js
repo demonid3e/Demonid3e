@@ -66,7 +66,7 @@ class CharInfo extends Component {
         const errorMessage = error ? <ErrorMessage/> : null;
         const spinner = loading ? <Spinner/> : null;
         const content = !(loading || error || !char) ? <View char={char}/> : null;
-
+        
         return (
             <div className="char__info">
                 {skeleton}
@@ -82,10 +82,11 @@ class CharInfo extends Component {
 
 const View = ({char}) => {
     const {name, description, thumbnail, homepage, wiki, comics} = char;
+    const isEmpty = ("http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg" === thumbnail);
     return(
         <>
-            <div className="char__basics">
-            <img src={thumbnail} alt={name}/>
+            <div className="char__basics" >
+            <img src={thumbnail} alt={name} style={isEmpty ? {objectFit: "contain"} : {objectFit: "cover"} }/>
             <div>
                 <div className="char__info-name">{name}</div>
                 <div className="char__btns">
@@ -101,16 +102,20 @@ const View = ({char}) => {
             <div className="char__descr">
                 {description}
             </div>
-            <div className="char__comics">Comics:</div>
+            <div className="char__comics" style={comics.length <= 0 ? {"height": 400} : {"height": "auto"}}>Comics:</div>
             <ul className="char__comics-list">
                 {
+                
                     comics.map((item, i) => {
+                        console.log(i);
+
                         return(
                             <li key={i} className="char__comics-item">
                                 {item.name}
                             </li>
+                            
                         )
-                    })
+                    }).slice(0, 10)
                 }
 
             </ul>
