@@ -102,8 +102,13 @@ const View = ({char}) => {
             <div className="char__descr">
                 {description}
             </div>
-            <div className="char__comics" style={comics.length <= 0 ? {"height": 400} : {"height": "auto"}}>Comics:</div>
-            <ul className="char__comics-list">
+            <div className="char__comics" >Comics:</div>
+
+            <ul className="char__comics-list" style={comics.length <= 0 ? {"height": 400} : {"height": "auto"}}>
+            {
+                    comics.length > 0 ? null :  <li>There is no Comics for this character {name} </li>
+                }
+
                 {
                 
                     comics.map((item, i) => {
