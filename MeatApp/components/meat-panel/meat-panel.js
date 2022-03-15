@@ -1,4 +1,4 @@
-import {View, Image, Text} from "react-native";
+import {View, Image, Text, StyleSheet} from "react-native";
 import {Component} from "react";
 
 class MeatPanel extends Component {
@@ -12,7 +12,7 @@ class MeatPanel extends Component {
 
   render () {
     return (
-      <View>
+      <View style={styles}>
         <Text>Beef: {this.state.Beef}</Text>
         <Text>Gammon: {this.state.Gammon}</Text>
         <Text>Turkey: {this.state.Turkey}</Text>
@@ -21,5 +21,9 @@ class MeatPanel extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  margin: 10
+})
 
 export default MeatPanel;

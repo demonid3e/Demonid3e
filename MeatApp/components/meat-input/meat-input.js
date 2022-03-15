@@ -1,6 +1,6 @@
 import { Component } from "react";
 import MeatInputItem from "../meat-input-item/meat-input-item";
-import {View, Text, TextInput} from "react-native";
+import {View, Text, TextInput, StyleSheet} from "react-native";
 
 class MeatInput extends Component {
     constructor(props) {
@@ -14,11 +14,21 @@ class MeatInput extends Component {
     render () {
         return (
             <View>
-                <Text>I`m another test text</Text>
+                <Text style={styles.text}>I`m another test text</Text>
                 <MeatInputItem label="Beef"/>
+                <MeatInputItem label="Gammon"/>
+                <MeatInputItem label="Turkey"/>
+                <MeatInputItem label="Pork"/>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    text: {
+        margin: 10,
+        backgroundColor: "red"
+    }
+})
 
 export default MeatInput;
