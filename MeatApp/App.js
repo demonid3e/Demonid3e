@@ -1,12 +1,14 @@
+
+import MeatPanel from "./components/meat-panel/meat-panel"
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import MeatInput from "./components/meat-input/meat-input";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>This is test name hahahah</Text>
-      <Text>Another text</Text>
-      <StatusBar style="auto" />
+      <MeatPanel/>
+      <MeatInput/>
     </View>
   );
 }

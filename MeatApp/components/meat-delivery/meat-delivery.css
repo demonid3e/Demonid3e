@@ -1,0 +1,19 @@
+.meat-delivery {
+    padding: 25px;
+    background-color: #124281;
+    border-radius: 4px;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
+    color: #fff;
+  }
+
+  .meat-delivery-form {
+    display:table-row;
+  }
+  .meat-delivery-items{
+    font-size: 20px;
+    display: table-cell;
+    height: 50px;
+    list-style-type: none;
+    padding: 10px;
+    vertical-align: middle;
+  }

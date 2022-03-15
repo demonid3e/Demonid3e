@@ -1,0 +1,20 @@
+.meat-panel {
+  padding: 25px;
+  background-color: #3d5a80;
+  border-radius: 4px;
+  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
+  color: #fff;
+}
+
+ ul {
+  display:table-row;
+}
+
+li{
+  font-size: 40px;
+  display: table-cell;
+  height: 50px;
+  list-style-type: none;
+  padding: 10px;
+  vertical-align: middle;
+}
