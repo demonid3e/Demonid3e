@@ -17,7 +17,7 @@ class MeatInputItem extends Component {
 
     onChange = (e) => {
         // state is current state, function is used so there is no problem assync changing of state
-         this.setState({ Beef: e.target.value });
+         this.setState({ [e.target.name]: e.target.value });
         console.log(this.state);
       };
 
