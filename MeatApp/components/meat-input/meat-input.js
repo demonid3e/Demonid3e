@@ -40,6 +40,9 @@ class MeatInput extends Component {
             <View >
                 <Text>This is Meat in Stock</Text>
                 <MeatInputItem onCheck={this.props.onCheck} name="Beef" id="Beef_Input" />
+                <MeatInputItem onCheck={this.props.onCheck} name="Turkey" id="Turkey_Input" />
+                <MeatInputItem onCheck={this.props.onCheck} name="Gammon" id="Gammon_Input" />
+                <MeatInputItem onCheck={this.props.onCheck} name="Pork" id="Pork_Input" />
 {/* 
                 <TextInput 
                 style={styles.container} 

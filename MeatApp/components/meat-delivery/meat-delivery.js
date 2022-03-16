@@ -1,5 +1,6 @@
 import { Component } from "react";
 import {View, TextInput, StyleSheet, Text} from "react-native"
+import MeatDeliveryItem from "../meat-delivery-item/meat-delivery-item";
 
 
 class MeatDelivery extends Component {
@@ -11,10 +12,7 @@ class MeatDelivery extends Component {
         return (
             <>
             <Text>This is Delivery </Text>
-                <TextInput style={styles.container} placeholder=" Beef "></TextInput>
-                <TextInput style={styles.container} placeholder=" Gammon "></TextInput>
-                <TextInput style={styles.container} placeholder=" Turkey "></TextInput>
-                <TextInput style={styles.container} placeholder=" Pork "></TextInput>
+                <MeatDeliveryItem name="Beef" id="Delivery_beef" onDelivery={this.props.onDelivery}/>
             </>
         )
     }
