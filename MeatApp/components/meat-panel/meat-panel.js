@@ -6,12 +6,13 @@ class MeatPanel extends Component {
    render () {
 
     const {Beef, Gammon, Turkey, Pork} = this.props.props;
+    
     return (
       <View style={styles}>
-        <Text>Beef: {Beef}</Text>
-        <Text>Gammon: {Gammon}</Text>
-        <Text>Turkey: {Turkey}</Text>
-        <Text>Pork: {Pork}</Text>
+        <Text>Beef: {Beef + this.props.delivery.Beef}</Text>
+        <Text>Gammon: {Gammon + this.props.delivery.Gammon}</Text>
+        <Text>Turkey: {Turkey + this.props.delivery.Turkey}</Text>
+        <Text>Pork: {Pork + this.props.delivery.Pork}</Text>
       </View>
     );
   }

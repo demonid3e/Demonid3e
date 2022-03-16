@@ -12,7 +12,11 @@ class MeatDelivery extends Component {
         return (
             <>
             <Text>This is Delivery </Text>
-                <MeatDeliveryItem name="Beef" id="Delivery_beef" onDelivery={this.props.onDelivery}/>
+                <MeatDeliveryItem style={styles.container} name="Beef" id="Delivery_beef" onDelivery={this.props.onDelivery}/>
+                <MeatDeliveryItem name="Gammon" id="Delivery_gammon" onDelivery={this.props.onDelivery}/>
+                <MeatDeliveryItem name="Turkey" id="Delivery_turkey" onDelivery={this.props.onDelivery}/>
+                <MeatDeliveryItem name="Pork" id="Delivery_pork" onDelivery={this.props.onDelivery}/>
+
             </>
         )
     }

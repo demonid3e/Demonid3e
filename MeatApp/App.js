@@ -18,17 +18,17 @@ class App extends Component {
         Pork:0,
 
         delivery: {
-          Beef: "",
-          Gammon: "",
-          Turkey: "",
-          Pork: ""
+          Beef: 0,
+          Gammon: 0,
+          Turkey: 0,
+          Pork:0,
         }
       }
     }
 
     onCheck = (name) => (value) => {
       console.log(name,value);
-      this.setState({[name]: value});
+      this.setState({[name]: parseInt(value)});
       console.log(this.state);
     };
 
@@ -44,7 +44,7 @@ class App extends Component {
       return (
         <View style={styles.container}>
           <Image style={styles.image} source={Toby}/>
-          <MeatPanel props={this.state}/>
+          <MeatPanel props={this.state} delivery={this.state.delivery}/>
           <MeatInput onCheck={this.onCheck}/>
           <MeatDelivery onDelivery={this.onDelivery}/>
         </View>

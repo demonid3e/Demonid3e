@@ -13,10 +13,28 @@ class MeatDeliveryItem extends Component{
     render (){
         return(
             <>
-                <TextInput onChangeText={this.props.onDelivery(this.props.name)} name={this.props.name} placeholder= {this.props.name} id={this.props.id} ></TextInput>
+                <TextInput style={styles.container} onChangeText={this.props.onDelivery(this.props.name)} name={this.props.name} placeholder= {this.props.name} id={this.props.id} ></TextInput>
             </>
         )
     }
 }
+
+
+
+const styles = StyleSheet.create({
+    text: {
+        margin: 10,
+        backgroundColor: "red"
+    },
+    container: {
+        borderColor: "black",
+        color: "blue",
+        borderWidth: 1,
+        width: 150,
+        margin: 10,
+        borderRadius: 5
+    }
+})
+
 
 export default MeatDeliveryItem;
