@@ -1,8 +1,8 @@
 import { Component } from "react";
 import {View, Text, TextInput, StyleSheet} from "react-native";
 import React from "react";
+import MeatInputItem from "../meat-input-item/meat-input-item";
 
-const Context = React.createContext();
 
 class MeatInput extends Component {
     constructor(props) {
@@ -14,27 +14,24 @@ class MeatInput extends Component {
             Pork: ""
 
         } 
-        
     }
+
+    
     
     onChangeBeef = (e) => {
         this.setState({Beef: e.replace(/[^0-9]/g, '')})
-        console.log(this.state, "meat input");
     }
 
     onChangeGammon = (e) => {
         this.setState({Gammon: e.replace(/[^0-9]/g, '')})
-        console.log(this.state, "meat input");
     } 
     
     onChangeTurkey = (e) => {
         this.setState({Turkey: e.replace(/[^0-9]/g, '')})
-        console.log(this.state, "meat input");
     } 
     
     onChangePork = (e) => {
         this.setState({Pork: e.replace(/[^0-9]/g, '')})
-        console.log(this.state, "meat input");
 
     }
 
@@ -42,10 +39,13 @@ class MeatInput extends Component {
         return (
             <View >
                 <Text>This is Meat in Stock</Text>
+                <MeatInputItem onCheck={this.props.onCheck} name="Beef" id="Beef_Input" />
+{/* 
                 <TextInput 
                 style={styles.container} 
                 placeholder=" Beef " 
                 name="Beef" 
+                onChange={e => this.props.onCheck(e)}
                 onPropsChange ={e => this.onChangeBeef(e)}
                 onChangeText={value => {this.onChangeBeef(value); this.props.onPropsChangeBeef(value)}}
                 value={this.state.Beef}
@@ -73,7 +73,7 @@ class MeatInput extends Component {
                 name="Pork" 
                 onChangeText={value => {this.onChangePork(value) ; this.props.onPropsChangePork(value)}}
                 value={this.state.Pork}
-                maxLength={2}></TextInput>
+                maxLength={2}></TextInput> */}
             </View>
         )
     }

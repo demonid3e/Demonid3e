@@ -17,25 +17,24 @@ class App extends Component {
       }
     }
 
+    onCheck = (name) => (value) => {
+      console.log(name,value);
+    };
+
     onPropsChangeBeef = (e) => {
       this.setState({Beef: e})
-      console.log(e)
-      console.log(this.state);
+ 
     }
     onPropsChangeGammon = (e) => {
       this.setState({Gammon: e})
-      console.log(e)
-      console.log(this.state);
+
     }
     onPropsChangeTurkey = (e) => {
       this.setState({Turkey: e})
-      console.log(e)
-      console.log(this.state);
+
     }
     onPropsChangePork = (e) => {
       this.setState({Pork: e})
-      console.log(e)
-      console.log(this.state);
     }
 
    
@@ -44,7 +43,7 @@ class App extends Component {
       return (
         <View style={styles.container}>
           <MeatPanel props={this.state}/>
-          <MeatInput onPropsChangeBeef={this.onPropsChangeBeef} onPropsChangeGammon={this.onPropsChangeGammon} onPropsChangeTurkey={this.onPropsChangeTurkey} onPropsChangePork={this.onPropsChangePork}/>
+          <MeatInput onCheck={this.onCheck}  onPropsChangeBeef={this.onPropsChangeBeef} onPropsChangeGammon={this.onPropsChangeGammon} onPropsChangeTurkey={this.onPropsChangeTurkey} onPropsChangePork={this.onPropsChangePork}/>
           <MeatDelivery/>
         </View>
       );
