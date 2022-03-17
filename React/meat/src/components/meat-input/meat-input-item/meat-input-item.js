@@ -18,7 +18,14 @@ class MeatInputItem extends Component {
         return (
             <div className="meat-input-item">
                 <label htmlFor={this.props.id}> {this.props.text} </label>
-                <input onWheel={(e) => e.target.blur()} onChange={ e => {this.props.onUpdate(e.target.name, e.target.value); this.onChange(e)}} type="number" name={this.props.name} id={this.props.id} placeholder="0"  className="input"/>
+                <input 
+                onWheel={(e) => e.target.blur()} 
+                onChange={ e => {this.props.onUpdate(e.target.name, e.target.value); this.onChange(e)}} 
+                type="number" 
+                name={this.props.name} 
+                id={this.props.id} 
+                placeholder="0"  
+                className="input"/>
             </div>
         )
     }

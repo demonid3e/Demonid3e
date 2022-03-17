@@ -5,8 +5,57 @@ class MeatPanel extends Component {
 
    render () {
 
-    const {Beef, Gammon, Turkey, Pork} = this.props.props;
+    let {Beef, Gammon, Turkey, Pork} = this.props.props;
+
+  
+
+      if (this.props.props.Sunday){
+        Pork -= 6;
+        Gammon -= 12;
+        Beef -= 13;
+        Turkey -= 14;
+     }
+     if(this.props.props.Monday){
+       Pork -= 3;
+       Beef -= 6;
+       Gammon -= 6;
+       Turkey -= 7;
+     }
+     if(this.props.props.Tuesday){
+       Pork -= 3;
+       Beef -= 6;
+       Gammon -= 6;
+       Turkey -= 7;
+     }
+     if(this.props.props.Wednesday){
+       Pork -= 3;
+       Beef -= 6;
+       Gammon -= 6;
+       Turkey -= 7;
+     }
+     if(this.props.props.Thursday){
+       Pork -= 3;
+       Beef -= 6;
+       Gammon -= 6;
+       Turkey -= 7;
+     }
+     if(this.props.props.Friday){
+       Pork -= 3;
+       Beef -= 6;
+       Gammon -= 6;
+       Turkey -= 7;
+     }
+     if(this.props.props.Saturday){
+       Pork -= 3;
+       Beef -= 6;
+       Gammon -= 6;
+       Turkey -= 7;
+     }
     
+
+
+
+
     return (
       <View style={styles}>
         <Text>Beef: {Beef + this.props.delivery.Beef}</Text>

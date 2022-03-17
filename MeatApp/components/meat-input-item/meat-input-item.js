@@ -19,7 +19,10 @@ class MeatInputItem extends Component{
             id={this.props.id} 
             name={this.props.name} 
             onChangeText={this.props.onCheck(this.props.name)}  
-            placeholder= {this.props.name}>
+            placeholder= {this.props.name}
+            keyboardType='numeric'
+            type="number">
+                
             </TextInput>
             
             </>
@@ -38,7 +41,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         width: 150,
         margin: 10,
-        borderRadius: 5
+        borderRadius: 5,
+        textAlign: 'center'
     }
 })
 
