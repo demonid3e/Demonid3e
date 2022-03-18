@@ -1,5 +1,5 @@
-import "./meat-day";
 import { Component } from "react";
+import {TextInput,Switch, Text, StyleSheet,View, ScrollView} from "react-native";
 
 class MeatDay extends Component {
     constructor(props){
@@ -11,44 +11,118 @@ class MeatDay extends Component {
     }
 
 
+
     render () {
+        let {Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday} = this.props.props;
+
         return (
-            <div className="meat-day">
-                <form className="day-selector">
-                    <div className="form-check form-switch day-item">
-                        <input style={{width: "50px"}} className="form-check-input" id="1" type="checkbox" name="Sunday" onChange={e => {this.props.onDays(e)}} checked={this.props.data.Sunday}/>
-                        <label className="form-check-label"  >Sunday</label>
-                    </div>
-                    <div style={{width: "50px"}} className="form-check form-switch day-item">                    
-                        <input className="form-check-input" id="2" type="checkbox" name="Monday" onChange={e => {this.props.onDays(e)}} checked={this.props.data.Monday} /> 
-                        <label className="form-check-label" >Monday</label>
-                    </div>
-                    <div className="form-check form-switch  day-item">
-                        <input className="form-check-input" id="3" type="checkbox" name="Tuesday" onChange={e => {this.props.onDays(e)}}  checked={this.props.data.Tuesday}/>
-                        <label className="form-check-label" >Tuesday</label>
-                    </div>
-                    <div className="form-check form-switch day-item">
-                        <input className="form-check-input" id="4" type="checkbox" name="Wednesday" onChange={e => {this.props.onDays(e)}} checked={this.props.data.Wednesday}/>
-                        <label className="form-check-label" >Wednesday</label>
-                    </div>
-                    <div className="form-check form-switch day-item">
-                        <input className="form-check-input" id="5" type="checkbox" name="Thursday" onChange={e => {this.props.onDays(e)}} checked={this.props.data.Thursday} />
-                        <label className="form-check-label" >Thursday</label>
-                    </div>
-                    <div className="form-check form-switch day-item">
-                        <input className="form-check-input" id="6" type="checkbox" name="Friday" onChange={e => {this.props.onDays(e)}} checked={this.props.data.Friday} />
-                        <label className="form-check-label" >Friday</label>
-                    </div>
-                    <div className="form-check form-switch day-item" style={{width: "50px"}}>
-                        <input className="form-check-input" id="7" type="checkbox" name="Saturday" onChange={e => {this.props.onDays(e)}} checked={this.props.data.Saturday} />
-                        <label className="form-check-label" >Saturday</label>
-                    </div>
-                </form>
-            </div>
+            <>
+            <View style={style.rowContainer}>
+                <Text style={style.text}>Sunday</Text>
+                <Switch 
+                    name="Sunday"
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                    thumbColor={this.props.props.Sunday ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={this.props.onSwitch("Sunday")}
+                    value={Sunday}
+                />
+            </View>
+
+            <View style={style.rowContainer}>
+                <Text style={style.text}>Monday</Text>
+                <Switch 
+                    name="Monday"
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                    thumbColor={this.props.props.Monday ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={this.props.onSwitch("Monday")}
+                    value={Monday}
+                />
+            </View>
+
+            <View style={style.rowContainer}>
+                <Text style={style.text}>Tuesday</Text>
+                <Switch 
+                    name="Tuesday"
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                    thumbColor={this.props.props.Tuesday ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={this.props.onSwitch("Tuesday")}
+                    value={Tuesday}
+                />
+            </View>
+
+            <View style={style.rowContainer}>
+                <Text style={style.text}>Wednesday</Text>
+                <Switch 
+                    name="Wednesday"
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                    thumbColor={this.props.props.Wednesday ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={this.props.onSwitch("Wednesday")}
+                    value={Wednesday}
+                />
+            </View>
+
+            <View style={style.rowContainer}>
+                <Text style={style.text}>Thursday</Text>
+                <Switch 
+                    name="Thursday"
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                    thumbColor={this.props.props.Thursday ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={this.props.onSwitch("Thursday")}
+                    value={Thursday}
+                />
+            </View>
+
+            <View style={style.rowContainer}>
+                <Text style={style.text}>Friday</Text>
+                <Switch 
+                    name="Friday"
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                    thumbColor={this.props.props.Friday ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={this.props.onSwitch("Friday")}
+                    value={Friday}
+                />
+            </View>
+
+            <View style={style.rowContainer}>
+                <Text style={style.text}>Saturday</Text>
+                <Switch 
+                    name="Saturday"
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                    thumbColor={this.props.props.Saturday ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={this.props.onSwitch("Saturday")}
+                    value={Saturday}
+                />
+            </View>
+
+            
+            </>
             )
     }
     
 }
+
+const style = StyleSheet.create({
+    container: {
+      padding: 8,
+      backgroundColor: "#ffffff",
+    },
+    rowContainer: {
+      flexDirection: 'row'
+    },
+    text: {
+        fontSize: 20,
+        margin: 10,
+        
+    }
+  }); 
+
 
 
 export default MeatDay;
