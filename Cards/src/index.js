@@ -3,6 +3,8 @@ import { Button} from "react-native-paper";
 import TextItem from '../components/text-item/text-item';
 import {Component} from "react";
 import Cards from '../components/cards/cards';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 class App extends Component {
   constructor(props){
@@ -10,12 +12,46 @@ class App extends Component {
     this.state = {
       mainMenu: true
     }
+    
+
+      const storeData = async (value) => {
+        try {
+          await AsyncStorage.setItem('Demon', value)
+        } catch (e) {
+          // saving error
+        }
+      }
+
+    
+
+    
+      const getData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('Demon')
+          if(value !== null) {
+            console.log(value, "I`m get value");
+          }
+        } catch(e) {
+          // error reading value
+        }
+      }
+    
+
   }
+
+  
+
+
 
 
   render () {
     return (
       <View style={styles.container}>
+        <Button onPress={e => {this.storeData("TEST:")}}>I`m test button</Button>
+
+        <Button onPress={e => {this.getData}}>I`m Read Button</Button>
+
+        
         {this.state.mainMenu ? <TextItem/> : <Cards/> }
       </View>
     );
