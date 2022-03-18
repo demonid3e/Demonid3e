@@ -11,9 +11,7 @@ class TextItem extends Component {
         }
     }
 
-    onClickEnglish = () => {
 
-    }
 
     render(){
 

@@ -15,8 +15,7 @@ class CardItem extends Component {
         return(
             <View >
                 <Title>{this.state.title}</Title>
-                <Text>{this.state.text}</Text>
-                
+                <Text>{this.state.text}</Text>                
             </View>
             
         )
