@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { AppRegistry } from 'react-native';
 import {DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import { name as appName } from './app.json';
 import App from './src/index';
+
+
+const appName = "Cards";
 
 
 const theme = {
@@ -14,6 +16,7 @@ const theme = {
   },
 };
 
+console.log(appName, "app name");
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
@@ -22,4 +25,4 @@ export default function Main() {
   );
 }
 
-AppRegistry.registerComponent("Cards", () => Main);
+AppRegistry.registerComponent(appName, () => Main);

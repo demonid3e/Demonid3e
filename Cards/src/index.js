@@ -36,7 +36,10 @@ export default function App(){
 
   const remove = async () => {
     try {
+      console.log(name);
       await AsyncStorage.removeItem("Demon");
+      console.log(name);
+
     } catch (err) {
       alert(err);
     } finally {
