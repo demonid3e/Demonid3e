@@ -22,4 +22,4 @@ export default function Main() {
   );
 }
 
-AppRegistry.registerComponent(appName, () => Main);
+AppRegistry.registerComponent("Cards", () => Main);
