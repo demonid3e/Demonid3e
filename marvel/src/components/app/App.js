@@ -4,7 +4,7 @@ import CharList from "../charList/CharList";
 import CharInfo from "../charInfo/CharInfo";
 import { Component } from "react";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
-
+import PropTypes from "prop-types";
 import decoration from '../../resources/img/vision.png';
 
 
@@ -41,4 +41,10 @@ render () {
         )
     }
 }
+
+
+App.propTypes = {
+    onCharSelected: PropTypes.bool
+}
+
 export default App;
