@@ -127,11 +127,24 @@ const Wrapper = styled.div`
   margin: 80px auto 0 auto;
 `;
 
+const DynamicGreating = (props)  => {
+
+  return (
+    <div className={"mb-3 p-3 border border-" + props.color}>
+      {props.children}
+    </div>)
+}
+
+
 function App() {
   return (
     <Wrapper>
       <div className="App">
         <img src={logo} className="App-logo" alt="logo" />
+        <DynamicGreating color={"primary"}>
+          <h2>dasdasdasd</h2>
+          <h2>gdgfdfgdfgdfgdfgfgd</h2>
+        </DynamicGreating>
         <WhoAmI name="John" surname="Smyth" link="facebook.com" />
         <WhoAmI name="Demon" surname="Demon" link="www.bbc.co.uk" />
         <StrictMode>
