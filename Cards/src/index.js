@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,ScrollView } from 'react-native';
 import { Button, TextInput} from "react-native-paper";
 import TextItem from '../components/text-item/text-item';
 import {Component} from "react";
 import Cards from '../components/cards/cards';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
+import Menu from '../components/menu/menu';
 
 
 export default function App(){
@@ -52,18 +53,17 @@ export default function App(){
   }, [])
 
   return (
-    <View style={styles.container}>
-      <Text>{name}</Text>
-      <Button onPress={() => remove()}>I`m remove button</Button>
-      <TextInput onChangeText={text => setName(text)}/>
-      <Button onPress={() => save()} >I`m Read Button save</Button>
+    <ScrollView>
+      <View style={styles.container}>
+        <Text>{name}</Text>
+        <Button onPress={() => remove()}>I`m remove button</Button>
+        <TextInput onChangeText={text => setName(text)}/>
+        <Button onPress={() => save()} >I`m Read Button save</Button>
 
+        <Menu/>    
 
-
-
-      
-
-    </View>
+      </View>
+    </ScrollView>
   );
 
 
@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
 
