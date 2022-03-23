@@ -9,46 +9,74 @@ class CardItem extends Component {
     constructor(props){
         super(props);
         this.state = {
-            title: "Math",
-            text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias blanditiis debitis laudantium, labore magnam provident illum voluptatem magni fugiat? Eos sint obcaecati perferendis suscipit quaerat facere vero placeat voluptatem neque!"        }
-    }
-
+            test: null,
+            id: 1
+          
+          }
     
-
-    saveCard = async () => {
-      try {
-        await AsyncStorage.setItem("Demon", this.title)
-      } catch (err) {
-        alert(err);
-      }
-    }
-  
+          } 
   
     loadCard = async () => {
       try {
         let name = await AsyncStorage.getItem("Demon");
-        console.log(name);
         if (name !== null) {
-          this.setState({test: name})
+          this.setState({test: JSON.parse(name)});
+          console.log(this.state, "im load");
         }
   
       } catch (err) {
         alert(err);
       }finally{
-          console.log(this.state);
+          console.log(this.state, "I`m finally");
       }
     }
 
     componentDidMount () {
         this.loadCard();
+        console.log(this.state, "did mount");
+  
+        
+
     }
 
+    nextButton = () => {
+      this.setState({id: this.state.id + 1});
+      console.log(this.state, "Next Button");
+    }
+
+    prevButton = () => {
+      this.setState({id: this.state.id - 1});
+      console.log(this.state, "Prev Button");
+    }
+
+
+
     render(){
-        const {test} = this.state;
+      console.log(this.state, "I`m render");
+     const mapItems =  this.state.test ? this.state.test.map(item => {
+
+      if (item.id === this.state.id) {
+        return (
+          <View onPress ={ () => alert("press")}>
+            <Title onPress ={ () => alert(`${item.answer}`)}   id="title">{item.title}</Title>
+            <Text >{item.question}</Text>
+            <Button onPress={this.prevButton}>Previous</Button>
+            <Button onPress={this.nextButton}>Next</Button>
+          </View>
+        
+        
+        )  
+      } else {
+        return null
+      }
+     }) : null;
+
+       
         return(
             <View >
-                <Title id="title">{test} state</Title>
-                <Text>{this.state.text}</Text>                
+              <Text>{this.state.id}</Text>
+
+              {mapItems}
             </View>
             
         )

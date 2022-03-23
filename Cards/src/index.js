@@ -11,10 +11,16 @@ import Menu from '../components/menu/menu';
 export default function App(){
 
   const [name, setName] = useState();
+  const obj = [
+    {title: "Math", question: "2 + 2", answer: "4", id: 1},
+    {title: "Math", question: "16 x 2", answer: "32", id: 2},
 
-  const save = async () => {
+  ]
+
+  const save = async (value) => {
     try {
-      await AsyncStorage.setItem("Demon", name)
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem("Demon", jsonValue)
     } catch (err) {
       alert(err);
     }
@@ -58,7 +64,7 @@ export default function App(){
         <Text>{name}</Text>
         <Button onPress={() => remove()}>I`m remove button</Button>
         <TextInput onChangeText={text => setName(text)}/>
-        <Button onPress={() => save()} >I`m Read Button save</Button>
+        <Button onPress={() => save(obj)} >I`m Read Button save</Button>
 
         <Menu/>    
 
