@@ -20,7 +20,7 @@ export default function App(){
   const save = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("Demon", jsonValue)
+      await AsyncStorage.setItem("Demon", jsonValue);
     } catch (err) {
       alert(err);
     }
