@@ -2,13 +2,15 @@ import {View, StyleSheet} from "react-native";
 import {Text, Paragraph, Button, Title} from "react-native-paper";
 import {Component} from "react";
 import Cards from "../cards/cards";
+import AddCards from "../add-cards/add-cards"
 
 
 class Menu extends Component {
     constructor(props){
         super(props);
         this.state = {
-            view: false
+            view: false,
+            add: false
         }
     }
 
@@ -21,6 +23,8 @@ class Menu extends Component {
 
     onAdd = () => {
         console.log("Click Add");
+        this.setState({add: true});
+        console.log(this.state);
     }
 
     onDel = () => {
@@ -40,15 +44,24 @@ class Menu extends Component {
         )
     }
 
+    // renderAddCards = () => {
+    //     return (
+    //         <AddCards/>
+    //     )
+    // }
+
 
     render(){
-        const {view} = this.state;
+        const {view, add} = this.state;
 
-        const buttons = view ? <Cards/> : <this.renderButton/>
+        const buttons = view ? <Cards/> : <this.renderButton/>;
+        const addCards = add ? <AddCards/> : null;
 
         return(
             <View >
                 {buttons}
+                {addCards}
+                <AddCards/>
             </View>
             
         )

@@ -40,11 +40,13 @@ class CardItem extends Component {
     }
 
     nextButton = () => {
+      this.loadCard();
       this.setState({id: this.state.id + 1});
       console.log(this.state, "Next Button");
     }
 
     prevButton = () => {
+      this.loadCard();
       this.setState({id: this.state.id - 1});
       console.log(this.state, "Prev Button");
     }
