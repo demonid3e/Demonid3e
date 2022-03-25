@@ -16,6 +16,7 @@ class Menu extends Component {
 
 
     onView = () => {
+
         console.log("Click View");
         this.setState({view: true})
         console.log(this.state);
@@ -54,7 +55,7 @@ class Menu extends Component {
     render(){
         const {view, add} = this.state;
 
-        const buttons = view ? <Cards/> : <this.renderButton/>;
+        const buttons = view ? <Cards/> : <this.renderButton styles={{marginTop: 20}}/>;
         const addCards = add ? <AddCards/> : null;
 
         return(
@@ -76,7 +77,7 @@ export default Menu;
 
 
 const styles = StyleSheet.create({
-
+    
 
 });
 

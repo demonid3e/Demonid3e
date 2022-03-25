@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,ScrollView } from 'react-native';
+import { StyleSheet, Text, View,ScrollView, Image } from 'react-native';
 import { Button, TextInput} from "react-native-paper";
 import TextItem from '../components/text-item/text-item';
 import {Component} from "react";
@@ -6,6 +6,9 @@ import Cards from '../components/cards/cards';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
 import Menu from '../components/menu/menu';
+
+
+ const TeacherPhoto =  require("../assets/teacher.png");
 
 
 export default function App(){
@@ -60,13 +63,17 @@ export default function App(){
 
   return (
     <ScrollView>
+      <View>
+        <Image style={styles.image} source={TeacherPhoto}/>
+        <Text style={{marginTop: 50}}></Text>
+      </View>
       <View style={styles.container}>
-        <Text>{name}</Text>
+        {/* <Text>{name}</Text>
         <Button onPress={() => remove()}>I`m remove button</Button>
         <TextInput onChangeText={text => setName(text)}/>
-        <Button onPress={() => save(obj)} >I`m Read Button save</Button>
+        <Button onPress={() => save(obj)} >I`m Read Button save</Button> */}
 
-        <Menu/>    
+        <Menu style={styles.menu}/>    
 
       </View>
     </ScrollView>
@@ -116,5 +123,16 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent: 'center',
   },
+  menu: {
+    marginTop: 15
+  },
+  image: {
+    marginTop: 50,
+    alignSelf: "center",
+    width: 100,
+    height:100
+    
+
+  }
 });
 

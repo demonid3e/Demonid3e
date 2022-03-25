@@ -10,7 +10,8 @@ class CardItem extends Component {
         super(props);
         this.state = {
             test: null,
-            id: 1
+            id: 1,
+            disabled: false
           
           }
     
@@ -41,14 +42,24 @@ class CardItem extends Component {
 
     nextButton = () => {
       this.loadCard();
-      this.setState({id: this.state.id + 1});
-      console.log(this.state, "Next Button");
+      if (this.state.id == this.state.test.length){
+        this.setState({id: 1});
+      } else {          
+          this.setState({id: this.state.id + 1});
+          console.log(this.state, "Next Button");
+      }
     }
 
     prevButton = () => {
+      
       this.loadCard();
-      this.setState({id: this.state.id - 1});
-      console.log(this.state, "Prev Button");
+      if (this.state.id === 1){
+        this.setState({id: this.state.test.length})
+      } else {
+        this.setState({id: this.state.id - 1});
+        console.log(this.state, "Prev Button");
+      }
+
     }
 
 
@@ -59,7 +70,7 @@ class CardItem extends Component {
 
       if (item.id === this.state.id) {
         return (
-          <View onPress ={ () => alert("press")}>
+          <View style={styles.card} onPress ={ () => alert("press")}>
             <Title onPress ={ () => alert(`${item.answer}`)}   id="title">{item.title}</Title>
             <Text >{item.question}</Text>
             <Button onPress={this.prevButton}>Previous</Button>
@@ -88,7 +99,9 @@ class CardItem extends Component {
 export default CardItem;
 
 const styles = StyleSheet.create({
-
+  card: {
+    alignSelf: "center"
+  }
 
 });
 

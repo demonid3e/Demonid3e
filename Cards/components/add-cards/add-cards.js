@@ -33,9 +33,6 @@ class AddCards extends Component {
 
     addCard = () => {
         let tempState = JSON.parse(this.state.name);
-
-
-
         const addCardValue = {
             title: this.state.title,
             question: this.state.question,
@@ -52,6 +49,10 @@ class AddCards extends Component {
             }
           }
           save(tempState);
+          this.setState({            
+            title: "",
+            question: "",
+            answer: ""})
     }
 
 
@@ -100,10 +101,11 @@ class AddCards extends Component {
 
 const styles = StyleSheet.create({
     buttons: {
-        flex: 1,
-        width: 200,
-        alignItems: 'center',
-        justifyContent: 'center'
+        // flex: 1,
+        // width: 200,
+        // alignItems: 'center',
+        // justifyContent: 'center'
+        margin: 20
     }
   });
 
