@@ -65,7 +65,7 @@ export default function App(){
     <ScrollView>
       <View>
         <Image style={styles.image} source={TeacherPhoto}/>
-        <Text style={{marginTop: 50}}></Text>
+        {/* <Text style={{marginTop: 50}}></Text> */}
       </View>
       <View style={styles.container}>
         {/* <Text>{name}</Text>

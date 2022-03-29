@@ -15,8 +15,19 @@ class CardItem extends Component {
           
           }
     
-          } 
-  
+    } 
+          
+    saveCard = async (value) => {
+      try {
+        const jsonValue = JSON.stringify(value);
+        await AsyncStorage.setItem("Demon", jsonValue);
+      } catch (err) {
+        alert(err);
+      }
+    }
+        
+
+
     loadCard = async () => {
       try {
         let name = await AsyncStorage.getItem("Demon");
@@ -61,6 +72,23 @@ class CardItem extends Component {
       }
 
     }
+    onDel = () => {
+      const resetAnswer = prompt("Would you like to delete this card?");
+      if(resetAnswer === "Yes"){
+        const currentArray = [...this.state.test];
+        const filteredArray = currentArray.filter(obj => obj.id != this.state.id);
+        this.saveCard(filteredArray);
+        this.loadCard();
+        console.log(filteredArray);
+        alert("Item deleted");
+      } else {
+        alert("Item not deleted");
+      }
+      console.log(resetAnswer);
+      console.log("Click Del");
+  }
+
+
 
 
 
@@ -70,11 +98,20 @@ class CardItem extends Component {
 
       if (item.id === this.state.id) {
         return (
-          <View style={styles.card} onPress ={ () => alert("press")}>
-            <Title onPress ={ () => alert(`${item.answer}`)}   id="title">{item.title}</Title>
-            <Text >{item.question}</Text>
-            <Button onPress={this.prevButton}>Previous</Button>
-            <Button onPress={this.nextButton}>Next</Button>
+          <View  onPress ={ () => alert("press")}>
+            <View style={styles.question}>
+              <Title 
+              style={styles.title} 
+              onPress ={ () => alert(`${item.answer}`)}   
+              id="title">{item.title}</Title>
+              <Text style={styles.questionText} >{item.question}</Text>
+              <Button id ="del-button" onPress={this.onDel}>Delete This Card</Button>
+
+            </View>
+            <View style={styles.buttonsSides}>
+              <Button onPress={this.prevButton}>Previous</Button>
+              <Button onPress={this.nextButton}>Next</Button>
+            </View>
           </View>
         
         
@@ -86,8 +123,8 @@ class CardItem extends Component {
 
        
         return(
-            <View >
-              <Text>{this.state.id}</Text>
+            <View style={styles.card} >
+              {/* <Text>{this.state.id}</Text> */}
 
               {mapItems}
             </View>
@@ -100,8 +137,31 @@ export default CardItem;
 
 const styles = StyleSheet.create({
   card: {
-    alignSelf: "center"
+    alignSelf: "center",
+  },
+  buttonsSides: {
+    flexDirection: "row"
+  },
+  buttons: {
+    flex: 1
+
+  },
+  question: {
+    fontSize: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 30,
+    borderRadius: 5,
+    borderWidth: 2
+    
+  },
+  questionText: {
+    marginBottom: 20
+  },
+  title: {
+    marginTop: 20
   }
+  
 
 });
 

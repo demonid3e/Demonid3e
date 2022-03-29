@@ -29,8 +29,12 @@ class Menu extends Component {
     }
 
     onDel = () => {
+        const resetAnswer = prompt("Would you like to delete this card?");
+        console.log(resetAnswer);
         console.log("Click Del");
     }
+
+
 
     renderButton = () => {
 
