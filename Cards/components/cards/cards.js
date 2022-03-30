@@ -15,7 +15,7 @@ class Cards extends Component {
 
         return(
             <View >
-                <CardItem key={"test"}/>
+                <CardItem/>
             </View>
             
         )

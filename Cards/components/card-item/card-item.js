@@ -95,17 +95,21 @@ class CardItem extends Component {
   returnDialog = () => {
     if (this.state.deleteDialog) {
       return (
-        <View>
-          <Dialog visible="true" style={styles.alert} >
-            <Dialog.Title>Delete this card</Dialog.Title>
-            <Dialog.Content>
-              <Paragraph>Do you want to delete this card?</Paragraph>
-            </Dialog.Content>
-            <Dialog.Actions>
-              <Button onPress={() => this.onDeleteThisCard()} >Yes</Button>
-              <Button onPress={() => this.setState({deleteDialog: !this.state.deleteDialog})}>No</Button>
-            </Dialog.Actions>
-        </Dialog>
+        <View style={{marginBottom: 100}}>
+          <Portal>
+            <Dialog visible="true" style={styles.alert} >
+              <Dialog.Title>Delete this card</Dialog.Title>
+              <Dialog.Content>
+                <Paragraph>Do you want to delete this card?</Paragraph>
+              </Dialog.Content>
+              <Dialog.Actions>
+                <Button onPress={() => this.onDeleteThisCard()} >Yes</Button>
+                
+                <Button onPress={() => this.setState({deleteDialog: !this.state.deleteDialog})}>No</Button>
+              </Dialog.Actions>
+            </Dialog>
+
+          </Portal>
       </View>
       )
     } else {
@@ -179,8 +183,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 30,
-    borderRadius: 5,
-    borderWidth: 2
+
     
   },
   questionText: {
@@ -192,8 +195,9 @@ const styles = StyleSheet.create({
   alert: {
     width: 350,
     height: 200,
-    position: "absolute",
-    marginBottom: 100,
+     position: "absolute",
+    marginTop: 100,
+    marginBottom: 250,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: "center",

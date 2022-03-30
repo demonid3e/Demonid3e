@@ -80,6 +80,7 @@ class AddCards extends Component {
           }
           save([{title: "Empty", question: "Empty", answer: "Empty", id: 1}]);
           this.load();
+          
     }
 
     load = async () => {
@@ -98,7 +99,7 @@ class AddCards extends Component {
     render(){
         return(
             <View style={styles.buttons}>
-                <Text>{this.state.title} {this.state.question} {this.state.answer}</Text>
+                {/* <Text>{this.state.title} {this.state.question} {this.state.answer}</Text> */}
                 <TextInput value={this.state.title} onChangeText={(value) => this.onTitleChange(value)}  placeholder="Title"/>
                 <TextInput value={this.state.question} onChangeText={(value) => this.onQuestionChange(value)} placeholder="Question:"/>
                 <TextInput value={this.state.answer} onChangeText={(value) => this.onAnswerChange(value)} placeholder="Answer"/>
@@ -115,7 +116,8 @@ const styles = StyleSheet.create({
         // width: 200,
         // alignItems: 'center',
         // justifyContent: 'center'
-        margin: 20
+        margin: 20,
+        marginTop: 50
     }
   });
 
