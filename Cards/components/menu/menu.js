@@ -42,18 +42,11 @@ class Menu extends Component {
         return (
             <>
                 <Button id="view-button" onPress={this.onView}>View Cards</Button>
-                <Button id="add-button" onPress={this.onAdd}>Add Cards</Button>
-                <Button id ="del-button" onPress={this.onDel}>Delete Cards</Button>
+                {/* <Button id="add-button" onPress={this.onAdd}>Add Cards</Button> */}
             </>
 
         )
     }
-
-    // renderAddCards = () => {
-    //     return (
-    //         <AddCards/>
-    //     )
-    // }
 
 
     render(){

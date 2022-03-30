@@ -1,5 +1,5 @@
 import {View, StyleSheet} from "react-native";
-import {Text, Paragraph, Button, Title} from "react-native-paper";
+import {Text, Paragraph, Button, Title, Dialog, Portal, Provider} from "react-native-paper";
 import {Component} from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -9,10 +9,10 @@ class CardItem extends Component {
     constructor(props){
         super(props);
         this.state = {
-            test: null,
+            name: null,
             id: 1,
-            disabled: false
-          
+            disabled: false,
+            deleteDialog: false                     
           }
     
     } 
@@ -32,87 +32,115 @@ class CardItem extends Component {
       try {
         let name = await AsyncStorage.getItem("Demon");
         if (name !== null) {
-          this.setState({test: JSON.parse(name)});
-          console.log(this.state, "im load");
+          this.setState({name: JSON.parse(name)});
+          console.log(this.state.name, "im load");
         }
   
       } catch (err) {
         alert(err);
       }finally{
-          console.log(this.state, "I`m finally");
       }
     }
 
     componentDidMount () {
+      this.setState({name: null});
         this.loadCard();
-        console.log(this.state, "did mount");
   
-        
 
     }
 
     nextButton = () => {
       this.loadCard();
-      if (this.state.id == this.state.test.length){
+      if (this.state.id == this.state.name.length){
         this.setState({id: 1});
       } else {          
           this.setState({id: this.state.id + 1});
-          console.log(this.state, "Next Button");
+          console.log(this.state.name, "Next Button");
       }
     }
 
     prevButton = () => {
-      
       this.loadCard();
       if (this.state.id === 1){
-        this.setState({id: this.state.test.length})
+        this.setState({id: this.state.name.length})
       } else {
         this.setState({id: this.state.id - 1});
-        console.log(this.state, "Prev Button");
+        console.log(this.state.name, "Prev Button");
       }
 
     }
     onDel = () => {
-      const resetAnswer = prompt("Would you like to delete this card?");
-      if(resetAnswer === "Yes"){
-        const currentArray = [...this.state.test];
-        const filteredArray = currentArray.filter(obj => obj.id != this.state.id);
-        this.saveCard(filteredArray);
-        this.loadCard();
-        console.log(filteredArray);
-        alert("Item deleted");
-      } else {
-        alert("Item not deleted");
-      }
-      console.log(resetAnswer);
-      console.log("Click Del");
+      this.setState({deleteDialog: !this.state.deleteDialog});
+      this.returnDialog();
+      this.loadCard();
+      console.log(this.state.name, "on del");
+  }
+
+  onDeleteThisCard = () => {
+    const currentArray = [...this.state.name];
+    const filteredArray = currentArray.filter(obj => obj.id != this.state.id);
+    for (var i=0, id=1; i < filteredArray.length; i++, id++) {
+      filteredArray[i].id = id;
+    }   
+    this.saveCard(filteredArray);
+    this.loadCard();
+    // alert("Item deleted");
+    this.setState({deleteDialog: false});
+    this.setState({id: 1});
+
+ }
+
+
+
+  returnDialog = () => {
+    if (this.state.deleteDialog) {
+      return (
+        <View>
+          <Dialog visible="true" style={styles.alert} >
+            <Dialog.Title>Delete this card</Dialog.Title>
+            <Dialog.Content>
+              <Paragraph>Do you want to delete this card?</Paragraph>
+            </Dialog.Content>
+            <Dialog.Actions>
+              <Button onPress={() => this.onDeleteThisCard()} >Yes</Button>
+              <Button onPress={() => this.setState({deleteDialog: !this.state.deleteDialog})}>No</Button>
+            </Dialog.Actions>
+        </Dialog>
+      </View>
+      )
+    } else {
+      return null
+    }
+
   }
 
 
 
-
-
     render(){
-      console.log(this.state, "I`m render");
-     const mapItems =  this.state.test ? this.state.test.map(item => {
-
+      const mapItems =  this.state.name ? this.state.name.map(item => {
+      const styled = this.state.deleteDialog ? "none" : "flex";
       if (item.id === this.state.id) {
         return (
-          <View  onPress ={ () => alert("press")}>
-            <View style={styles.question}>
-              <Title 
-              style={styles.title} 
-              onPress ={ () => alert(`${item.answer}`)}   
-              id="title">{item.title}</Title>
-              <Text style={styles.questionText} >{item.question}</Text>
-              <Button id ="del-button" onPress={this.onDel}>Delete This Card</Button>
-
+          <View>
+            <View>
+              {this.returnDialog()}
             </View>
-            <View style={styles.buttonsSides}>
-              <Button onPress={this.prevButton}>Previous</Button>
-              <Button onPress={this.nextButton}>Next</Button>
+            <View style={{display: styled}} onPress ={ () => alert("press")}>
+              <View style={styles.question}>
+                <Title 
+                style={styles.title} 
+                onPress ={ () => alert(`${item.answer}`)}   
+                id="title">{item.title}</Title>
+                <Text style={styles.questionText} >{item.question}</Text>
+                <Button id ="del-button" onPress={this.onDel}>Delete This Card</Button>
+              </View>
+              <View style={styles.buttonsSides}>
+                <Button onPress={this.prevButton}>Previous</Button>
+                <Button onPress={this.nextButton}>Next</Button>
+              </View>
             </View>
           </View>
+
         
         
         )  
@@ -160,6 +188,15 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 20
+  },
+  alert: {
+    width: 350,
+    height: 200,
+    position: "absolute",
+    marginBottom: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: "center",
   }
   
 
