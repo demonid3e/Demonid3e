@@ -12,7 +12,8 @@ class CardItem extends Component {
             name: null,
             id: 1,
             disabled: false,
-            deleteDialog: false                     
+            deleteDialog: false,
+            answer: false                  
           }
     
     } 
@@ -84,7 +85,6 @@ class CardItem extends Component {
     }   
     this.saveCard(filteredArray);
     this.loadCard();
-    // alert("Item deleted");
     this.setState({deleteDialog: false});
     this.setState({id: 1});
 
@@ -114,39 +114,67 @@ class CardItem extends Component {
       )
     } else {
       return null
-    }
+      }
 
   }
 
+  returnAnswer = () => {
+    console.log("returning answerr");
+
+   
+  }
+    
+  onPressAnswer = () => {
+    this.setState({answer: true});
+    console.log(this.state);
+  }
 
 
     render(){
-      const mapItems =  this.state.name ? this.state.name.map(item => {
+      const answerItem = this.state.answer ? this.state.name.map((item, i) => {
+        if (item.id === this.state.id){
+          return (
+            <View key={Math.random(i)} style={{marginBottom: 100}}>
+              <Portal>
+                <Dialog visible="true"  >      
+                  <Dialog.Content>
+                    <Paragraph>{item.answer}</Paragraph>
+                  </Dialog.Content>
+                  <Dialog.Actions>
+                    <Button onPress={() => this.setState({answer: false})} >Ok</Button>
+                  </Dialog.Actions>
+                </Dialog>
+              </Portal>
+            </View>
+          )}
+      }) : null;
+
+
+      const mapItems =  this.state.name ? this.state.name.map((item, i) => {
       const styled = this.state.deleteDialog ? "none" : "flex";
       if (item.id === this.state.id) {
         return (
-          <View>
+          <View key={Math.random(i)}>
             <View>
               {this.returnDialog()}
             </View>
-            <View style={{display: styled}} onPress ={ () => alert("press")}>
+            <View style={{display: styled}}>
               <View style={styles.question}>
                 <Title 
                 style={styles.title} 
-                onPress ={ () => alert(`${item.answer}`)}   
+                // onPress ={ () => alert(`${item.answer}`)}
+                onPress={() => this.onPressAnswer()}   
                 id="title">{item.title}</Title>
                 <Text style={styles.questionText} >{item.question}</Text>
                 <Button id ="del-button" onPress={this.onDel}>Delete This Card</Button>
               </View>
               <View style={styles.buttonsSides}>
+                
                 <Button onPress={this.prevButton}>Previous</Button>
                 <Button onPress={this.nextButton}>Next</Button>
               </View>
             </View>
-          </View>
-
-        
-        
+          </View>        
         )  
       } else {
         return null
@@ -157,7 +185,7 @@ class CardItem extends Component {
         return(
             <View style={styles.card} >
               {/* <Text>{this.state.id}</Text> */}
-
+              {answerItem}
               {mapItems}
             </View>
             
