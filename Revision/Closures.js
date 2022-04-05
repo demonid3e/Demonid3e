@@ -38,7 +38,7 @@
 
 
 
-let c = 4
+let c = 4;
 function addX(x) {
     console.log("this is x:" ,x);
   return function(n) {
@@ -46,11 +46,25 @@ function addX(x) {
      return n + x
   }
 }
-
 const addThree = addX(3);
-console.log(addThree());
-let d = addThree(c)
-// console.log('example partial application', d)
+addThree();
+let d = addThree(c);
+console.log('example partial application', d)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // {
 // let c = 4
@@ -60,6 +74,3 @@ let d = addThree(c)
 // console.log('example partial application', d)
 // }
 
-
-
-console.log(3 + undefined);
