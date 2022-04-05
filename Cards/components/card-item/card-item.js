@@ -138,7 +138,7 @@ class CardItem extends Component {
               <Portal>
                 <Dialog visible="true"  >      
                   <Dialog.Content>
-                    <Paragraph>{item.answer}</Paragraph>
+                    <Paragraph style={styles.alert}>{item.answer}</Paragraph>
                   </Dialog.Content>
                   <Dialog.Actions>
                     <Button onPress={() => this.setState({answer: false})} >Ok</Button>
@@ -159,13 +159,13 @@ class CardItem extends Component {
               {this.returnDialog()}
             </View>
             <View style={{display: styled}}>
-              <View style={styles.question}>
+              <View style={styles.question} >
                 <Title 
                 style={styles.title} 
                 // onPress ={ () => alert(`${item.answer}`)}
-                onPress={() => this.onPressAnswer()}   
+                onPress={() => this.onPressAnswer()}
                 id="title">{item.title}</Title>
-                <Text style={styles.questionText} >{item.question}</Text>
+                <Text style={styles.questionText} onPress={() => this.onPressAnswer()} >{item.question}</Text>
                 <Button id ="del-button" onPress={this.onDel}>Delete This Card</Button>
               </View>
               <View style={styles.buttonsSides}>
@@ -215,20 +215,23 @@ const styles = StyleSheet.create({
     
   },
   questionText: {
-    marginBottom: 20
+    marginBottom: 20,
+    alignContent: "center",
+    fontSize: 20
   },
   title: {
     marginTop: 20
   },
   alert: {
-    width: 350,
-    height: 200,
-     position: "absolute",
-    marginTop: 100,
-    marginBottom: 250,
+    // width: 350,
+    // height: 200,
+    //  position: "absolute",
+    // marginTop: 100,
+    // marginBottom: 250,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: "center",
+    fontSize: 20
   }
   
 

@@ -78,7 +78,11 @@ class AddCards extends Component {
               alert(err);
             }
           }
-          save([{title: "Empty", question: "Empty", answer: "Empty", id: 1}]);
+          save([
+            //   {title: "", question: "", answer: "", id: null},
+              {title: "Function", question: "What will show this function: \n  const a = 2; \n function addTwo (b) \n \t{ b + 2} \n const b = addTwo(a); \n console.log(b);  ", answer: "undefined, the function without return", id: 3},
+              {title: "Function", question: "When function stops", answer: "when it sees `return` or } ", id: 2},
+              {title: "Function Closures", question: "What would return a function, without a return", answer: "undefined", id: 1}]);
           this.load();
           
     }
