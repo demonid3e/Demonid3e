@@ -47,8 +47,10 @@ function addX(x) {
   }
 }
 const addThree = addX(3);
-addThree();
+console.log(addThree(), "first");
 let d = addThree(c);
+console.log(addThree(), "second");
+console.log(d);
 console.log('example partial application', d)
 
 
