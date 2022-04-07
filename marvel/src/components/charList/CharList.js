@@ -4,6 +4,7 @@ import ErrorMessage from '../errorMessage/ErrorMessage';
 import MarvelService from '../../services/MarvelService';
 import './charList.scss';
 import PropTypes from "prop-types";
+import React from 'react';
 
 
 class CharList extends Component {
@@ -14,15 +15,23 @@ class CharList extends Component {
         error: false,
         newItemLoading: false,
         offset: 210,
-        charEnded: false
+        charEnded: false        
     }
     
     marvelService = new MarvelService();
 
+    charListRef = React.createRef();
+
     componentDidMount() {
         this.onRequest();
+        console.log(this.charListRef);
+        
     }
 
+    componentDidUpdate () {
+        console.log(this.charListRef);
+    }
+    
     onRequest = (offset) => {
         this.onCharListLoading();
         this.marvelService.getAllCharacters(offset)
@@ -59,6 +68,11 @@ class CharList extends Component {
         })
     }
 
+
+    onFocus = () => {
+
+    }
+
     // Этот метод создан для оптимизации, 
     // чтобы не помещать такую конструкцию в метод render
     renderItems(arr) {
@@ -70,7 +84,8 @@ class CharList extends Component {
             
             return (
                 <li 
-                    className="char__item"
+                    tabIndex="0"
+                    className="char__item char__item_selected"
                     key={item.id}
                     onClick={() => this.props.onCharSelected(item.id)}>
                         <img src={item.thumbnail} alt={item.name} style={imgStyle}/>
@@ -97,7 +112,7 @@ class CharList extends Component {
         const content = !(loading || error) ? items : null;
 
         return (
-            <div className="char__list">
+            <div className="char__list" ref={this.charListRef}>
                 {errorMessage}
                 {spinner}
                 {content}
@@ -120,3 +135,15 @@ CharList.propTypes = {
 
 
 export default CharList;
+
+
+
+// charlist /_selected is class that shows outline on the character
+// show effect on currect element
+// tabindex  
+// use console.dir to check if this element has Focus method
+// focus method only appears after it is mounted on react dom tree
+// this.myref = React.createRef();
+
+// this.myref.current.focus // is needed if used as class method
+
