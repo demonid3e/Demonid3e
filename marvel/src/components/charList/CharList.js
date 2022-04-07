@@ -83,7 +83,8 @@ class CharList extends Component {
             }
             
             return (
-                <li 
+                <li     // then create array of refs 
+                    ref={item.id} // need to use dynamicly id for each element as ref
                     tabIndex="0"
                     className="char__item char__item_selected"
                     key={item.id}
@@ -112,7 +113,7 @@ class CharList extends Component {
         const content = !(loading || error) ? items : null;
 
         return (
-            <div className="char__list" ref={this.charListRef}>
+            <div className="char__list" >
                 {errorMessage}
                 {spinner}
                 {content}
