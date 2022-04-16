@@ -15,7 +15,8 @@ class CharList extends Component {
         error: false,
         newItemLoading: false,
         offset: 210,
-        charEnded: false        
+        charEnded: false,
+        refs: []      
     }
     
     marvelService = new MarvelService();
@@ -81,7 +82,14 @@ class CharList extends Component {
             if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
                 imgStyle = {'objectFit' : 'unset'};
             }
+            // if (item.id != null){
+            //     this.setState(({refs}) => ({
+            //         refs: [...refs, item.id]
+
+            //     }));
+            //     console.log(this.state.refs);
             
+            // }
             return (
                 <li     // then create array of refs 
                     ref={item.id} // need to use dynamicly id for each element as ref
