@@ -2,7 +2,7 @@ function squareSum(numbers){
     const mapped = numbers.map(number => number * number);
      
      console.log(mapped);
-     return  mapped.reduce((a,b) => a + b ,0);
+     mapped.reduce((previousValue, currentNumber) => previousValue + currentNumber ,0);
    }
 
 
