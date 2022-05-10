@@ -4,6 +4,10 @@ import RandomShaam from './components/RandomShaam/RandomShaam';
 import RandomHot from './components/RandomHot/RandomHot';
 const Toby = require("./assets/toby.png");
 
+
+//  eas build -p android --profile preview
+
+
 export default function App() {
   return (
     <View style={styles.container}>
