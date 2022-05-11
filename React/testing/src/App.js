@@ -6,6 +6,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 class Form extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            
+        }
     }
 
     render() {
