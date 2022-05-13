@@ -1,0 +1,6 @@
+1) add focus on element if clicked "char item selected" 
+2) add tabindex so all elements are tabble
+
+
+3) if cant put focus on element, look at this element with "console.dir" does it has focus method
+4)call back refs
