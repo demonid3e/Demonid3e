@@ -8,12 +8,18 @@ class Form extends Component {
         super(props);
         this.state = {
             
-        }
+        };
+        this.myRef = React.createRef();
     }
 
-    componentDidMount(){
-        this.nameInput.focus();
+    componentDidMount () {
+        // link to ref is kep in current
+        this.myRef.current.focus();
     }
+
+    // componentDidMount(){
+    //     this.nameInput.focus();
+    // }
 
     render() {
         return (
