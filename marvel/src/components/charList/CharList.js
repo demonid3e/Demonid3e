@@ -1,11 +1,10 @@
 import {Component} from 'react';
+import PropTypes from 'prop-types';
+
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import MarvelService from '../../services/MarvelService';
 import './charList.scss';
-import PropTypes from "prop-types";
-import React from 'react';
-
 
 class CharList extends Component {
 
@@ -15,29 +14,20 @@ class CharList extends Component {
         error: false,
         newItemLoading: false,
         offset: 210,
-        charEnded: false,
-        refs: []      
+        charEnded: false
     }
     
     marvelService = new MarvelService();
 
-    charListRef = React.createRef();
-
     componentDidMount() {
         this.onRequest();
-        console.log(this.charListRef);
-        
     }
 
-    componentDidUpdate () {
-        console.log(this.charListRef);
-    }
-    
     onRequest = (offset) => {
         this.onCharListLoading();
         this.marvelService.getAllCharacters(offset)
-        .then(this.onCharListLoaded)
-        .catch(this.onError)
+            .then(this.onCharListLoaded)
+            .catch(this.onError)
     }
 
     onCharListLoading = () => {
@@ -48,13 +38,12 @@ class CharList extends Component {
 
     onCharListLoaded = (newCharList) => {
         let ended = false;
-
-        if(newCharList.length < 9){
-            ended = true
+        if (newCharList.length < 9) {
+            ended = true;
         }
 
         this.setState(({offset, charList}) => ({
-            charList: [...charList, ...newCharList ],
+            charList: [...charList, ...newCharList],
             loading: false,
             newItemLoading: false,
             offset: offset + 9,
@@ -69,34 +58,50 @@ class CharList extends Component {
         })
     }
 
+    itemRefs = [];
 
-    onFocus = () => {
+    setRef = (ref) => {
+        this.itemRefs.push(ref);
+    }
 
+    focusOnItem = (id) => {
+        // Я реализовал вариант чуть сложнее, и с классом и с фокусом
+        // Но в теории можно оставить только фокус, и его в стилях использовать вместо класса
+        // На самом деле, решение с css-классом можно сделать, вынеся персонажа
+        // в отдельный компонент. Но кода будет больше, появится новое состояние
+        // и не факт, что мы выиграем по оптимизации за счет бОльшего кол-ва элементов
+
+        // По возможности, не злоупотребляйте рефами, только в крайних случаях
+        this.itemRefs.forEach(item => item.classList.remove('char__item_selected'));
+        this.itemRefs[id].classList.add('char__item_selected');
+        this.itemRefs[id].focus();
     }
 
     // Этот метод создан для оптимизации, 
     // чтобы не помещать такую конструкцию в метод render
     renderItems(arr) {
-        const items =  arr.map((item) => {
+        const items =  arr.map((item, i) => {
             let imgStyle = {'objectFit' : 'cover'};
             if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
                 imgStyle = {'objectFit' : 'unset'};
             }
-            // if (item.id != null){
-            //     this.setState(({refs}) => ({
-            //         refs: [...refs, item.id]
-
-            //     }));
-            //     console.log(this.state.refs);
             
-            // }
             return (
-                <li     // then create array of refs 
-                    ref={item.id} // need to use dynamicly id for each element as ref
-                    tabIndex="0"
-                    className="char__item char__item_selected"
+                <li 
+                    className="char__item"
+                    tabIndex={0}
+                    ref={this.setRef}
                     key={item.id}
-                    onClick={() => this.props.onCharSelected(item.id)}>
+                    onClick={() => {
+                        this.props.onCharSelected(item.id);
+                        this.focusOnItem(i);
+                    }}
+                    onKeyPress={(e) => {
+                        if (e.key === ' ' || e.key === "Enter") {
+                            this.props.onCharSelected(item.id);
+                            this.focusOnItem(i);
+                        }
+                    }}>
                         <img src={item.thumbnail} alt={item.name} style={imgStyle}/>
                         <div className="char__name">{item.name}</div>
                 </li>
@@ -121,15 +126,15 @@ class CharList extends Component {
         const content = !(loading || error) ? items : null;
 
         return (
-            <div className="char__list" >
+            <div className="char__list">
                 {errorMessage}
                 {spinner}
                 {content}
                 <button 
-                className="button button__main button__long"
-                disabled={newItemLoading}
-                style={{display: charEnded ? "none" : "block"}}
-                onClick={() => this.onRequest(offset)}>
+                    className="button button__main button__long"
+                    disabled={newItemLoading}
+                    style={{'display': charEnded ? 'none' : 'block'}}
+                    onClick={() => this.onRequest(offset)}>
                     <div className="inner">load more</div>
                 </button>
             </div>
@@ -141,18 +146,4 @@ CharList.propTypes = {
     onCharSelected: PropTypes.func.isRequired
 }
 
-
-
 export default CharList;
-
-
-
-// charlist /_selected is class that shows outline on the character
-// show effect on currect element
-// tabindex  
-// use console.dir to check if this element has Focus method
-// focus method only appears after it is mounted on react dom tree
-// this.myref = React.createRef();
-
-// this.myref.current.focus // is needed if used as class method
-
