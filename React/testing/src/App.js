@@ -2,46 +2,59 @@ import React, {Component} from 'react';
 import {Container} from 'react-bootstrap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import ReactDOM  from 'react-dom';
 
 class Form extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            
-        };
-        this.myRef = React.createRef();
+
+    handleClick = () => {
+        console.log("click");
     }
 
-    componentDidMount () {
-        // link to ref is kep in current
-        this.myRef.current.focus();
-    }
-
-    // componentDidMount(){
-    //     this.nameInput.focus();
-    // }
 
     render() {
         return (
             <Container>
-                <form className="w-50 border mt-5 p-3 m-auto">
+                <form onClick={this.handleClick} className="w-50 border mt-5 p-3 m-auto" 
+                style={{'overflow': 'hidden', 
+                        'position': 'relative'}}>
                     <div className="mb-3">
                         <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
-                        <input
-                        ref={(input) => { this.nameInput = input; }}  
-                        type="email" 
-                        className="form-control" 
-                        id="exampleFormControlInput1" 
-                        placeholder="name@example.com"/>
+                        <input  type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com"/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
                         <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
+                    <Portal>
+                        <Msg/>
+                    </Portal>
                 </form>
             </Container>
         )
     }
+}
+
+
+const Portal  = (props) => {
+    const node = document.createElement("div");
+    document.body.appendChild(node);
+
+    return ReactDOM.createPortal(props.children, node);
+
+}
+
+const Msg = () => {
+    return (
+        <div 
+            style={{'width': '500px', 
+                'height': '150px', 
+                'backgroundColor': 'red', 
+                'position': 'absolute', 
+                'right': '0', 
+                'bottom': '0'}}>
+            Hello
+        </div>
+    );
 }
 
 function App() {
