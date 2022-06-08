@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Carvery - Cooling</title>
+</head>
+<body>
+    <div class="wrapper_main">
+        <div class="header_mains">
+            <span class="check_carvery_mains">Business Check - Cooling </span>
+            <button class="carvery_mains_back" data-button="back" type="submit">Back</button>
+            <button class="carvery_mains_delete" data-button="delete" type="submit">Delete</button>
+            <button class="carvery_mains_send" data-button="send" type="submit">Send</button>
+            <button class="carvery_mains_select" data-button="select" type="submit">Select</button>
+        </div>
+          <div class="cooling_title">Cooling</div>
+          <div class="cooling_description">Only products specified to be cooled in your brand cookbook can be cooled. <br> You Must not cool items unless the cook book advises they can be.</div>
+        <div class="bun_wrapper">
+          <span class="bun_number">BUN: 180750</span>
+        </div>
+        <br>
+        <div class="cooling_paragraph_wrapper">
+          <img src="" alt="picture like">
+          <p class="cooling_paragraph">Food must be cooled to below 8c within 3 hours. <br> Ensure you are permitted to cool this item before cooling commences. For information on what can be cooled in your brand please see your brand cook book.</p>
+        </div>
+        <form class="cooling_wrapper_items">
+          <label for="cooling_product">Product:</label>
+          <input type="text" name="cooling_product" id="cooling_product" placeholder="Required">
+          <br>
+          <label for="cooling_product_category">Product Category: <br> (Select the type of food being cooled)</label>
+          <select type="text" name="cooling_product_category" id="cooling_product_category">
+            <option value="Blank" selected></option>
+            <option value="Poultry">Poultry (eg. Chicken,Turkey, Duck)</option>
+            <option value="RedMeat">Red Meat (eg. Beef, Lamb, Pork)</option>
+            <option value="ProcessedMeat">Processed Meat (eg. Sausage,Bacon)</option>
+            <option value="Fish">Fish (eg. Smoked Haddock)</option>
+            <option value="InHouse">In House Prepared Meals/Soups/Sauces</option>
+            <option value="FruitVeg">Fruit & Vegetables</option>
+            <option value="Desserts">Deserts (eg. Creme Brulee)</option>
+            <option value="Other">Other</option>
+          </select>
+          <label for="cooling_start_time">Start Cool Time:</label>
+          <input type="datetime-local" name="cooling_start_time" id="cooling_start_time">
+          <br>
+          <label for="cooling_start_temp">Start Cool Temp:</label>
+          <input type="text" name="cooling_start_temp" id="cooling_start_temp">
+          <br>
+          <label for="cooling_sold">Was Product sold/<br>discarded before cooling?</label>
+          <select name="cooling_sold" id="cooling_sold">
+            <option value="blank"></option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+          <br>
+          <label for="cooling_transfer_fridge">Transfer To Fridge Time</label>
+          <input type="datetime-local" name="cooling_transfer_fridge" id="cooling_transfer_fridge">
+          <br>
+          <label for="cooling_transfer_temp">Transfer Temp</label>
+          <input type="text" name="cooling_transfer_temp" id="cooling_transfer_temp">
+          <br>
+          <label for="cooling_final_time">Final Cooling Time</label>
+          <input type="datetime-local" name="cooling_final_time" id="cooling_final_time">
+          <br>
+          <label for="cooling_final_temp">Final Cooling Temp</label>
+          <input type="text" name="cooling_final_temp" id="cooling_final_temp">
+          <br>
+          <label for="cooling_total_time">Total Cooling Time</label>
+          <span id="cooling_total_time"></span>
+          <br>
+          <label for="cooling_decision">Decision:</label>
+          <span id="cooling_decision"></span>
+        </form>
+    </div>
+    <div class="btn_wrapper">
+        <div class="buttons">
+          <button class="previous">Back</button>
+          <button class="next">Next</button>
+        </div>
+      </div>
+    <script type="module" src="script/carvery_cooling.js"></script>
+</body>
+</html>

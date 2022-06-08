@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Carvery - Hot Hold</title>
+</head>
+<body>
+    <div class="wrapper_main">
+        <div class="header_mains">
+            <span class="check_carvery_mains"
+              >Business Check - Cooking & Reheating</span>
+              <button class="carvery_mains_back" data-button="back" type="submit">Back</button>
+              <button class="carvery_mains_delete" data-button="delete" type="submit">Delete</button>
+              <button class="carvery_mains_send" data-button="send" type="submit">Send</button>
+              <button class="carvery_mains_select" data-button="select" type="submit">Select</button>
+          </div>
+          <span class="holding_title">Hot Holding Check</span>
+          <div class="bun_wrapper">
+            <span class="bun_number">BUN: 180750</span>
+          </div>
+          <br>
+          <form class="holding_items_wrapper">
+            <label for="input_equipment_hold">Equipment Used to Hot Hold</label>
+            <input type="text" id="input_equipment_hold" name="EquipmentUsedToHold">
+            <br>
+            <label for="input_product_name_hold">Product Name</label>
+            <input type="text" id="input_product_name_hold" name="EquipmentUsedToHoldInput" >
+            <br>
+            <label for="time_first_hold">Cook Time</label>
+            <input type="datetime-local" id="time__first_hold" name="TimeStartHold">
+            <br>
+            <label for="input_cooked_temperature">Cooked Temperature</label>
+            <input type="text" id="input_cooked_temperature" name="CookedTemperature">
+            <br>
+            <label for="cooked_time_second">Cook Time +2 Hours</label>
+            <input type="datetime-local" name="TimeHold2Hours" id="cooked_time_second">
+            <br>
+            <label for="input_cooked_temperature_two">Cooked Temperature + 2 Hours</label>
+            <input type="text" id="input_cooked_temperature_two" name="CookedTemperature2Hours">
+            <br>
+            <label for="cooked_discard_select">Sold / Discarded / Continue Holding</label>
+            <select name="cooked_discard_select" id="cooked_discard_select">
+              <option value="blank"></option>
+              <option value="sold">Sold</option>
+              <option value="discard">Discard</option>
+              <option value="continue">Continue Holding</option>
+            </select>
+          </form>
+    </div>
+    <div class="btn_wrapper">
+        <div class="buttons">
+          <button class="previous">Back</button>
+          <button class="next">Next</button>
+        </div>
+      </div>
+    <script type="module" src="./script/carvery_hold.js"></script>
+</body>
+</html>

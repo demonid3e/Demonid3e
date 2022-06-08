@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Carvery Daily Comments</title>
+</head>
+<body>
+    <div class="wrapper_main">
+        <div class="header_mains">
+            <span class="check_carvery_mains">Business Check - Cooling </span>
+            <button class="carvery_mains_back" data-button="back" type="submit">Back</button>
+            <button class="carvery_mains_delete" data-button="delete" type="submit">Delete</button>
+            <button class="carvery_mains_send" data-button="send" type="submit">Send</button>
+            <button class="carvery_mains_select" data-button="select" type="submit">Select</button>
+        </div>
+        <form class="comment_wrapper">
+          <div class="comments_title">Kitchen Daily Handover Comments</div>
+          <div class="bun_wrapper">
+            <span class="bun_number">BUN: 180750</span>
+          </div>
+          <div class="comment_time_wrapper">
+            <label for="comment_time">Date:</label>
+            <input type="datetime-local" name="HandOverCommentsTime" id="comment_time">
+          </div>
+          <div class="comment_description">
+            <span class="comment_description_text">Please enter any daily kitchen feedback or safety/quality observations into the corrective action below</span>
+          </div>
+          <label for="comment_observation_input">Hand Over Comments/Observations</label>
+          <input type="text" id="comment_observation_input" name="HandOverComments">
+        </form>
+    </div>
+
+    <div class="btn_wrapper">
+        <div class="buttons">
+          <button class="previous">Back</button>
+          <button class="next">Next</button>
+        </div>
+      </div>
+<script type="module" src="./script/carvery_comments.js"></script>    
+</body>
+</html>

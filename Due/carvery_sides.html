@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/Due/main.css" />
+    <title>Business - Carvery Sides</title>
+  </head>
+  <body>
+    <div class="wrapper_main">
+      <div class="header_mains">
+        <span class="check_carvery_mains">Business Check - Carvery Sides</span>
+        <button
+          class="carvery_mains_back"
+          data-button="back"
+          type="submit"
+          onclick="this.blur()"
+        >
+          Back
+        </button>
+        <button
+          class="carvery_mains_delete"
+          data-button="delete"
+          type="submit"
+          onclick="this.blur()"
+        >
+          Delete
+        </button>
+        <button
+          class="carvery_mains_send"
+          data-button="send"
+          type="submit"
+          onclick="this.blur()"
+        >
+          Send
+        </button>
+        <button
+          class="carvery_mains_select"
+          data-button="select"
+          type="submit"
+          onclick="this.blur()"
+        >
+          Select
+        </button>
+      </div>
+      <span class="mains_title">Carvery Sides Temperatures</span>
+
+      <div class="carvery_sides_description">
+        <span class="carvery_sides_description_text">
+          Enter the time item comes out to the deck and follow brand cook book
+          for lenght of time this can be on display for. If product is on
+          display for 2 hours, record temperature. If this is below 65c, use
+          within 2 hours. Product left after this must be discarded.
+        </span>
+      </div>
+
+      <form class="top_mains">
+        <span class="bun_number">BUN 180750</span>
+        <br />
+        <label for="sides_product">Product</label>
+        <input class="carvery_sides_product" type="text" id="sides_product" />
+        <br />
+        <label for="side_date_time">Cook Time</label>
+        <input type="datetime-local" name="date_time" id="side_date_time" />
+        <br />
+        <label for="carvery_sides_cook_temp">Cook Temp</label>
+        <input
+          type="text"
+          class="carvery_sides_cook_temp"
+          id="carvery_sides_cook_temp"
+        />
+        <br />
+        <label for="side_date_time_2">Time +2 Hours</label>
+        <input type="datetime-local" name="date_time" id="side_date_time_2" />
+        <br />
+        <label for="sides_2hour_temp">2 Hour Temp</label>
+        <input type="text" name="2hour_temp" id="sides_2hour_temp" />
+        <br />
+        <label for="sides_select">Result</label>
+        <select name="sides_select" id="sides_select">
+          <option value=""></option>
+          <option value="sold">Sold</option>
+          <option value="discarded">Discarded</option>
+        </select>
+      </form>
+      <div class="wrapper_form"></div>
+    </div>
+    <div class="btn_wrapper">
+      <div class="buttons">
+        <button class="previous">Back</button>
+        <button class="next">Next</button>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="/Due/script/carvery_sides.js"></script>
+  </body>
+</html>

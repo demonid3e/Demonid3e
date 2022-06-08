@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="./css/cooking.css" />
+    <title>Business - Cooking & Reheating</title>
+  </head>
+  <body>
+    <div class="wrapper_main">
+      <div class="header_mains">
+        <span class="check_carvery_mains"
+          >Business Check - Cooking & Reheating</span
+        >
+        <button class="carvery_mains_back" data-button="back" type="submit">Back</button>
+        <button class="carvery_mains_delete" data-button="delete" type="submit">Delete</button>
+        <button class="carvery_mains_send" data-button="send" type="submit">Send</button>
+        <button class="carvery_mains_select" data-button="select" type="submit">Select</button>
+  </div>
+      <span class="mains_title">Carvery Cooking & Reheating Check</span>
+
+      <div class="carvery_cooking_description">
+        <span class="carvery_cooking_description_text">
+          Cook and reheat all foods to a minimum core temperature of 75c and
+          reheat all items to 82c in Scotland. Exceptions to this are included
+          in your brand book.
+        </span>
+      </div>
+
+      <div class="top_mains">
+        <span class="bun_number">BUN 180750</span>
+        <br />
+      </div>
+      <div class="wrapper_form">
+        <label for="carvery_cooking">Enter the Session:</label>
+        <select class="small_input" name="carvery_cooking" id="carvery_cooking">
+          <option value="Blank" data-value="blank"></option>
+          <option value="Breakfast" data-value="breakfast" >Breakfast</option>
+          <option value="Lunch" data-value="lunch">Lunch </option>
+          <option value="Evening" data-value="evening">Evening</option>
+        </select>
+        <div class="cooking_session_name"></div>
+        <form class="cooking_wrapper hide">
+          <span class="cooking_session_selector"></span>
+          <div class="cooking_session_item_description">
+            <span class="cooking_product">Product</span>
+            <span class="cooking_temp_first">Temp C</span>
+            <span class="cooking_temp_second">Temp C</span>
+          </div>
+          <br />
+          <div class="cooking_product_row">
+            <input
+              class="big_input"
+              type="text"
+              name="first_product"
+              id="first_product"
+            />
+            <input
+              class="small_input"
+              type="text"
+              name="first_temperature_left"
+              id="first_temperature_left"
+            />
+            <input
+              class="small_input"
+              type="text"
+              name="first_temperature_right"
+              id="first_temperature_right"
+            />
+          </div>
+          <div class="cooking_product_row">
+            <input
+              class="big_input"
+              type="text"
+              name="second_product"
+              id="second_product"
+            />
+            <input
+              class="small_input"
+              type="text"
+              name="second_temperature_left"
+              id="second_temperature_left"
+            />
+            <input
+              class="small_input"
+              type="text"
+              name="second_temperature_right"
+              id="second_temperature_right"
+            />
+          </div>
+          <br />
+          <div class="cooking_non_breakfast hide">            
+              <span class="cooking_item_description"
+              >Please enter cooking/reheating temperature of a item of chicken
+              served in this session. If no chicken is served then leave blank.
+            </span>
+            <div class="cooking_product_row">
+              <input
+                class="big_input"
+                type="text"
+                name="second_product"
+                id="third_product"
+              />
+              <input
+                class="small_input"
+                type="text"
+                name="third_temperature_left"
+                id="third_temperature_left"
+              />
+              <input
+                class="small_input"
+                type="text"
+                name="third_temperature_right"
+                id="third_temperature_right"
+              />
+            </div>
+            <span class="cooking_burger_description">
+              Enter the temperature of burger cooked in this session. If you do
+              not cook any burgers then leave blank.
+            </span>
+            <div class="cooking_burger_wrapper">
+              <label class="burger" for="burger_one_left">Lunch Burger 1</label>
+              <input class="small_input" type="text" id="burger_one_left" />
+              <input class="small_input" type="text" id="burger_one_right" />
+              <br />
+              <label class="burger" for="burger_two_left">Lunch Burger 2</label>
+              <input class="small_input" type="text" id="burger_two_left" />
+              <input class="small_input" type="text" id="burger_two_right" />
+              <br />
+              <label class="burger" for="burger_three_left">Lunch Burger 3</label>
+              <input class="small_input" type="text" id="burger_three_left" />
+              <input class="small_input" type="text" id="burger_three_right" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="btn_wrapper">
+      <div class="buttons">
+        <button class="previous">Back</button>
+        <button class="next">Next</button>
+      </div>
+    </div>
+    <script type="module" src="/Due/script/carvery_cooking.js"></script>
+  </body>
+</html>
