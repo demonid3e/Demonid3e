@@ -1,37 +1,54 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {Container} from 'react-bootstrap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import ReactDOM  from 'react-dom';
 
-class Form extends Component {
+const Form = () => {
+    const [text, setText] = useState("");
+    const [textArea, setTextArea] = useState();
 
-    handleClick = () => {
-        console.log("click");
+    const validateInput = (text) => {
+    
+        // return text.search(/\d/) >= 0 ? true : false
+        // same as 
+        return text.search(/\d/) >= 0
     }
 
+    // const handleClick = () => {
+    //     console.log("click");
+    // }
 
-    render() {
+    const color = validateInput(text) ? "text-danger" : null
+
         return (
             <Container>
-                <form onClick={this.handleClick} className="w-50 border mt-5 p-3 m-auto" 
+                <form  className="w-50 border mt-5 p-3 m-auto" 
                 style={{'overflow': 'hidden', 
                         'position': 'relative'}}>
                     <div className="mb-3">
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
-                        <input  type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com"/>
+
+                        <input value={text} type="text" className='form-control' readOnly/>
+                        <label htmlFor="exampleFormControlInput1" className="form-label mt-3">Email address</label>
+                        <input  
+                            onChange={(e) => setText(e.target.value)}  
+                            type="email"
+                            value={text} 
+                            className={`form-control  ${color}`}
+                            id="exampleFormControlInput1" 
+                            placeholder="name@example.com"/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
                         <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-                    <Portal>
+                    {/* <Portal>
                         <Msg/>
-                    </Portal>
+                    </Portal> */}
                 </form>
             </Container>
         )
-    }
+    
 }
 
 
