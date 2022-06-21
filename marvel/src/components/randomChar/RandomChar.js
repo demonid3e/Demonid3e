@@ -1,4 +1,4 @@
-import {Component} from "react";
+import {useState, useEffect} from "react";
 
 import './randomChar.scss';
 import mjolnir from '../../resources/img/mjolnir.png';
@@ -6,64 +6,55 @@ import MarvelService from "../../services/MarvelService.js"
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 
-class RandomChar extends Component {
+const RandomChar = () => {
 
-    state = {
-        char: {},
-        loading: true,
-        error: false,
-        empty: true
-    }
+    const [char, setChar] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    // const [empty, setEmpty] = useState(true);
 
-    componentDidMount () {
-        this.updateChar();
 
-    }
+    useEffect(() => {
+        updateChar();
+    },[]);
 
-    updateRandomChar = () => {
-       this.updateChar();
+
+    const updateRandomChar = () => {
+       updateChar();
     }
 
 
 
         // using component creating a new class to test and passing responce into console
-     marvelService = new MarvelService();
+    const marvelService = new MarvelService();
 
 
-    onCharLoading = () => {
-        this.setState({
-            loading: true
-        })
+    const onCharLoading = () => {
+        setLoading(true);
     }
 
-     onCharLoaded = (char) => {
-        this.setState({
-            char, 
-            loading: false});
-  
+    const onCharLoaded = (char) => {
+        setChar(char);
+        setLoading(false);
     } 
  
-    onError = () => {
-        this.setState({
-            loading: false,
-            error: true
-        })
+    const onError = () => {
+        setLoading(false);
+        setError(true);
     }
 
 
-    updateChar = () => {
+    const updateChar = () => {
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-        this.onCharLoading();
-        this.marvelService
+        onCharLoading();
+        marvelService
         .getCharacter(id)
-        .then(this.onCharLoaded)
-        .catch(this.onError)
+        .then(onCharLoaded)
+        .catch(onError)
 
                 
     }
 
-    render () {
-        const {char, loading, error} = this.state;
 // because used return, the rest of the code is stopping 
 
 
@@ -88,14 +79,14 @@ class RandomChar extends Component {
                         Or choose another one
                     </p>
                     <button className="button button__main">
-                        <div className="inner" onClick={this.updateRandomChar}>try it</div>
+                        <div className="inner" onClick={updateRandomChar}>try it</div>
                     </button>
                     <img src={mjolnir} alt="mjolnir" className="randomchar__decoration"/>
                 </div>
             </div>
         )
     
-    }
+    
 
 }
 
