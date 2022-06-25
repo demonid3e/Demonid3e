@@ -4,22 +4,46 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import ReactDOM  from 'react-dom';
 
-const Form = () => {
-    const [text, setText] = useState("");
-    const [textArea, setTextArea] = useState();
 
-    const validateInput = (text) => {
+function useInputWithValidate (initialValue) {
+    const [value, setValue] = useState(initialValue);
+
+
+    const onChange = event => {
+        setValue(event.target.value);
+    }
+    const validateInput = () => {
     
         // return text.search(/\d/) >= 0 ? true : false
         // same as 
-        return text.search(/\d/) >= 0
+        return value.search(/\d/) >= 0
     }
+
+    // value: value, onCHange: onCHange
+    return {value, onChange, validateInput}
+}
+
+
+const Form = () => {
+    // const [text, setText] = useState("");
+    // const [textArea, setTextArea] = useState(``);
+
+
+    const input = useInputWithValidate("");
+    const textArea = useInputWithValidate("");
+
+    // const validateInput = (text) => {
+    
+    //     // return text.search(/\d/) >= 0 ? true : false
+    //     // same as 
+    //     return text.search(/\d/) >= 0
+    // }
 
     // const handleClick = () => {
     //     console.log("click");
     // }
 
-    const color = validateInput(text) ? "text-danger" : null
+    const color = input.validateInput() ? "text-danger" : null
 
         return (
             <Container>
@@ -28,19 +52,24 @@ const Form = () => {
                         'position': 'relative'}}>
                     <div className="mb-3">
 
-                        <input value={text} type="text" className='form-control' readOnly/>
+                        <input value={`${input.value} / ${textArea.value}`} type="text" className='form-control' readOnly/>
                         <label htmlFor="exampleFormControlInput1" className="form-label mt-3">Email address</label>
                         <input  
-                            onChange={(e) => setText(e.target.value)}  
+                            onChange={input.onChange}  
                             type="email"
-                            value={text} 
+                            value={input.value} 
                             className={`form-control  ${color}`}
                             id="exampleFormControlInput1" 
                             placeholder="name@example.com"/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea 
+                        onChange={textArea.onChange}
+                        value={textArea.value}
+                        className="form-control" 
+                        id="exampleFormControlTextarea1" 
+                        rows="3"></textarea>
                     </div>
                     {/* <Portal>
                         <Msg/>
