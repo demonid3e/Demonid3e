@@ -4,11 +4,6 @@ import App from './components/app/App';
 
 import './style/style.scss';
 
-// using component creating a new class to test and passing responce into console
-// const marvelService = new MarvelService();
-// marvelService.getAllCharacters().then(res => res.data.results.forEach(item => console.log(item.name)));
-// marvelService.getCharacter(1011052).then(res => console.log(res));
-
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,4 +11,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+
 
