@@ -1,7 +1,4 @@
 
-7 kyu
-FIXME: Get Full Name
-
 class Dinglemouse{
 
 
